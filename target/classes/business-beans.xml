@@ -1,0 +1,59 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd 
+    http://www.springframework.org/schema/context  
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<mvc:annotation-driven />
+	<context:component-scan base-package="jbr.springmvc" />
+	<context:annotation-config />
+
+
+	<!-- Services -->
+	<bean id="businessService" class="com.cgc.demo.service.BusinessServiceImpl" />
+	<bean id="userService" class="com.cgc.demo.service.UserServiceImpl" />
+	<bean id="associationService" class="com.cgc.demo.service.AssociationServiceImpl" />
+	<bean id="util" class="com.cgc.demo.service.UtilImpl" />
+	<!-- DAO -->
+	<bean id="sportAssociationDAO" class="com.cgc.demo.dao.SportAssociationDAOImpl" />
+	<bean id="businessAccountDao" class="com.cgc.demo.dao.BusinessAccountDAOImpl" />
+	<bean id="businessProfileDao" class="com.cgc.demo.dao.BusinessProfileDAOImpl" />
+	<bean id="familyMemberDAO" class="com.cgc.demo.dao.FamilyMemberDAOImpl" />
+	<bean id="transactionDao" class="com.cgc.demo.dao.TransactionDAOImpl" />
+	<bean id="userAccountDAO" class="com.cgc.demo.dao.UserAccountDAOImpl" />
+	<bean id="userAssociationDAO" class="com.cgc.demo.dao.UserAssociationDAOImpl" />
+	<bean id="userProfileDAO" class="com.cgc.demo.dao.UserProfileDAOImpl" />
+	<bean id="transactionDetailDAO" class="com.cgc.demo.dao.TransactionDetailDAOImpl"/>
+	<bean id="businessPreferanceDAO" class="com.cgc.demo.dao.BusinessPreferanceDAOImpl"/>
+	<bean id="teamDAO" class="com.cgc.demo.dao.TeamsDAOImpl"/>
+	<bean id="charityAssociationDAO" class="com.cgc.demo.dao.CharityAssociationDAOImpl"/>
+	<bean id="playerDAO" class="com.cgc.demo.dao.PlayerDAOImpl"/>
+	<bean id="nonProfDAO" class="com.cgc.demo.dao.NonProfDAOImpl"/>
+	<bean id="associationAccountDAO" class="com.cgc.demo.dao.AssociationAccountDAOImpl"/>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> <property 
+		name="url" value="jdbc:mysql://planectme.csbmdzkhj61b.us-west-2.rds.amazonaws.com:3306/community_game_changer" 
+		/> <property name="username" value="planectme" /> <property name="password" 
+		value="94_Watts" /> </bean> -->
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost/community_game_changer" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
+
+</beans>

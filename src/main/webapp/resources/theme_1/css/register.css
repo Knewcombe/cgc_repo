@@ -1,0 +1,16 @@
+body {
+	margin-top: 50px;
+}
+
+.wizard>.steps .current a, .wizard>.steps .current a:hover, .wizard>.steps .current a:active
+	{
+	background: #FF9933;
+	color: #21183A;
+	cursor: default;
+}
+
+.wizard>.actions a, .wizard>.actions a:hover, .wizard>.actions a:active
+	{
+	background: #FF9933;
+	color: #21183A;
+}
