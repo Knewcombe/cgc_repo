@@ -99,6 +99,26 @@ public class TransactionDAOImpl implements TransactionDAO {
 	public void updateTransaction(int transaction_id, double amount, double percent_amount){
 		jdbcTemplate.update("UPDATE transaction SET total = ?, precent_total = ? WHERE transaction_id = ?", amount, percent_amount, transaction_id);
 	}
+	
+	public int getTotalBusinessTransactions(int business_profile_id){
+		int numberOfTransactions = 0;
+		numberOfTransactions = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM transaction WHERE business_profile_id = ?",
+				new Object[] { business_profile_id }, Integer.class);
+		return numberOfTransactions;
+	}
+	
+	public double getBusinessAmount(int business_profile_id){
+		double total = 0.0;
+		try{
+			total = jdbcTemplate.queryForObject("SELECT SUM(total) FROM transaction WHERE business_profile_id = ?",
+					new Object[] { business_profile_id }, Double.class);
+			System.out.println("Total found: "+ total);
+			return total;
+		}catch(Exception e){
+			//System.err.println(e);
+			return 0.0;
+		}
+	}
 
 	@SuppressWarnings("rawtypes")
 	public class TransactionMapper implements RowMapper {

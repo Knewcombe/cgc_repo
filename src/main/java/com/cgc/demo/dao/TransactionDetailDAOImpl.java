@@ -36,6 +36,32 @@ public class TransactionDetailDAOImpl implements TransactionDetailDAO {
 
 		return transactionDetail.size() > 0 ? transactionDetail : null;
 	}
+	
+	public double getTotalPreferanceAmount(int type){
+		double total = 0.0;
+		try{
+			total = jdbcTemplate.queryForObject("SELECT SUM(amount) FROM transaction_details WHERE transaction_type = ?",
+					new Object[] { type }, Double.class);
+			System.out.println("Total found: "+ total);
+			return total;
+		}catch(Exception e){
+			System.err.println(e);
+			return 0.0;
+		}
+	}
+	
+	public double getTotalPreferancePercentAmount(int type){
+		double total = 0.0;
+		try{
+			total = jdbcTemplate.queryForObject("SELECT SUM(precent_amount) FROM transaction_details WHERE transaction_type = ?",
+					new Object[] { type }, Double.class);
+			System.out.println("Total found: "+ total);
+			return total;
+		}catch(Exception e){
+			System.err.println(e);
+			return 0.0;
+		}
+	}
 
 	@SuppressWarnings("rawtypes")
 	public class TransactionDetailMapper implements RowMapper {

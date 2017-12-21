@@ -62,6 +62,26 @@ public class UserAssociationDAOImpl implements UserAssociationDAO{
 
 		return userAssociation.size() > 0 ? userAssociation : null;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<UserAssociation> getTeamAssociation(int team_id){
+		List<UserAssociation> userAssociation = null;
+
+		userAssociation = this.jdbcTemplate.query("SELECT * FROM user_association WHERE team_id = ?",
+				new Object[] { team_id },new UserAssociationMapper());
+
+		return userAssociation.size() > 0 ? userAssociation : null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<UserAssociation> getPlayerAssociation(int player_id){
+		List<UserAssociation> userAssociation = null;
+
+		userAssociation = this.jdbcTemplate.query("SELECT * FROM user_association WHERE player_id = ?",
+				new Object[] { player_id },new UserAssociationMapper());
+
+		return userAssociation.size() > 0 ? userAssociation : null;
+	}
 
 	public void setUserAssociation(UserAssociation userAssociation) {
 		// TODO Auto-generated method stub

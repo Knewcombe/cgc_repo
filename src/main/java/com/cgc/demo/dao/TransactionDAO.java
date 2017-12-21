@@ -19,5 +19,9 @@ public interface TransactionDAO {
 	public double getUserTotal(int user_profile_id);
 	
 	public void updateTransaction(int transaction_id, double amount, double percent_amount);
+	
+	public int getTotalBusinessTransactions(int business_profile_id);
+	
+	public double getBusinessAmount(int business_profile_id);
 
 }

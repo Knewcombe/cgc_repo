@@ -60,4 +60,8 @@ public interface AssociationService {
 	public SportAssociation getSportNames(int association_id, int team_id, int player_id);
 	
 	public List<UserAssociation> getUserAsscoiation(AssociationAccount associationAccount);
+	
+	public List<UserAssociation> getTeamUserAssociation(int team_id);
+	
+	public List<UserAssociation> getPlayerUserAssociation(int player_id);
 }

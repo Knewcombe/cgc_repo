@@ -1,5 +1,10 @@
 package com.cgc.demo.controller;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+import java.io.ByteArrayInputStream;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +16,7 @@ import javax.validation.Valid;
 
 import org.omg.IOP.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,13 +32,17 @@ import com.cgc.demo.model.TransactionDetail;
 import com.cgc.demo.model.UserProfile;
 import com.cgc.demo.service.BusinessService;
 import com.cgc.demo.service.UserService;
+import com.cgc.demo.service.Util;
 
 @Controller
 public class BusinessController {
 
 	@Autowired
 	BusinessService businessService;
-
+	
+	@Autowired
+	Util util;
+	
 	@RequestMapping({ "/business/home" })
 	public String showBusiness(HttpServletRequest request, HttpSession session, HttpServletResponse response,
 			Map<String, Object> model) {
@@ -71,6 +81,31 @@ public class BusinessController {
 			}
 		} else {
 			return "redirect:./login";
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping( value = "/business/reports/pdf", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_PDF_VALUE)
+	public ResponseEntity<InputStreamResource> pdfRepot(HttpServletRequest request, HttpSession session, HttpServletResponse response,
+			Map<String, Object> model) {
+		if (session.getAttribute("business") != null) {
+			BusinessAccount businessAccount = (BusinessAccount) session.getAttribute("business");
+			
+			// Will also need to work on Search parameters
+			
+			ByteArrayInputStream bis = util.generateBusinessReport(businessAccount.getBusinessProfile().getBusiness_profile_id());
+			
+			HttpHeaders headers = new HttpHeaders();
+	        headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
+	        
+			return ResponseEntity
+	                .ok()
+	                .headers(headers)
+	                .contentType(MediaType.APPLICATION_PDF)
+	                .body(new InputStreamResource(bis));
+		} else {
+			return (ResponseEntity<InputStreamResource>) ResponseEntity.noContent();
 		}
 	}
 	

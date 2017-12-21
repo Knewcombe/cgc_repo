@@ -15,5 +15,9 @@ public interface UserAssociationDAO {
 	public List<UserAssociation> getNonProfAssociation(int nonProf_id);
 	
 	public void setUserAssociation(UserAssociation userAssociation);
+	
+	public List<UserAssociation> getTeamAssociation(int team_id);
+	
+	public List<UserAssociation> getPlayerAssociation(int player_id);
 
 }

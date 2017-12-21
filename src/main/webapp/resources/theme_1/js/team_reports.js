@@ -7,7 +7,7 @@
 			console.log(element.attr("data-id"));
 			if(element.attr("data-id") != 0){
 				$.ajax({
-	        	    url: './getUserName',
+	        	    url: '../getUserName',
 	        	    type: "GET",
 	        	    data: {user_profile_id: element.attr("data-id")},
 	        	    complete: function(data){
@@ -17,7 +17,7 @@
 	        	    error: function (xhr, ajaxOptions, thrownError) {
 	        	    	$("#regForm .actions a[href='#finish']").show();
 	        	        alert("Something went wrong")
-	        	    }
+	        	      }
 	        	})
 			}else{
 				document.getElementById(element.attr("id")).innerHTML = "N/A";
@@ -28,7 +28,7 @@
 			var element = $(this);
 			if(element.attr("data-id") != 0){
 				$.ajax({
-	        	    url: './getTeamName',
+	        	    url: '../getTeamName',
 	        	    type: "GET",
 	        	    data: {team_id: element.attr("data-id")},
 	        	    complete: function(data){
@@ -50,7 +50,7 @@
 			console.log("test");
 			if(element.attr("data-id") != 0){
 				$.ajax({
-	        	    url: './getPlayerName',
+	        	    url: '../getPlayerName',
 	        	    type: "GET",
 	        	    data: {player_id: element.attr("data-id")},
 	        	    complete: function(data){
@@ -68,79 +68,18 @@
 		})
 		
 		var index = parseInt($("#report_search").attr("data-index"));
+		var team_id = parseInt($("#report_search").attr("data-team"));
 		
 		
 		$("#report_search").cascadingDropdown({
 			selectBoxes: [
 				{
-					selector: '.division',
-					source: function(request, response){
-						$.ajax({
-							  dataType: "json",
-							  url: '../teams/getDivision',
-							  data: {association_id: index},
-							  success: function(data){
-								  response($.map(data, function(item, index){
-										return{
-											label: item.division,
-											value: item.division
-											
-										}
-									}))
-							  }
-						});
-					}
-				},
-				{
-					selector: '.gender',
-					requires: ['.division'],
-					source: function(request, response){
-						$.ajax({
-							  dataType: "json",
-							  url: '../teams/getGender',
-							  data: {association_id: index, division: $('#division_select').val()},
-							  success: function(data){
-								  console.log(data)
-								  response($.map(data, function(item, index){
-										return{
-											label: item.gender,
-											value: item.gender
-											
-										}
-									}))
-							  }
-						});
-					}
-				},
-				{
-					selector: '.team',
-					requires: ['.gender'],
-					source: function(request, response){
-						$.ajax({
-							  dataType: "json",
-							  url: '../teams/getTeamName',
-							  data: {association_id: index, division: $('#division_select').val(), gender: $('#gender_select').val()},
-							  success: function(data){
-								  console.log(data)
-								  response($.map(data, function(item, index){
-										return{
-											label: item.name,
-											value: item.team_id
-											
-										}
-									}))
-							  }
-						});
-					}
-				},
-				{
 					selector: '.player',
-					requires: ['.team'],
 					source: function(request, response){
 						$.ajax({
 							  dataType: "json",
-							  url: '../teams/getPlayers',
-							  data: {team_id: $('#team_select').val()},
+							  url: '../../teams/getPlayers',
+							  data: {team_id: team_id},
 							  success: function(data){
 								  response($.map(data, function(item, index){
 										return{
@@ -149,7 +88,6 @@
 											
 										}
 									}))
-									$('#select_team_player').prop('disabled', false);
 							  }
 						});
 					}
@@ -158,11 +96,15 @@
 		})
 	});
 	
-	$('#select_team_player').on("click", function(event){
+	$("#player_select").on("change", function(){
 		if($("#player_select").val() != ""){
-			window.location.href = "./reports/player?player_id="+$("#player_select").val();
+			$('#select_team_player').prop('disabled', false);
 		}else{
-			window.location.href = "./reports/team?team_id="+$("#team_select").val();
+			$('#select_team_player').prop('disabled', true);
 		}
+	})
+	
+	$('#select_team_player').on("click", function(event){
+		window.location.href = "../reports/player?player_id="+$("#player_select").val();
 	})
 })(jQuery);

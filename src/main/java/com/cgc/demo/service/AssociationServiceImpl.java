@@ -182,7 +182,7 @@ public class AssociationServiceImpl implements AssociationService{
 	
 	public List<UserAssociation> getUserAsscoiation(AssociationAccount associationAccount){
 		//need to get the users associations that have the association_id
-		List<UserAssociation> userAssociation = new ArrayList<UserAssociation>();
+		List<UserAssociation> userAssociation = null;
 		if(associationAccount.getCharityAssociation() != null){
 			System.out.println("chairty");
 			userAssociation = userAssociationDAO.getChairtyAssociation(associationAccount.getCharityAssociation().getAssociation_id());
@@ -197,10 +197,37 @@ public class AssociationServiceImpl implements AssociationService{
 		//after getting the user associations go through them to find the sum for each users transactions and divide by the assocaiotns amount
 		if(userAssociation != null){
 			for(int i = 0; i < userAssociation.size(); i++){
-				System.out.println("User ID: "+ userAssociation.get(i).getUser_profile_id());
+				//System.out.println("User ID: "+ userAssociation.get(i).getUser_profile_id());
 				userAssociation.get(i).setSum_total(transactionDAO.getUserTotal(userAssociation.get(i).getUser_profile_id()) * userAssociation.get(i).getDonation_amount());
-				System.out.println(userAssociation.get(i).getDonation_amount());
-				System.out.println(userAssociation.get(i).getSum_total());
+				//System.out.println(userAssociation.get(i).getDonation_amount());
+				//System.out.println(userAssociation.get(i).getSum_total());
+			}
+		}
+		return userAssociation;
+	}
+	
+	public List<UserAssociation> getTeamUserAssociation(int team_id){
+		List<UserAssociation> userAssociation = userAssociationDAO.getTeamAssociation(team_id);
+		if(userAssociation != null){
+			for(int i = 0; i < userAssociation.size(); i++){
+				//System.out.println("User ID: "+ userAssociation.get(i).getUser_profile_id());
+				userAssociation.get(i).setSum_total(transactionDAO.getUserTotal(userAssociation.get(i).getUser_profile_id()) * userAssociation.get(i).getDonation_amount());
+				//System.out.println(userAssociation.get(i).getDonation_amount());
+				//System.out.println(userAssociation.get(i).getSum_total());
+			}
+		}
+		return userAssociation;
+	}
+	
+	public List<UserAssociation> getPlayerUserAssociation(int player_id){
+		List<UserAssociation> userAssociation =  userAssociationDAO.getPlayerAssociation(player_id);
+		
+		if(userAssociation != null){
+			for(int i = 0; i < userAssociation.size(); i++){
+				//System.out.println("User ID: "+ userAssociation.get(i).getUser_profile_id());
+				userAssociation.get(i).setSum_total(transactionDAO.getUserTotal(userAssociation.get(i).getUser_profile_id()) * userAssociation.get(i).getDonation_amount());
+				//System.out.println(userAssociation.get(i).getDonation_amount());
+				//System.out.println(userAssociation.get(i).getSum_total());
 			}
 		}
 		return userAssociation;

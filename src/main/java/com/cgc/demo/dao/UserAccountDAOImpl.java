@@ -15,6 +15,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import com.cgc.demo.model.Login;
 import com.cgc.demo.model.UserAccount;
+import com.cgc.demo.model.UserAssociation;
 import com.mysql.jdbc.PreparedStatement;
 
 public class UserAccountDAOImpl implements UserAccountDAO {
@@ -77,6 +78,7 @@ public class UserAccountDAOImpl implements UserAccountDAO {
 			return true;
 		}
 	}
+	
 
 	public class UserAccountMapper implements RowMapper {
 
