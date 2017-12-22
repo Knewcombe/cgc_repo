@@ -10,14 +10,18 @@ import com.cgc.demo.dao.BusinessProfileDAO;
 import com.cgc.demo.dao.CharityAssociationDAO;
 import com.cgc.demo.dao.NonProfDAO;
 import com.cgc.demo.dao.SportAssociationDAO;
+import com.cgc.demo.dao.TeamsDAO;
 import com.cgc.demo.dao.TransactionDAO;
 import com.cgc.demo.dao.TransactionDetailDAO;
+import com.cgc.demo.dao.UserAssociationDAO;
 import com.cgc.demo.model.AssociationAccount;
 import com.cgc.demo.model.BusinessPreference;
 import com.cgc.demo.model.BusinessProfile;
 import com.cgc.demo.model.CharityAssociation;
 import com.cgc.demo.model.NonProfAssociation;
 import com.cgc.demo.model.SportAssociation;
+import com.cgc.demo.model.Teams;
+import com.cgc.demo.model.UserAssociation;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -61,6 +65,12 @@ public class UtilImpl implements Util{
 	
 	@Autowired
 	NonProfDAO nonProfDAO;
+	
+	@Autowired
+	UserAssociationDAO userAssociationDAO;
+	
+	@Autowired
+	TeamsDAO teamsDAO;
 	
 	public String encodePassword(String password){
 		return bcryptEncoder.encode(password);
@@ -199,7 +209,7 @@ public class UtilImpl implements Util{
         LocalDate localDate = LocalDate.now();
         try{
         	PdfWriter.getInstance(document, out);
-        	 Paragraph header = new Paragraph(new Chunk("Community Game Changer Report",FontFactory.getFont(FontFactory.HELVETICA, 30)));
+        	 	 Paragraph header = new Paragraph(new Chunk("Community Game Changer Report",FontFactory.getFont(FontFactory.HELVETICA, 30)));
              Paragraph date = new Paragraph(new Chunk("As of: " + dtf.format(localDate),FontFactory.getFont(FontFactory.HELVETICA, 12)));
              
              CharityAssociation charityAssociation = charityAssociationDAO.getCharity(association_id);
@@ -208,20 +218,124 @@ public class UtilImpl implements Util{
              
              if(charityAssociation != null){
              	//Get info and create doc here
+            	 	double total = 0; 
+            	 	List<UserAssociation> userAss = userAssociationDAO.getChairtyAssociation(charityAssociation.getAssociation_id());
+            	 	int sizeOfUser = userAss.size();
+            	 	int recites = 0;
+            	 	Paragraph charityName = new Paragraph(new Chunk(charityAssociation.getName(),FontFactory.getFont(FontFactory.HELVETICA, 12)));
+            	 	Paragraph charityAddress = new Paragraph(new Chunk(charityAssociation.getCommunity()+", "+ charityAssociation.getProvince_code(),FontFactory.getFont(FontFactory.HELVETICA, 12)));
+            	 	for(UserAssociation user: userAss) {
+            	 		user.setSum_total(transactionDAO.getUserTotal(user.getUser_profile_id()) * user.getDonation_amount());
+            	 		total += user.getSum_total();
+            	 		if(user.getChairty_recipts() == true) {
+            	 			recites++;
+            	 		}
+            	 	}
+            	 	Paragraph sizeOfusersPar = new Paragraph(new Chunk("Number of Members: "+sizeOfUser,FontFactory.getFont(FontFactory.HELVETICA, 12)));
+            	 	Paragraph recitesPar = new Paragraph(new Chunk("Number of Member Recites: "+recites,FontFactory.getFont(FontFactory.HELVETICA, 12)));
+            	 	Paragraph totalFunds = new Paragraph(new Chunk("Total Funding: "+df2.format(total),FontFactory.getFont(FontFactory.HELVETICA, 12)));
+            	 	document.open();
+            	 	document.add(header);
+            	 	document.add( Chunk.NEWLINE );
+            	 	document.add(charityName);
+            	 	document.add(charityAddress);
+            	 	document.add( Chunk.NEWLINE );
+            	 	document.add(date);
+            	 	document.add(sizeOfusersPar);
+            	 	document.add(recitesPar);
+            	 	document.add(totalFunds);
+            	 	document.close();
              }
              
              if(sportAssociation != null){
              	//get info and put it here
+            	 	double total = 0; 
+          	 	List<UserAssociation> userAss = userAssociationDAO.getSportAssociation(sportAssociation.getAssociation_id());
+          	 	List<Teams> teams = teamsDAO.getTeams(sportAssociation.getAssociation_id());
+          	 	int sizeOfUser = userAss.size();
+          	 	Paragraph charityName = new Paragraph(new Chunk(sportAssociation.getName(),FontFactory.getFont(FontFactory.HELVETICA, 12)));
+          	 	Paragraph charityAddress = new Paragraph(new Chunk(sportAssociation.getCommunity()+", "+ sportAssociation.getProvince_code(),FontFactory.getFont(FontFactory.HELVETICA, 12)));
+          	 	for(UserAssociation user: userAss) {
+          	 		user.setSum_total(transactionDAO.getUserTotal(user.getUser_profile_id()) * user.getDonation_amount());
+          	 		total += user.getSum_total();
+          	 	}
+          	 	
+          		PdfPTable table = new PdfPTable(6);
+                table.setWidthPercentage(90);
+                table.setWidths(new int[]{10, 10, 10, 10, 10, 10});
+
+                Font headFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+
+                PdfPCell hcell;
+                hcell = new PdfPCell(new Phrase("Name", headFont));
+                hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(hcell);
+
+                hcell = new PdfPCell(new Phrase("Cash Precent", headFont));
+                hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(hcell);
+                
+                hcell = new PdfPCell(new Phrase("Debit Precent", headFont));
+                hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(hcell);
+                
+                hcell = new PdfPCell(new Phrase("Credit Precent", headFont));
+                hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(hcell);
+
+                hcell = new PdfPCell(new Phrase("Total Purchase", headFont));
+                hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(hcell);
+                
+                hcell = new PdfPCell(new Phrase("Amount Rased", headFont));
+                hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(hcell);
+          	 	for(Teams team: teams) {
+          	 		
+          	 	}
+          	 	Paragraph sizeOfusersPar = new Paragraph(new Chunk("Number of Members: "+sizeOfUser,FontFactory.getFont(FontFactory.HELVETICA, 12)));
+          	 	Paragraph totalFunds = new Paragraph(new Chunk("Total Funding: "+df2.format(total),FontFactory.getFont(FontFactory.HELVETICA, 12)));
+          	 	document.open();
+          	 	document.add(header);
+          	 	document.add( Chunk.NEWLINE );
+          	 	document.add(charityName);
+          	 	document.add(charityAddress);
+          	 	document.add( Chunk.NEWLINE );
+          	 	document.add(date);
+          	 	document.add(sizeOfusersPar);
+          	 	document.add(totalFunds);
+          	 	document.close();
              }
              
              if(nonProfAssociation != null){
              	//get info and put it here
+         	 	double total = 0; 
+         	 	List<UserAssociation> userAss = userAssociationDAO.getNonProfAssociation(nonProfAssociation.getAssociation_id());
+         	 	int sizeOfUser = userAss.size();
+         	 	Paragraph charityName = new Paragraph(new Chunk(nonProfAssociation.getName(),FontFactory.getFont(FontFactory.HELVETICA, 12)));
+         	 	Paragraph charityAddress = new Paragraph(new Chunk(nonProfAssociation.getCommunity()+", "+ nonProfAssociation.getProvince_code(),FontFactory.getFont(FontFactory.HELVETICA, 12)));
+         	 	for(UserAssociation user: userAss) {
+         	 		user.setSum_total(transactionDAO.getUserTotal(user.getUser_profile_id()) * user.getDonation_amount());
+         	 		total += user.getSum_total();
+         	 	}
+         	 	Paragraph sizeOfusersPar = new Paragraph(new Chunk("Number of Members: "+sizeOfUser,FontFactory.getFont(FontFactory.HELVETICA, 12)));
+         	 	Paragraph totalFunds = new Paragraph(new Chunk("Total Funding: "+df2.format(total),FontFactory.getFont(FontFactory.HELVETICA, 12)));
+         	 	document.open();
+         	 	document.add(header);
+         	 	document.add( Chunk.NEWLINE );
+         	 	document.add(charityName);
+         	 	document.add(charityAddress);
+         	 	document.add( Chunk.NEWLINE );
+         	 	document.add(date);
+         	 	document.add(sizeOfusersPar);
+         	 	document.add(totalFunds);
+         	 	document.close();
              }
              
         }catch (DocumentException ex) {
 	        System.out.println(ex.toString());
         }
         
-		return null;
+		return new ByteArrayInputStream(out.toByteArray());
 	}
 }
