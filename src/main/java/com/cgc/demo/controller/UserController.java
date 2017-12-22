@@ -1,5 +1,6 @@
 package com.cgc.demo.controller;
 
+import java.io.ByteArrayInputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +30,7 @@ import com.cgc.demo.model.Transaction;
 import com.cgc.demo.model.UserAccount;
 import com.cgc.demo.service.AssociationService;
 import com.cgc.demo.service.UserService;
+import com.cgc.demo.service.Util;
 
 @Controller
 public class UserController {
@@ -34,6 +40,9 @@ public class UserController {
 	
 	@Autowired
 	AssociationService associationService;
+	
+	@Autowired
+	Util util;
 
 	@RequestMapping({ "/user/home" })
 	public String showUser(HttpServletRequest request, HttpSession session, HttpServletResponse response,
@@ -68,6 +77,31 @@ public class UserController {
 			}
 		} else {
 			return "redirect: ../login";
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping( value = "/user/reports/pdf", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_PDF_VALUE)
+	public ResponseEntity<InputStreamResource> userPdfReport(HttpServletRequest request, HttpSession session, HttpServletResponse response,
+			Map<String, Object> model) {
+		if (session.getAttribute("user") != null) {
+			UserAccount userAccount = (UserAccount) session.getAttribute("user");
+			
+			// Will also need to work on Search parameters
+			
+			ByteArrayInputStream bis = util.generateUserReport(userAccount.getUserProfile().getUser_profile_id());
+			
+			HttpHeaders headers = new HttpHeaders();
+	        headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
+	        
+			return ResponseEntity
+	                .ok()
+	                .headers(headers)
+	                .contentType(MediaType.APPLICATION_PDF)
+	                .body(new InputStreamResource(bis));
+		} else {
+			return (ResponseEntity<InputStreamResource>) ResponseEntity.noContent();
 		}
 	}
 	

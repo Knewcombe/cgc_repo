@@ -60,6 +60,14 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 		List<UserProfile> userProfile = null;
 		
 		userProfile = this.jdbcTemplate.query("SELECT first_name, last_name FROM user_profile WHERE user_profile_id = ?", new Object[] {user_profile_id}, new UserNameMapper());
+		return userProfile.size() > 0 ? userProfile.get(0) : null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public UserProfile getContactInfo(int user_profile_id){
+		List<UserProfile> userProfile = null;
+		
+		userProfile = this.jdbcTemplate.query("SELECT province_code, city, address, postal_code, phone, email FROM user_profile WHERE user_profile_id = ?", new Object[] {user_profile_id}, new UserContactMapper());
 		
 		return userProfile.size() > 0 ? userProfile.get(0) : null;
 	}
@@ -144,6 +152,20 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 			userProfile.setLast_name(rs.getString("last_name"));
 			userProfile.setDate_of_birth(rs.getString("date_of_birth"));
 			userProfile.setGender(rs.getString("gender"));
+			userProfile.setProvince_code(rs.getString("province_code"));
+			userProfile.setCity(rs.getString("city"));
+			userProfile.setAddress(rs.getString("address"));
+			userProfile.setPostal_code(rs.getString("postal_code"));
+			userProfile.setPhone(rs.getString("phone"));
+			userProfile.setEmail(rs.getString("email"));
+			return userProfile;
+		}
+	}
+	
+	public class UserContactMapper implements RowMapper {
+
+		public UserProfile mapRow(ResultSet rs, int arg1) throws SQLException {
+			UserProfile userProfile = new UserProfile();
 			userProfile.setProvince_code(rs.getString("province_code"));
 			userProfile.setCity(rs.getString("city"));
 			userProfile.setAddress(rs.getString("address"));

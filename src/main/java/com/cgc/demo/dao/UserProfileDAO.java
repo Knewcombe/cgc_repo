@@ -22,4 +22,6 @@ public interface UserProfileDAO{
 	public UserProfile getCardId(int user_profile_id);
 	
 	public UserProfile getUserName(int user_profile_id);
+	
+	public UserProfile getContactInfo(int user_profile_id);
 }

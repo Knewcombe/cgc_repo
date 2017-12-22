@@ -23,5 +23,7 @@ public interface TransactionDAO {
 	public int getTotalBusinessTransactions(int business_profile_id);
 	
 	public double getBusinessAmount(int business_profile_id);
+	
+	
 
 }

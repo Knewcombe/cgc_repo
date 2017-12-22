@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cgc.demo.model.BusinessAccount;
 import com.cgc.demo.model.Search;
@@ -106,6 +107,24 @@ public class BusinessController {
 	                .body(new InputStreamResource(bis));
 		} else {
 			return (ResponseEntity<InputStreamResource>) ResponseEntity.noContent();
+		}
+	}
+	
+	@RequestMapping( value = "/business/reports/excel", method = RequestMethod.GET,
+            produces = "application/vnd.ms-excel")
+	public ModelAndView excelBusinessDoc(HttpServletRequest request, HttpSession session, HttpServletResponse response,
+			Map<String, Object> model) {
+		if (session.getAttribute("business") != null) {
+			BusinessAccount businessAccount = (BusinessAccount) session.getAttribute("business");
+	        List<Transaction> transactions = businessService.getTransaction(businessAccount.getBusinessProfile().getBusiness_profile_id());
+	        for(Transaction transaction: transactions){
+	        	transaction.setTransactionDetail(businessService.getTransactionDetails(transaction.getTransaction_id()));
+	        }
+	        ModelAndView modelAndView = new ModelAndView("businessExcelView", "transactions", transactions);
+	        response.setHeader("Content-Disposition", "attachment; filename=\"transactions.xls\"");
+			return modelAndView;
+		} else {
+			return null;
 		}
 	}
 	

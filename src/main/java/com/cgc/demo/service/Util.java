@@ -11,4 +11,10 @@ public interface Util {
 	public ByteArrayInputStream generateAssociationReport(int association_id);
 	
 	public ByteArrayInputStream generateBusinessReport(int business_id);
+	
+	public ByteArrayInputStream generateTeamReport(int team_id);
+	
+	public ByteArrayInputStream generatePlayerReport(int player_id);
+	
+	public ByteArrayInputStream generateUserReport(int user_profile_id);
 }

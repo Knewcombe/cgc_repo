@@ -1,5 +1,7 @@
 package com.cgc.demo.model;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserAssociation {
 	
@@ -19,6 +21,64 @@ public class UserAssociation {
 	private Boolean chairty_recipts;
 	private double sum_total;
 	
+	private String user_first_name;
+	private String user_last_name;
+	private String team_name;
+	private String player_name;
+	
+	private UserProfile userProfile;
+
+
+	public UserProfile getUserProfile() {
+		return userProfile;
+	}
+
+
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
+	}
+
+
+	public String getUser_first_name() {
+		return user_first_name;
+	}
+
+
+	public void setUser_first_name(String user_first_name) {
+		this.user_first_name = user_first_name;
+	}
+
+
+	public String getUser_last_name() {
+		return user_last_name;
+	}
+
+
+	public void setUser_last_name(String user_last_name) {
+		this.user_last_name = user_last_name;
+	}
+
+
+	public String getTeam_name() {
+		return team_name;
+	}
+
+
+	public void setTeam_name(String team_name) {
+		this.team_name = team_name;
+	}
+
+
+	public String getPlayer_name() {
+		return player_name;
+	}
+
+
+	public void setPlayer_name(String player_name) {
+		this.player_name = player_name;
+	}
+
+
 	public Boolean getChairty_recipts() {
 		return chairty_recipts;
 	}
@@ -108,6 +168,17 @@ public class UserAssociation {
 
 	public void setSum_total(double sum_total) {
 		this.sum_total = sum_total;
+	}
+	
+	public void setUser_name(UserProfile user){
+		if(user != null){
+			this.user_first_name = user.getFirst_name();
+			this.user_last_name = user.getLast_name();
+		}
+	}
+	
+	public String getUser_name(){
+		return this.user_first_name +" "+ this.user_last_name;
 	}
 	
 

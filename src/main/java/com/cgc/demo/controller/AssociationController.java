@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cgc.demo.dao.PlayersDAO;
 import com.cgc.demo.dao.TeamsDAO;
@@ -28,6 +29,7 @@ import com.cgc.demo.model.BusinessAccount;
 import com.cgc.demo.model.NonProfAssociation;
 import com.cgc.demo.model.Player;
 import com.cgc.demo.model.Teams;
+import com.cgc.demo.model.Transaction;
 import com.cgc.demo.model.UserAssociation;
 import com.cgc.demo.model.UserProfile;
 import com.cgc.demo.service.AssociationService;
@@ -110,6 +112,37 @@ public class AssociationController {
 		}
 	}
 	
+	@RequestMapping( value = "/association/reports/excel", method = RequestMethod.GET,
+            produces = "application/vnd.ms-excel")
+	public ModelAndView excelAssociationReport(HttpServletRequest request, HttpSession session, HttpServletResponse response,
+			Map<String, Object> model) {
+		if (session.getAttribute("association") != null) {
+			AssociationAccount associtationAccount  = (AssociationAccount) session.getAttribute("association");
+			List<UserAssociation> userAssociation = associationService.getUserAsscoiation(associtationAccount);
+			ModelAndView modelAndView = null;
+			if(associtationAccount.getSportAssociation() != null){
+				modelAndView = new ModelAndView("sportExcelView", "userAssociation", userAssociation);
+				response.setHeader("Content-Disposition", "attachment; filename=\"Sport.xls\"");
+			}
+			if(associtationAccount.getCharityAssociation() != null){
+				System.out.println("Checkjing for charty");
+				for(UserAssociation user: userAssociation){
+					System.out.println(user.getUser_profile_id());
+					user.setUserProfile(userService.getUserProfile(user.getUser_profile_id()));
+				}
+				modelAndView = new ModelAndView("charityExcelView", "userAssociation", userAssociation);
+				response.setHeader("Content-Disposition", "attachment; filename=\"Chairty.xls\"");
+			}
+			if(associtationAccount.getNonProfAssociation() != null){
+				modelAndView = new ModelAndView("nonProfExcelView", "userAssociation", userAssociation);
+				response.setHeader("Content-Disposition", "attachment; filename=\"NonProf.xls\"");
+			}
+			return modelAndView;
+		} else {
+			return null;
+		}
+	}
+	
 	@RequestMapping({ "/association/reports/team" })
 	public String getTeamReports(HttpServletRequest request, HttpSession session, HttpServletResponse response, @RequestParam(value = "team_id", required = true) int team_id,
 			Map<String, Object> model) {
@@ -151,6 +184,56 @@ public class AssociationController {
 			}
 		} else {
 			return "redirect:../../login";
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping( value = "/association/reports/teams/pdf", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_PDF_VALUE)
+	public ResponseEntity<InputStreamResource> pdfTeamRepot(HttpServletRequest request, HttpSession session, HttpServletResponse response, @RequestParam(value = "team_id", required = true) int team_id,
+			Map<String, Object> model) {
+		if (session.getAttribute("association") != null) {
+			//AssociationAccount associtationAccount  = (AssociationAccount) session.getAttribute("association");
+			
+			// Will also need to work on Search parameters
+			
+			ByteArrayInputStream bis = util.generateTeamReport(team_id);
+			
+			HttpHeaders headers = new HttpHeaders();
+	        headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
+	        
+			return ResponseEntity
+	                .ok()
+	                .headers(headers)
+	                .contentType(MediaType.APPLICATION_PDF)
+	                .body(new InputStreamResource(bis));
+		} else {
+			return (ResponseEntity<InputStreamResource>) ResponseEntity.noContent();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping( value = "/association/reports/player/pdf", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_PDF_VALUE)
+	public ResponseEntity<InputStreamResource> pdfPlayerRepot(HttpServletRequest request, HttpSession session, HttpServletResponse response, @RequestParam(value = "player_id", required = true) int player_id,
+			Map<String, Object> model) {
+		if (session.getAttribute("association") != null) {
+			//AssociationAccount associtationAccount  = (AssociationAccount) session.getAttribute("association");
+			
+			// Will also need to work on Search parameters
+			
+			ByteArrayInputStream bis = util.generatePlayerReport(player_id);
+			
+			HttpHeaders headers = new HttpHeaders();
+	        headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
+	        
+			return ResponseEntity
+	                .ok()
+	                .headers(headers)
+	                .contentType(MediaType.APPLICATION_PDF)
+	                .body(new InputStreamResource(bis));
+		} else {
+			return (ResponseEntity<InputStreamResource>) ResponseEntity.noContent();
 		}
 	}
 	

@@ -25,5 +25,7 @@ public interface UserService {
 	public boolean checkUsername(String username);
 	
 	public UserProfile getUserName(int user_profile_id);
+	
+	public UserProfile getUserProfile(int user_profile_id);
 
 }

@@ -103,5 +103,9 @@ public class UserServiceImpl implements UserService{
 	public UserProfile getUserName(int user_profile_id){
 		return userProfileDAO.getUserName(user_profile_id);
 	}
+	
+	public UserProfile getUserProfile(int user_profile_id){
+		return userProfileDAO.getContactInfo(user_profile_id);
+	}
 
 }
