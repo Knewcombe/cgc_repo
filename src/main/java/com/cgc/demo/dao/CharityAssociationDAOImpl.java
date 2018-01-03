@@ -66,6 +66,15 @@ public class CharityAssociationDAOImpl implements CharityAssociationDAO{
 		return association.size() > 0 ? association.get(0) : null;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<CharityAssociation> getCharity(){
+		List<CharityAssociation> association = null;
+		
+		association = this.jdbcTemplate.query("SELECT * FROM charity_association", new CharityMapper());
+		
+		return association.size() > 0 ? association : null;
+	}
+	
 	public class CharityMapper implements RowMapper {
 
 		public CharityAssociation mapRow(ResultSet rs, int arg1) throws SQLException {

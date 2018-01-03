@@ -31,36 +31,58 @@ public class BusinessExcelView extends AbstractExcelView {
 		
 		HSSFRow header = sheet1.createRow(0);
 		  header.createCell(0).setCellValue("Transaction Id");
+		  sheet1.autoSizeColumn(0);
 		  header.createCell(1).setCellValue("User Id");
+		  sheet1.autoSizeColumn(2);
 		  header.createCell(2).setCellValue("Total Amount");
+		  sheet1.autoSizeColumn(2);
 		  header.createCell(3).setCellValue("Total Funds");
+		  sheet1.autoSizeColumn(3);
 		  header.createCell(4).setCellValue("Date Of Purchase");
+		  sheet1.autoSizeColumn(4);
 		  
 		  HSSFRow header2 = sheet2.createRow(0);
 		  header2.createCell(0).setCellValue("Transaction Id");
+		  sheet2.autoSizeColumn(0);
 		  header2.createCell(1).setCellValue("Item");
+		  sheet2.autoSizeColumn(1);
 		  header2.createCell(2).setCellValue("Amount");
+		  sheet2.autoSizeColumn(2);
 		  header2.createCell(3).setCellValue("Transaction Rate");
+		  sheet2.autoSizeColumn(3);
 		  header2.createCell(4).setCellValue("Funds Raised");
+		  sheet2.autoSizeColumn(4);
 		  header2.createCell(5).setCellValue("Method of Payment");
+		  sheet2.autoSizeColumn(5);
 		 
 		  int tCounter = 1;
+		  int tdCounter = 1;
 		  for (Transaction transaction : transactions) {
 		   HSSFRow row = sheet1.createRow(tCounter++);
 		   row.createCell(0).setCellValue(transaction.getTransaction_id());
+		   sheet1.autoSizeColumn(0);
 		   row.createCell(1).setCellValue(transaction.getUser_profile_id());
+		   sheet1.autoSizeColumn(1);
 		   row.createCell(2).setCellValue("$"+df2.format(transaction.getTotal()));
+		   sheet1.autoSizeColumn(2);
 		   row.createCell(3).setCellValue("$"+df2.format(transaction.getPrecent_total()));
+		   sheet1.autoSizeColumn(3);
 		   row.createCell(4).setCellValue(transaction.getDate_of_purhase());
-		   int tdCounter = 1;
+		   sheet1.autoSizeColumn(4);
 		   for(TransactionDetail details: transaction.getTransactionDetail()){
 			   HSSFRow row2 = sheet2.createRow(tdCounter++);
 			   row2.createCell(0).setCellValue(details.getTransaction_id());
+			   sheet2.autoSizeColumn(0);
 			   row2.createCell(1).setCellValue(details.getName());
+			   sheet2.autoSizeColumn(1);
 			   row2.createCell(2).setCellValue("$"+df2.format(details.getAmount()));
+			   sheet2.autoSizeColumn(2);
 			   row2.createCell(3).setCellValue("%"+(details.getTransaction_rate() * 100));
+			   sheet2.autoSizeColumn(3);
 			   row2.createCell(4).setCellValue("$"+df2.format(details.getPrecent_amount()));
+			   sheet2.autoSizeColumn(4);
 			   row2.createCell(5).setCellValue(details.getMethod_of_pyment());
+			   sheet2.autoSizeColumn(5);
 		   }
 		  }
 		

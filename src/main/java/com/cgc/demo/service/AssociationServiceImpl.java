@@ -217,8 +217,9 @@ public class AssociationServiceImpl implements AssociationService{
 			for(int i = 0; i < userAssociation.size(); i++){
 				//System.out.println("User ID: "+ userAssociation.get(i).getUser_profile_id());
 				userAssociation.get(i).setSum_total(transactionDAO.getUserTotal(userAssociation.get(i).getUser_profile_id()) * userAssociation.get(i).getDonation_amount());
-				//System.out.println(userAssociation.get(i).getDonation_amount());
-				//System.out.println(userAssociation.get(i).getSum_total());
+				userAssociation.get(i).setUser_name((userAssociation.get(i).getUser_profile_id() == 0) ? null : userProfileDAO.getUserName(userAssociation.get(i).getUser_profile_id()));
+				userAssociation.get(i).setPlayer_name((userAssociation.get(i).getPlayer_id() == 0) ? "N/A" : playersDAO.getPlayerName(userAssociation.get(i).getPlayer_id()).getName());
+				userAssociation.get(i).setTeam_name((userAssociation.get(i).getTeam_id() == 0) ? "N/A" : teamDAO.getTeamName(userAssociation.get(i).getTeam_id()).getName());
 			}
 		}
 		return userAssociation;
@@ -231,10 +232,19 @@ public class AssociationServiceImpl implements AssociationService{
 			for(int i = 0; i < userAssociation.size(); i++){
 				//System.out.println("User ID: "+ userAssociation.get(i).getUser_profile_id());
 				userAssociation.get(i).setSum_total(transactionDAO.getUserTotal(userAssociation.get(i).getUser_profile_id()) * userAssociation.get(i).getDonation_amount());
-				//System.out.println(userAssociation.get(i).getDonation_amount());
-				//System.out.println(userAssociation.get(i).getSum_total());
+				userAssociation.get(i).setUser_name((userAssociation.get(i).getUser_profile_id() == 0) ? null : userProfileDAO.getUserName(userAssociation.get(i).getUser_profile_id()));
+				userAssociation.get(i).setPlayer_name((userAssociation.get(i).getPlayer_id() == 0) ? "N/A" : playersDAO.getPlayerName(userAssociation.get(i).getPlayer_id()).getName());
+				userAssociation.get(i).setTeam_name((userAssociation.get(i).getTeam_id() == 0) ? "N/A" : teamDAO.getTeamName(userAssociation.get(i).getTeam_id()).getName());
 			}
 		}
 		return userAssociation;
+	}
+	
+	public List<CharityAssociation> getAllCharities(){
+		return charityAssociationDAO.getCharity();
+	}
+	
+	public List<NonProfAssociation> getAllNonProf(){
+		return nonProfDAO.getNonProf();
 	}
 }

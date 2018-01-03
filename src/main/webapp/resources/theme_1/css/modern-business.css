@@ -19,6 +19,92 @@ body {
        1px 1px 0 #000; */
 }
 
+#first-card{
+	background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.5)),url(https://media.istockphoto.com/photos/tell-me-more-about-this-picture-id541113838?k=6&m=541113838&s=612x612&w=0&h=i5zeSKbJjbX2GLDOVMuEljMujuXaoCDy4MBtT61XiK4=);
+}
+
+#second-card{
+	background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.5)),url(https://daisiesandbuttercups.com/wp-content/uploads/2017/06/AdobeStock_28477565-400x400.jpeg);
+}
+
+#third-card{
+	background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.5)),url(https://blog.unfranchise.com/wp-content/uploads/2017/03/bigstock-Black-male-business-owner-stan-154797611-800x445-400x400.jpg);
+}
+
+#fourth-card{
+	background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.5)),url(https://thumbs.dreamstime.com/z/charity-donations-fundraising-nonprofit-volunteer-concept-77965178.jpg);
+}
+
+/* .card-overlay{
+	background: rgba(255, 255, 255, 0.5);
+	margin: -1.25rem;
+} */
+.social-icon {
+    color: #fff;
+}
+ul.social-icons {
+    margin-top: 10px;
+}
+.social-icons li {
+    vertical-align: top;
+    display: inline;
+    height: 100px;
+}
+.social-icons a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.fa{
+	padding:11px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    /* background-color: #322f30; */
+    color: rgba(0,0,0,.5);
+}
+.fa:hover{
+	color: rgba(255,255,255,1);
+}
+
+.fa-facebook:hover {
+    background-color: #3d5b99;
+}
+
+.fa-twitter:hover {
+    background-color: #00aced;
+}
+
+.fa-rss:hover {
+    background-color: #eb8231;
+}
+.fa-youtube:hover {
+    background-color: #e64a41;
+}
+.fa-linkedin:hover {
+    background-color: #0073a4;
+}
+.fa-google-plus:hover {
+    background-color: #e25714;
+}
+
+box-shadow{
+	box-shadow: 5px 10px 2px #FF9933;
+}
+
+.text-shadow{
+	text-shadow: 2px 2px 2px #21183A;
+}
+
+.card-img-bg { 
+    /* Center and scale the image nicely */
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
 .col-centered{
     float: none;
     margin: 0 auto;

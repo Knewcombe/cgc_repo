@@ -1,19 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.List"%>
 <head>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-<!-- Bootstrap core CSS -->
-<link href="resources/vendor/bootstrap/css/bootstrap.min.css"
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="resources/css/modern-business.css" rel="stylesheet">
+<link href="../resources/css/modern-business.css" rel="stylesheet">
+<link href="../resources/css/jquery.steps.css" rel="stylesheet">
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+<link rel="stylesheet" href="../resources/css/jquery-ui-slider-pips.css">
+<link rel="stylesheet" href="../resources/css/nouislider.min.css" />
+<link rel="stylesheet"
+	href="http://formvalidation.io/vendor/jquery.steps/css/jquery.steps.css" />
+<link href="../resources/css/register.css" rel="stylesheet">
 
 <link
 	href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css"
@@ -21,15 +26,14 @@
 <link href="https://fonts.googleapis.com/css?family=Graduate"
 	rel="stylesheet">
 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Contact</title>
+<title>Registration</title>
 </head>
 <body>
 	<!-- Navigation -->
 	<nav
 		class="navbar fixed-top navbar-expand-lg navbar-light cl-bg-primary text-muted fixed-top">
 	<div class="container">
-		<a class="navbar-brand nav-titel cl-txt-primary" href="./">COMMUNITY
+		<a class="navbar-brand nav-titel cl-txt-primary" href="../">COMMUNITY
 			GAME CHANGER</a>
 		<button class="navbar-toggler navbar-toggler-right" type="button"
 			data-toggle="collapse" data-target="#navbarResponsive"
@@ -45,9 +49,9 @@
 					aria-haspopup="true" aria-expanded="false"> About </a>
 					<div class="dropdown-menu dropdown-menu-right"
 						aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item" href="./how-it-works">How it
-							works</a> <a class="dropdown-item" href="./benefits/family">Benefits
-							for Members</a> <a class="dropdown-item" href="./benefits/businesses">Benefits
+						<a class="dropdown-item" href="../how-it-works">How it
+							works</a> <a class="dropdown-item" href="../benefits/family">Benefits
+							for Members</a> <a class="dropdown-item" href="../benefits/businesses">Benefits
 							for Merchants</a>
 					</div></li>
 					<li class="nav-item dropdown"><a
@@ -57,43 +61,46 @@
 						Community Partners </a>
 					<div class="dropdown-menu dropdown-menu-right"
 						aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item" href="./communites/sport">Sport Community</a>
-						<a class="dropdown-item" href="./communites/charity">Charity Community</a>
-						<a class="dropdown-item" href="./communites/nonprof">Non-Profit Community</a>
+						<a class="dropdown-item" href="../communites/sport">Sport Community</a>
+						<a class="dropdown-item" href="../communites/charity">Charity Community</a>
+						<a class="dropdown-item" href="../communites/nonprof">Non-Profit Community</a>
 					</div></li>
-				<li class="nav-item"><a class="nav-link" href="./contact">Contact</a>
+				<li class="nav-item"><a class="nav-link" href="../contact">Contact</a>
 				</li>
 				<!-- <li class="nav-item"><a href="#" class="btn btn-primary">Login</a></li> -->
 				<li class="nav-item">
-					<a class="btn btn-outline-primary" href="./login">Login</a>
+					<a class="btn btn-outline-primary" href="../login">Login</a>
 				</li>
 				<!-- <li class="nav-item"><a href="#" class="btn btn-success">Sign Up</a></li> -->
 				<li class="nav-item">
-					<a class="btn btn-outline-success" href="./register/select">Sign
+					<a class="btn btn-outline-success" href="../register/select">Sign
 						Up</a>
 				</li>
 			</ul>
 		</div>
 	</div>
 	</nav>
-	<div class="container">
-		<div class="row-fluid">
-			<div class="col-lg-12">
-				<iframe
-					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2758.120225296797!2d-63.17416668441538!3d46.26771497911878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b5fad6bf1ffe3b5%3A0xee7e0938ba1401fc!2s94+Watts+Ave%2C+Charlottetown%2C+PE+C1E+2C1!5e0!3m2!1sen!2sca!4v1506008139480"
-					width="100%" height="350" frameborder="0" scrolling="no"
-					marginheight="0" marginwidth="0"></iframe>
-			</div>
-			<div class="col-lg-4">
-				<h2>Address</h2>
-				<address>
-					<strong>Community Game Changer</strong><br> 94 Watts Ave<br>
-					Charlottetown<br> PEI<br> Canada<br> C1E 2C1<br>
-					<abbr title="Phone">P:</abbr> 01234 567 890
-				</address>
-			</div>
-		</div>
-	</div>
+	<div class="container-fluid">
+	<h1 class="my-4 text-center titel">Sport Community Partners</h1>
+	<c:forEach items="${sports}" var="sport" varStatus="item">
+		<div class="container py-3">
+		    <div class="card">
+		      <div class="row">
+		      <div class="col-md-3">
+            	<img src="http://via.placeholder.com/400x400" class="w-100">
+          		</div>
+		          <div class="col-md-9 px-1 py-3">
+		            <div class="card-block px-3">
+		              <h4 class="card-title">Name: ${sport.name}</h4>
+		              <p class="card-text">Sport: ${sport.sport}</p>
+		              <p class="card-text">Community: ${sport.community} ${sport.province_code}</p>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+	</c:forEach>
+		   </div>
 	<footer>
 	<div class="container">
 		<div class="row">
@@ -118,13 +125,13 @@
 			<div class="col-md-3 col-sm-6 paddingtop-bottom">
 				<h6 class="heading7 cl-txt-secondary">GENERAL LINKS</h6>
 				<ul class="footer-ul">
-					<li><a href="./how-it-works"> How it works</a></li>
-					<li><a href="./benefits/family"> Benefits for Members</a></li>
-					<li><a href="./benefits/businesses"> Benefits for Merchants</a></li>
-					<li><a href="./contact"> Contact</a></li>
-					<li><a href="./communites/sport"> Sport Community</a></li>
-					<li><a href="./communites/charity"> Charity Community</a></li>
-					<li><a href="./communites/nonprof"> Non-Profit Community</a></li>
+					<li><a href="../how-it-works"> How it works</a></li>
+					<li><a href="../benefits/family"> Benefits for Members</a></li>
+					<li><a href="../benefits/businesses"> Benefits for Merchants</a></li>
+					<li><a href="../contact"> Contact</a></li>
+					<li><a href="../communites/sport"> Sport Community</a></li>
+					<li><a href="../communites/charity"> Charity Community</a></li>
+					<li><a href="../communites/nonprof"> Non-Profit Community</a></li>
 				</ul>
 			</div>
 			<div class="col-md-4 col-sm-6 paddingtop-bottom">
@@ -149,16 +156,13 @@
 	<div class="copyright">
 		<div class="container">
 			<div class="col-md-6">
-				<p>Â© 2017 - All Rights with Community Game Changer</p>
+				<p>© 2017 - All Rights with Community Game Changer</p>
 			</div>
 		</div>
 	</div>
 </body>
-<script src="resources/vendor/jquery/jquery.min.js"></script>
+<script src="../resources/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript"
 	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
-<script src="resources/vendor/popper/popper.min.js"></script>
-<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-</html>
+	<script src="../resources/vendor/popper/popper.min.js"></script>
+	<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>

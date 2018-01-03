@@ -50,6 +50,25 @@ public class MainController {
 	public String contactPage(HttpServletRequest request, HttpSession session, HttpServletResponse response){
 		return "contact";
 	}
+
+	
+	@RequestMapping({"/communites/sport"})
+	public String sportPage(HttpServletRequest request, HttpSession session, HttpServletResponse response, Map<String, Object> model){
+		model.put("sports", associationService.getAssociation());
+		return "sport_community";
+	}
+	
+	@RequestMapping({"/communites/charity"})
+	public String charityPage(HttpServletRequest request, HttpSession session, HttpServletResponse response, Map<String, Object> model){
+		model.put("charites", associationService.getAllCharities());
+		return "charity_community";
+	}
+	
+	@RequestMapping({"/communites/nonprof"})
+	public String nonProfPage(HttpServletRequest request, HttpSession session, HttpServletResponse response, Map<String, Object> model){
+		model.put("nonProfs", associationService.getAllNonProf());
+		return "nonProf_community";
+	}
 	
 	@RequestMapping({"/how-it-works"})
 	public String howItWorks(HttpServletRequest request, HttpSession session, HttpServletResponse response){
@@ -68,6 +87,11 @@ public class MainController {
 	
 	@RequestMapping({"/business/complete"})
 	public String messageSent(HttpServletRequest request, HttpSession session, HttpServletResponse response){
+		return "message_sent";
+	}
+	
+	@RequestMapping({"/community/complete"})
+	public String messageCommunity(HttpServletRequest request, HttpSession session, HttpServletResponse response){
 		return "message_sent";
 	}
 	

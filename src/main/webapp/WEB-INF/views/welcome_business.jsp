@@ -49,12 +49,12 @@
 				href="../transaction"> <i class="fa fa-fw fa-credit-card-alt"></i>
 					<span class="nav-link-text">Make Transaction</span>
 			</a></li>
-			<li class="nav-item" data-toggle="tooltip" data-placement="right"
+			<!-- <li class="nav-item" data-toggle="tooltip" data-placement="right"
 				title="" data-original-title="Search for User"><a
 				class="nav-link" href="../search/user"> <i
 					class="fa fa-fw fa-search"></i> <span class="nav-link-text">Search
 						for User</span>
-			</a></li>
+			</a></li> -->
 		</ul>
 		<ul class="navbar-nav sidenav-toggler">
 			<li class="nav-item"><a class="nav-link text-center"

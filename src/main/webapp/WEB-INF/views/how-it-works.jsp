@@ -47,18 +47,20 @@
 						aria-labelledby="navbarDropdownPortfolio">
 						<a class="dropdown-item" href="./how-it-works">How it
 							works</a> <a class="dropdown-item" href="./benefits/family">Benefits
-							for Families</a> <a class="dropdown-item" href="./benefits/businesses">Benefits
-							for Companies</a>
+							for Members</a> <a class="dropdown-item" href="./benefits/businesses">Benefits
+							for Merchants</a>
 					</div></li>
-					<!-- <li class="nav-item dropdown"><a
+					<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownPortfolio" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"> For
-						Partners </a>
+					aria-haspopup="true" aria-expanded="false">
+						Community Partners </a>
 					<div class="dropdown-menu dropdown-menu-right"
 						aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item" href="./business/register">Register</a>
-					</div></li> -->
+						<a class="dropdown-item" href="./communites/sport">Sport Community</a>
+						<a class="dropdown-item" href="./communites/charity">Charity Community</a>
+						<a class="dropdown-item" href="./communites/nonprof">Non-Profit Community</a>
+					</div></li>
 				<li class="nav-item"><a class="nav-link" href="./contact">Contact</a>
 				</li>
 				<!-- <li class="nav-item"><a href="#" class="btn btn-primary">Login</a></li> -->
@@ -119,9 +121,12 @@
 				<h6 class="heading7 cl-txt-secondary">GENERAL LINKS</h6>
 				<ul class="footer-ul">
 					<li><a href="./how-it-works"> How it works</a></li>
-					<li><a href="./benefits/family"> Benefits for Families</a></li>
-					<li><a href="./benefits/businesses"> Benefits for Companies</a></li>
+					<li><a href="./benefits/family"> Benefits for Members</a></li>
+					<li><a href="./benefits/businesses"> Benefits for Merchants</a></li>
 					<li><a href="./contact"> Contact</a></li>
+					<li><a href="./communites/sport"> Sport Community</a></li>
+					<li><a href="./communites/charity"> Charity Community</a></li>
+					<li><a href="./communites/nonprof"> Non-Profit Community</a></li>
 				</ul>
 			</div>
 			<div class="col-md-4 col-sm-6 paddingtop-bottom">

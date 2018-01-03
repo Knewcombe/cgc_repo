@@ -22,7 +22,7 @@
 	rel="stylesheet">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>How it Works</title>
+<title>Benefits to Members</title>
 </head>
 <body>
 <!-- Navigation -->
@@ -47,18 +47,20 @@
 						aria-labelledby="navbarDropdownPortfolio">
 						<a class="dropdown-item" href="../how-it-works">How it
 							works</a> <a class="dropdown-item" href="../benefits/family">Benefits
-							for Families</a> <a class="dropdown-item" href="../benefits/businesses">Benefits
-							for Companies</a>
+							for Members</a> <a class="dropdown-item" href="../benefits/businesses">Benefits
+							for Merchants</a>
 					</div></li>
-					<!-- <li class="nav-item dropdown"><a
+					<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownPortfolio" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"> For
-						Partners </a>
+					aria-haspopup="true" aria-expanded="false">
+						Community Partners </a>
 					<div class="dropdown-menu dropdown-menu-right"
 						aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item" href="../business/register">Register</a>
-					</div></li> -->
+						<a class="dropdown-item" href="../communites/sport">Sport Community</a>
+						<a class="dropdown-item" href="../communites/charity">Charity Community</a>
+						<a class="dropdown-item" href="../communites/nonprof">Non-Profit Community</a>
+					</div></li>
 				<li class="nav-item"><a class="nav-link" href="../contact">Contact</a>
 				</li>
 				<!-- <li class="nav-item"><a href="#" class="btn btn-primary">Login</a></li> -->
@@ -75,10 +77,13 @@
 	</div>
 	</nav>
 	<!-- container -->
-	<div class="container">
-
-      <!-- Page Heading/Breadcrumbs -->
-      <h1 class="mt-4 mb-3">Benefits to Families</h1>
+	<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-3">
+			<p>Image</p>
+		</div>
+		<div class="col-lg-6">
+			<h1 class="mt-4 mb-3">Benefits to Members</h1>
 		<p>NEED TEXT FOR THIS PAGE</p>
       <p>Individuals register as a CGC “Participant” by receiving a membership card from Community Game Changer.  You can get the card through family members who are circulating them as part of a sports team fund raising effort, or you can contact CGC directly to register by sending an email to register@cgc.ca or filling out the online registration form at www.cgc.ca – whatever method works for you is fine.  Let us know how we can help!</p>
 		<p>Companies (merchants) also register with Community Game Changer, and agree to give a portion of their sales “back” to the people who buy from them…. it’s like getting a discount …the more you purchase at our merchants – the more money you get back.</p>
@@ -89,11 +94,17 @@
 		<p>Simply register with Community Game Changer and the “change” will begin!  Once registered, all you have to do is present your card (or membership number) at participating merchants, and the rest is taken care of on your behalf.</p>
 		<p>You can view your purchases and rebates online to see your purchases at work!</p>
 		<div class="text-center">
-		<a href="./user/register"><strong>Join the movement, register today!</strong></a>
+		<a href="../user/register"><strong>Join the movement, register today!</strong></a>
 		</div>
+	</div>
+	<div class="col-lg-3">
+	<p>Other</p>
+	</div>
+	</div>
+      <!-- Page Heading/Breadcrumbs -->
     </div>
 	<!-- /.container -->
-	<footer>
+	<!-- <footer>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-5 col-sm-6 footerleft ">
@@ -118,9 +129,12 @@
 				<h6 class="heading7 cl-txt-secondary">GENERAL LINKS</h6>
 				<ul class="footer-ul">
 					<li><a href="../how-it-works"> How it works</a></li>
-					<li><a href="../benefits/family"> Benefits for Families</a></li>
-					<li><a href="../benefits/businesses"> Benefits for Companies</a></li>
+					<li><a href="../benefits/family"> Benefits for Members</a></li>
+					<li><a href="../benefits/businesses"> Benefits for Merchants</a></li>
 					<li><a href="../contact"> Contact</a></li>
+					<li><a href="../communites/sport"> Sport Community</a></li>
+					<li><a href="../communites/charity"> Charity Community</a></li>
+					<li><a href="../communites/nonprof"> Non-Profit Community</a></li>
 				</ul>
 			</div>
 			<div class="col-md-4 col-sm-6 paddingtop-bottom">
@@ -140,7 +154,7 @@
 			</div>
 		</div>
 	</div>
-	</footer>
+	</footer> -->
 	<!--footer start from here-->
 	<div class="copyright">
 		<div class="container">

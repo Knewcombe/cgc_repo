@@ -65,7 +65,10 @@
 				<div class="col-lg-12">
 					<div class="row">
 						<div class="col-lg-12 text-center">
-							<h3>Total funds raised: $ ${df2.format(total)}</h3>
+							<h3>${userAccount.userProfile.first_name} ${userAccount.userProfile.last_name}</h3>
+						</div>
+						<div class="col-lg-12 text-center">
+							<h4>Total funds raised: $ ${df2.format(total)}</h4>
 						</div>
 						<div class="col-lg-10 col-centered">
 							<div class="row">
@@ -89,6 +92,9 @@
 					<div class="card mb-3">
 						<div class="card-header">
 							<i class="fa fa-table"></i> Reports
+							<div class="btn-group float-right" role="group" aria-label="Basic example">
+							  <a href="./reports/pdf" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">PDF</a>
+							</div>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">

@@ -100,7 +100,7 @@ public class AssociationController {
 			ByteArrayInputStream bis = util.generateAssociationReport(associtationAccount.getAssociation_id());
 			
 			HttpHeaders headers = new HttpHeaders();
-	        headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
+	        headers.add("Content-Disposition", "inline; filename=associationReport.pdf");
 	        
 			return ResponseEntity
 	                .ok()
@@ -125,9 +125,7 @@ public class AssociationController {
 				response.setHeader("Content-Disposition", "attachment; filename=\"Sport.xls\"");
 			}
 			if(associtationAccount.getCharityAssociation() != null){
-				System.out.println("Checkjing for charty");
 				for(UserAssociation user: userAssociation){
-					System.out.println(user.getUser_profile_id());
 					user.setUserProfile(userService.getUserProfile(user.getUser_profile_id()));
 				}
 				modelAndView = new ModelAndView("charityExcelView", "userAssociation", userAssociation);
@@ -178,7 +176,7 @@ public class AssociationController {
 				model.put("player", player);
 				model.put("associtationAccount", associtationAccount);
 				model.put("df2", df2);
-				return "association_reports_players";
+				return "association_reports_player";
 			}else{
 				return "no-report2";
 			}
@@ -200,7 +198,7 @@ public class AssociationController {
 			ByteArrayInputStream bis = util.generateTeamReport(team_id);
 			
 			HttpHeaders headers = new HttpHeaders();
-	        headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
+	        headers.add("Content-Disposition", "inline; filename=teams.pdf");
 	        
 			return ResponseEntity
 	                .ok()
@@ -209,6 +207,39 @@ public class AssociationController {
 	                .body(new InputStreamResource(bis));
 		} else {
 			return (ResponseEntity<InputStreamResource>) ResponseEntity.noContent();
+			//return "redirect:../../login";
+		}
+	}
+	
+	@RequestMapping( value = "/association/reports/teams/excel", method = RequestMethod.GET)
+	public ModelAndView xlsTeamReport(HttpServletRequest request, HttpSession session, HttpServletResponse response, @RequestParam(value = "team_id", required = true) int team_id,
+			Map<String, Object> model) {
+		if (session.getAttribute("association") != null) {
+			//AssociationAccount associtationAccount  = (AssociationAccount) session.getAttribute("association");
+			List<UserAssociation> userAssociation = associationService.getTeamUserAssociation(team_id);
+			ModelAndView modelAndView = null;
+			modelAndView = new ModelAndView("teamExcelView", "userAssociation", userAssociation);
+			response.setHeader("Content-Disposition", "attachment; filename=\"Team.xls\"");
+			return modelAndView;
+		} else {
+			return null;
+			//return "redirect:../../login";
+		}
+	}
+	
+	@RequestMapping( value = "/association/reports/player/excel", method = RequestMethod.GET)
+	public ModelAndView xlsPlayerReport(HttpServletRequest request, HttpSession session, HttpServletResponse response, @RequestParam(value = "player_id", required = true) int player_id,
+			Map<String, Object> model) {
+		if (session.getAttribute("association") != null) {
+			//AssociationAccount associtationAccount  = (AssociationAccount) session.getAttribute("association");
+			List<UserAssociation> userAssociation = associationService.getPlayerUserAssociation(player_id);
+			ModelAndView modelAndView = null;
+			modelAndView = new ModelAndView("playerExcelView", "userAssociation", userAssociation);
+			response.setHeader("Content-Disposition", "attachment; filename=\"Player.xls\"");
+			return modelAndView;
+		} else {
+			return null;
+			//return "redirect:../../login";
 		}
 	}
 	
@@ -225,7 +256,7 @@ public class AssociationController {
 			ByteArrayInputStream bis = util.generatePlayerReport(player_id);
 			
 			HttpHeaders headers = new HttpHeaders();
-	        headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
+	        headers.add("Content-Disposition", "inline; filename=players.pdf");
 	        
 			return ResponseEntity
 	                .ok()

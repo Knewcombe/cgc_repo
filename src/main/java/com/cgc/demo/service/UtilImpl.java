@@ -552,11 +552,9 @@ public class UtilImpl implements Util {
 			Paragraph date = new Paragraph(
 					new Chunk("As of: " + dtf.format(localDate), FontFactory.getFont(FontFactory.HELVETICA, 12)));
 			Paragraph chairtyName = new Paragraph(
-					new Chunk(team.getName(), FontFactory.getFont(FontFactory.HELVETICA, 12)));
-			// Paragraph charityAddress = new Paragraph(
-			// new Chunk(player.getCommunity() + ", " +
-			// assocition.getProvince_code(),
-			// FontFactory.getFont(FontFactory.HELVETICA, 12)));
+					new Chunk("Team: "+team.getName(), FontFactory.getFont(FontFactory.HELVETICA, 12)));
+			Paragraph playerName = new Paragraph(
+					new Chunk("Player: "+player.getName(), FontFactory.getFont(FontFactory.HELVETICA, 12)));
 			Paragraph sizeOfusersPar = new Paragraph(new Chunk("Number of Members: " + teamContribution,
 					FontFactory.getFont(FontFactory.HELVETICA, 12)));
 			Paragraph totalFunds = new Paragraph(new Chunk("Total Funding: " + df2.format(teamTotal),
@@ -566,6 +564,7 @@ public class UtilImpl implements Util {
 			document.add(header);
 			document.add(Chunk.NEWLINE);
 			document.add(chairtyName);
+			document.add(playerName);
 			// document.add(charityAddress);
 			document.add(Chunk.NEWLINE);
 			document.add(date);

@@ -15,5 +15,7 @@ public interface NonProfDAO {
 	public NonProfAssociation getName(int nonProf_id);
 	
 	public NonProfAssociation getNonProf(int account_id);
+	
+	public List<NonProfAssociation> getNonProf();
 
 }

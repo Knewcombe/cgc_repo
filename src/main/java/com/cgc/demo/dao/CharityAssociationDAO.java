@@ -15,5 +15,7 @@ public interface CharityAssociationDAO {
 	public CharityAssociation getCharityName(int charity_id);
 	
 	public CharityAssociation getCharity(int account_id);
+	
+	public List<CharityAssociation> getCharity();
 
 }

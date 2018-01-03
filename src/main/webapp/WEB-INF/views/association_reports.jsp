@@ -62,20 +62,26 @@
 	<div class="content-wrapper">
 		<div class="container-fluid">
 			<div class="row">
+				<c:if test="${associtationAccount.charityAssociation != null}">
 				<div class="col-lg-12 text-center">
-					<%-- <h3>Total funds: $ ${df2.format(total)}</h3> --%>
+				<h3>${associtationAccount.charityAssociation.name}</h3>
+				</div>
+				<div class="col-lg-12 text-center">
 					<c:set var="total" value="${0}"/>
 					<c:forEach var="userSum" items="${userAssociation}">
 					    <c:set var="total" value="${total + userSum.sum_total}" />
 					</c:forEach>
-					<h3><c:out value="Total funds: $ ${df2.format(total)}"/></h3>
+					<h4><c:out value="Total funds: $ ${df2.format(total)}"/></h4>
 					<p>From: ${fn:length(userAssociation)} Member(s)</p>
 				</div>
-				<c:if test="${associtationAccount.charityAssociation != null}">
 					<div class="col-lg-12">
 					<div class="card mb-3">
 						<div class="card-header">
 							<i class="fa fa-table"></i> Users funding
+							<div class="btn-group float-right" role="group" aria-label="Basic example">
+							  <a href="./reports/pdf" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">PDF</a>
+							  <a href="./reports/excel" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">XSL</a>
+							</div>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -83,7 +89,7 @@
 									width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>Member Id</th>
+											<th>Member</th>
 											<th>Total</th>
 											<th>Funding Percent</th>
 											<th>Charity Receipts</th>
@@ -91,7 +97,7 @@
 									</thead>
 									<tfoot>
 										<tr>
-											<th>Member Id</th>
+											<th>Member</th>
 											<th>Total</th>
 											<th>Funding Percent</th>
 											<th>Charity Receipts</th>
@@ -100,7 +106,8 @@
 									<tbody>
 										<c:forEach items="${userAssociation}" var="user" varStatus="item">
 											<tr>
-												<td id="username_${item.index}" class="userName" data-id="${user.user_profile_id}"></td>
+												<%-- <td id="username_${item.index}" class="userName" data-id="${user.user_profile_id}"></td> --%>
+												<td>${user.user_first_name} ${user.user_last_name}</td>
 												<td>$ ${df2.format(user.sum_total)}</td>
 												<td>%${user.donation_amount * 100}</td>
 												<td><c:choose><c:when test="${user.chairty_recipts}">Yes</c:when><c:otherwise>No</c:otherwise></c:choose></td>
@@ -115,6 +122,17 @@
 				</div>
 				</c:if>
 				<c:if test="${associtationAccount.sportAssociation != null}">
+				<div class="col-lg-12 text-center">
+				<h3>${associtationAccount.sportAssociation.name}</h3>
+				</div>
+				<div class="col-lg-12 text-center">
+					<c:set var="total" value="${0}"/>
+					<c:forEach var="userSum" items="${userAssociation}">
+					    <c:set var="total" value="${total + userSum.sum_total}" />
+					</c:forEach>
+					<h4><c:out value="Total funds: $ ${df2.format(total)}"/></h4>
+					<p>From: ${fn:length(userAssociation)} Member(s)</p>
+				</div>
 					<div class="col-lg-12">
 						<div class="card mb-3">
 							<div class="card-header">
@@ -123,9 +141,9 @@
 							<div class="card-body col-centered">
 								<div id="report_search" class="row" data-index="${associtationAccount.sportAssociation.association_id}">
 								<div class="col-lg-12">
-									<h6 class="text-center">Select the team or player you would like to refine your search for</h6>
+									<h5 class="text-center">Select the team or player you would like to refine your search for</h5>
 								</div>
-									<div class="col-lg-9 mb-3">
+									<div class="col-lg-3 mb-3">
 										<h6>Division</h6>
 										<select id="division_select" class="form-control division" name="division_select">
 											<option value>Select</option>
@@ -160,6 +178,10 @@
 					<div class="card mb-3">
 						<div class="card-header">
 							<i class="fa fa-table"></i> Users funding
+							<div class="btn-group float-right" role="group" aria-label="Basic example">
+							  <a href="./reports/pdf" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">PDF</a>
+							  <a href="./reports/excel" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">XSL</a>
+							</div>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -167,7 +189,7 @@
 									width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>Member Id</th>
+											<th>Member</th>
 											<th>Team</th>
 											<th>Player</th>
 											<th>Total</th>
@@ -176,7 +198,7 @@
 									</thead>
 									<tfoot>
 										<tr>
-											<th>Member Id</th>
+											<th>Member</th>
 											<th>Team</th>
 											<th>Player</th>
 											<th>Total</th>
@@ -186,9 +208,26 @@
 									<tbody>
 										<c:forEach items="${userAssociation}" var="user" varStatus="item">
 											<tr>
-												<td id="username_${item.index}" class="userName" data-id="${user.user_profile_id}"></td>
+												<%-- <td id="username_${item.index}" class="userName" data-id="${user.user_profile_id}"></td>
 												<td id="teamname_${item.index}" class="teamName" data-id="${user.team_id}"></td>
-												<td id="playername_${item.index}" class="playerName" data-id="${user.player_id}"></td>
+												<td id="playername_${item.index}" class="playerName" data-id="${user.player_id}"></td> --%>
+												<td>${user.user_first_name} ${user.user_last_name}</td>
+												<c:choose>
+												    <c:when test="${user.team_id=='0'}">
+												        <td>${user.team_name}</td>
+												    </c:when>    
+												    <c:otherwise>
+												        <td><a href="./reports/team?team_id=${user.team_id}">${user.team_name}</a></td>
+												    </c:otherwise>
+												</c:choose>
+												<c:choose>
+												    <c:when test="${user.player_id=='0'}">
+												        <td>${user.player_name}</td>
+												    </c:when>    
+												    <c:otherwise>
+												        <td><a href="./reports/player?player_id=${user.player_id}">${user.player_name}</a></td>
+												    </c:otherwise>
+												</c:choose>
 												<td>$ ${df2.format(user.sum_total)}</td>
 												<td>%${user.donation_amount * 100}</td>
 										</c:forEach>
@@ -202,10 +241,25 @@
 				</div>
 				</c:if>
 				<c:if test="${associtationAccount.nonProfAssociation != null}">
+				<div class="col-lg-12 text-center">
+				<h3>${associtationAccount.nonProfAssociation.name}</h3>
+				</div>
+				<div class="col-lg-12 text-center">
+					<c:set var="total" value="${0}"/>
+					<c:forEach var="userSum" items="${userAssociation}">
+					    <c:set var="total" value="${total + userSum.sum_total}" />
+					</c:forEach>
+					<h4><c:out value="Total funds: $ ${df2.format(total)}"/></h4>
+					<p>From: ${fn:length(userAssociation)} Member(s)</p>
+				</div>
 					<div class="col-lg-12">
 					<div class="card mb-3">
 						<div class="card-header">
 							<i class="fa fa-table"></i> Users funding
+							<div class="btn-group float-right" role="group" aria-label="Basic example">
+							  <a href="./reports/pdf" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">PDF</a>
+							  <a href="./reports/excel" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">XSL</a>
+							</div>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -213,14 +267,14 @@
 									width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>Member Id</th>
+											<th>Member</th>
 											<th>Total</th>
 											<th>Funding Percent</th>
 										</tr>
 									</thead>
 									<tfoot>
 										<tr>
-											<th>Member Id</th>
+											<th>Member</th>
 											<th>Total</th>
 											<th>Funding Percent</th>
 										</tr>
@@ -228,7 +282,8 @@
 									<tbody>
 										<c:forEach items="${userAssociation}" var="user" varStatus="item">
 											<tr>
-												<td id="username_${item.index}" class="userName" data-id="${user.user_profile_id}"></td>
+												<%-- <td id="username_${item.index}" class="userName" data-id="${user.user_profile_id}"></td> --%>
+												<td>${user.user_first_name} ${user.user_last_name}</td>
 												<td>$ ${df2.format(user.sum_total)}</td>
 												<td>%${user.donation_amount * 100}</td>
 										</c:forEach>

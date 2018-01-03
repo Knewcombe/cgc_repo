@@ -43,28 +43,33 @@
 					aria-haspopup="true" aria-expanded="false"> About </a>
 					<div class="dropdown-menu dropdown-menu-right"
 						aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item" href="../how-it-works">How it works</a> <a
-							class="dropdown-item" href="../benefits/family">Benefits for
-							Families</a> <a class="dropdown-item" href="../benefits/businesses">Benefits
-							for Companies</a>
+						<a class="dropdown-item" href="./how-it-works">How it
+							works</a> <a class="dropdown-item" href="./benefits/family">Benefits
+							for Members</a> <a class="dropdown-item" href="./benefits/businesses">Benefits
+							for Merchants</a>
 					</div></li>
-				<!-- <li class="nav-item dropdown"><a
+					<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownPortfolio" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"> For Partners </a>
+					aria-haspopup="true" aria-expanded="false">
+						Community Partners </a>
 					<div class="dropdown-menu dropdown-menu-right"
 						aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item" href="../business/register">Register</a>
-					</div></li> -->
-				<li class="nav-item"><a class="nav-link" href="../contact">Contact</a>
+						<a class="dropdown-item" href="./communites/sport">Sport Community</a>
+						<a class="dropdown-item" href="./communites/charity">Charity Community</a>
+						<a class="dropdown-item" href="./communites/nonprof">Non-Profit Community</a>
+					</div></li>
+				<li class="nav-item"><a class="nav-link" href="./contact">Contact</a>
 				</li>
 				<!-- <li class="nav-item"><a href="#" class="btn btn-primary">Login</a></li> -->
-				<!-- <li class="nav-item">
-					<a class="btn btn-outline-primary" href="./user/login">Login</a>
-				</li> -->
+				<li class="nav-item">
+					<a class="btn btn-outline-primary" href="./login">Login</a>
+				</li>
 				<!-- <li class="nav-item"><a href="#" class="btn btn-success">Sign Up</a></li> -->
-				<li class="nav-item"><a class="btn btn-outline-success"
-					href="./register/select">Sign Up</a></li>
+				<li class="nav-item">
+					<a class="btn btn-outline-success" href="./register/select">Sign
+						Up</a>
+				</li>
 			</ul>
 		</div>
 	</div>

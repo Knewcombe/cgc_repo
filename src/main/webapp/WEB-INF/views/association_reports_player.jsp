@@ -27,7 +27,7 @@
 	<nav
 		class="navbar navbar-expand-lg navbar-dark cl-bg-primary fixed-top"
 		id="mainNav"> <a class="navbar-brand nav-titel cl-txt-primary"
-		href="./home">COMMUNITY GAME CHANGER</a>
+		href="../home">COMMUNITY GAME CHANGER</a>
 	<button class="navbar-toggler navbar-toggler-right" type="button"
 		data-toggle="collapse" data-target="#navbarResponsive"
 		aria-controls="navbarResponsive" aria-expanded="false"
@@ -38,7 +38,7 @@
 		<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
 				title="" data-original-title="Home"><a class="nav-link"
-				href="./home"> <i class="fa fa-fw fa-home"></i> <span
+				href="../home"> <i class="fa fa-fw fa-home"></i> <span
 					class="nav-link-text">Home</span>
 			</a></li>
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
@@ -75,6 +75,10 @@
 					<div class="card mb-3">
 						<div class="card-header">
 							<i class="fa fa-table"></i> Users funding
+							<div class="btn-group float-right" role="group" aria-label="Basic example">
+							  <a href="./player/pdf?player_id=${player.player_id}" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">PDF</a>
+							  <a href="./player/excel?player_id=${player.player_id}" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">XSL</a>
+							</div>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -82,7 +86,7 @@
 									width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>Member Id</th>
+											<th>Member</th>
 											<th>Team</th>
 											<th>Player</th>
 											<th>Total</th>
@@ -91,7 +95,7 @@
 									</thead>
 									<tfoot>
 										<tr>
-											<th>Member Id</th>
+											<th>Member</th>
 											<th>Team</th>
 											<th>Player</th>
 											<th>Total</th>
@@ -101,9 +105,12 @@
 									<tbody>
 										<c:forEach items="${userAssociation}" var="user" varStatus="item">
 											<tr>
-												<td id="username_${item.index}" class="userName" data-id="${user.user_profile_id}"></td>
+												<%-- <td id="username_${item.index}" class="userName" data-id="${user.user_profile_id}"></td>
 												<td id="teamname_${item.index}" class="teamName" data-id="${user.team_id}"></td>
-												<td id="playername_${item.index}" class="playerName" data-id="${user.player_id}"></td>
+												<td id="playername_${item.index}" class="playerName" data-id="${user.player_id}"></td> --%>
+												<td>${user.user_first_name} ${user.user_last_name}</td>
+												<td>${user.team_name}</td>
+												<td>${user.player_name}</td>
 												<td>$ ${df2.format(user.sum_total)}</td>
 												<td>%${user.donation_amount * 100}</td>
 										</c:forEach>

@@ -73,6 +73,7 @@ public class BusinessController {
 			// Will also need to work on Search parameters
 			if(transaction != null){
 				total = businessService.getTransactionTotal(businessAccount.getBusinessProfile().getBusiness_profile_id());
+				model.put("businessAccount", businessAccount);
 				model.put("total", total);
 				model.put("reports", transaction);
 				model.put("df2", df2);
@@ -81,7 +82,7 @@ public class BusinessController {
 				return "no-report";
 			}
 		} else {
-			return "redirect:./login";
+			return "redirect:../login";
 		}
 	}
 	
@@ -98,7 +99,7 @@ public class BusinessController {
 			ByteArrayInputStream bis = util.generateBusinessReport(businessAccount.getBusinessProfile().getBusiness_profile_id());
 			
 			HttpHeaders headers = new HttpHeaders();
-	        headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
+	        headers.add("Content-Disposition", "inline; filename=business.pdf");
 	        
 			return ResponseEntity
 	                .ok()

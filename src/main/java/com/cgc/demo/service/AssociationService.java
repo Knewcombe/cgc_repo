@@ -64,4 +64,8 @@ public interface AssociationService {
 	public List<UserAssociation> getTeamUserAssociation(int team_id);
 	
 	public List<UserAssociation> getPlayerUserAssociation(int player_id);
+	
+	public List<CharityAssociation> getAllCharities();
+	
+	public List<NonProfAssociation> getAllNonProf();
 }

@@ -68,6 +68,15 @@ public class NonProfDAOImpl implements NonProfDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<NonProfAssociation> getNonProf(){
+		List<NonProfAssociation> association = null;
+		
+		association = this.jdbcTemplate.query("SELECT * FROM nonprof_association", new NonProfMapper());
+		
+		return association.size() > 0 ? association : null;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public NonProfAssociation getName(int nonProf_id){
 		List<NonProfAssociation> association = null;
 		

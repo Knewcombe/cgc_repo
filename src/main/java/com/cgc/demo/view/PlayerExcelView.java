@@ -14,8 +14,7 @@ import org.springframework.web.servlet.view.document.AbstractExcelView;
 
 import com.cgc.demo.model.UserAssociation;
 
-@SuppressWarnings("deprecation")
-public class SportExcelView extends AbstractExcelView{
+public class PlayerExcelView extends AbstractExcelView{
 	
 	protected void buildExcelDocument(Map model, HSSFWorkbook workbook,
 			   HttpServletRequest request, HttpServletResponse response) throws Exception {
