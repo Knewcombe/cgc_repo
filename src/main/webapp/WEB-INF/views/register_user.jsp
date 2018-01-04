@@ -33,7 +33,7 @@
 	<!-- Navigation -->
 	<nav
 		class="navbar fixed-top navbar-expand-lg navbar-light cl-bg-primary text-muted fixed-top">
-	<div class="container">
+	<div class="container-fluid">
 		<a class="navbar-brand nav-titel cl-txt-primary" href="../">COMMUNITY
 			GAME CHANGER</a>
 		<button class="navbar-toggler navbar-toggler-right" type="button"
@@ -43,17 +43,18 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav ml-auto">
+			<ul class="nav navbar-nav">
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownPortfolio" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> About </a>
 					<div class="dropdown-menu dropdown-menu-right"
 						aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item" href="../how-it-works">How it
-							works</a> <a class="dropdown-item" href="../benefits/family">Benefits
+						<a class="dropdown-item" href="../how-it-works">What we were thinking...</a> <a class="dropdown-item" href="../benefits/family">Benefits
 							for Members</a> <a class="dropdown-item" href="../benefits/businesses">Benefits
 							for Merchants</a>
+							<a class="dropdown-item" href="../benefits/community">Benefits
+							for Community Partners</a>
 					</div></li>
 					<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -69,15 +70,18 @@
 				<li class="nav-item"><a class="nav-link" href="../contact">Contact</a>
 				</li>
 				<!-- <li class="nav-item"><a href="#" class="btn btn-primary">Login</a></li> -->
-				<li class="nav-item">
-					<a class="btn btn-outline-primary" href="../login">Login</a>
-				</li>
-				<!-- <li class="nav-item"><a href="#" class="btn btn-success">Sign Up</a></li> -->
-				<li class="nav-item">
-					<a class="btn btn-outline-success" href="../register/select">Sign
-						Up</a>
-				</li>
+				
 			</ul>
+			<ul class="nav navbar-nav ml-auto btn-group">
+					<li class="nav-item btn-group">
+						<a class="btn btn-primary" href="../login">Login</a>
+					</li>
+			</ul>
+			<ul class="av navbar-nav">
+				<li class="nav-item"><a href="https://twitter.com/bootsnipp" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        		<li class="nav-item"><a href="https://www.facebook.com/bootsnipp" target="_blank"><i class="fa fa-facebook"></i></a></li>
+        		<li class="nav-item"><a href="https://plus.google.com/+Bootsnipp-page" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+        	</ul>
 		</div>
 	</div>
 	</nav>

@@ -48,10 +48,11 @@
 					aria-haspopup="true" aria-expanded="false"> About </a>
 					<div class="dropdown-menu dropdown-menu-right"
 						aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item" href="./how-it-works">How it
-							works</a> <a class="dropdown-item" href="./benefits/family">Benefits
+						<a class="dropdown-item" href="./how-it-works">What we were thinking...</a> <a class="dropdown-item" href="./benefits/family">Benefits
 							for Members</a> <a class="dropdown-item" href="./benefits/businesses">Benefits
 							for Merchants</a>
+							<a class="dropdown-item" href="./benefits/community">Benefits
+							for Community Partners</a>
 					</div></li>
 					<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -442,7 +443,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bc0722', end
 						<p class="card-text">Community Game Changer is designed to see business organizations, local associations, communities, and individuals improve their collective bottom line by purchasing goods and services from each other - to their mutual benefit.</p>
 					</div>
 					<div class="card-footer">
-						<a href="./benefits/businesses" class="btn btn-primary">Learn More</a>
+						<a href="./benefits/community" class="btn btn-primary">Learn More</a>
 					</div>
 				</div>
 			</div>

@@ -85,6 +85,11 @@ public class MainController {
 		return "benefits-businesses";
 	}
 	
+	@RequestMapping({"/benefits/community"})
+	public String benefitsCommunity(HttpServletRequest request, HttpSession session, HttpServletResponse response){
+		return "benefits_community";
+	}
+	
 	@RequestMapping({"/business/complete"})
 	public String messageSent(HttpServletRequest request, HttpSession session, HttpServletResponse response){
 		return "message_sent";

@@ -25,10 +25,10 @@
 <title>Benefits to Merchants</title>
 </head>
 <body>
-<!-- Navigation -->
+	<!-- Navigation -->
 	<nav
 		class="navbar fixed-top navbar-expand-lg navbar-light cl-bg-primary text-muted fixed-top">
-	<div class="container">
+	<div class="container-fluid">
 		<a class="navbar-brand nav-titel cl-txt-primary" href="../">COMMUNITY
 			GAME CHANGER</a>
 		<button class="navbar-toggler navbar-toggler-right" type="button"
@@ -38,17 +38,18 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav ml-auto">
+			<ul class="nav navbar-nav">
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownPortfolio" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> About </a>
 					<div class="dropdown-menu dropdown-menu-right"
 						aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item" href="../how-it-works">How it
-							works</a> <a class="dropdown-item" href="../benefits/family">Benefits
+							<a class="dropdown-item" href="../how-it-works">What we were thinking...</a> <a class="dropdown-item" href="../benefits/family">Benefits
 							for Members</a> <a class="dropdown-item" href="../benefits/businesses">Benefits
 							for Merchants</a>
+							<a class="dropdown-item" href="../benefits/community">Benefits
+							for Community Partners</a>
 					</div></li>
 					<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -64,88 +65,60 @@
 				<li class="nav-item"><a class="nav-link" href="../contact">Contact</a>
 				</li>
 				<!-- <li class="nav-item"><a href="#" class="btn btn-primary">Login</a></li> -->
-				<li class="nav-item">
-					<a class="btn btn-outline-primary" href="../login">Login</a>
-				</li>
-				<!-- <li class="nav-item"><a href="#" class="btn btn-success">Sign Up</a></li> -->
-				<li class="nav-item">
-					<a class="btn btn-outline-success" href="../register/select">Sign
-						Up</a>
-				</li>
+				
 			</ul>
+			<ul class="nav navbar-nav ml-auto btn-group">
+					<li class="nav-item btn-group">
+						<a class="btn btn-primary" href="../login">Login</a>
+					</li>
+					<!-- <li class="nav-item"><a href="#" class="btn btn-success">Sign Up</a></li> -->
+					<li class="nav-item btn-group">
+						<a class="btn btn-success" href="../register/select">Sign Up</a>
+					</li>
+			</ul>
+			<ul class="av navbar-nav">
+				<li class="nav-item"><a href="https://twitter.com/bootsnipp" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        		<li class="nav-item"><a href="https://www.facebook.com/bootsnipp" target="_blank"><i class="fa fa-facebook"></i></a></li>
+        		<li class="nav-item"><a href="https://plus.google.com/+Bootsnipp-page" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+        	</ul>
 		</div>
 	</div>
 	</nav>
 	<!-- container -->
-	<div class="container">
-
-      <!-- Page Heading/Breadcrumbs -->
-      <h1 class="mt-4 mb-3">Benefits to Merchants</h1>
-		<p>NEED TEXT FOR THIS PAGE</p>
-      <p>Individuals register as a CGC “Participant” by receiving a membership card from Community Game Changer.  You can get the card through family members who are circulating them as part of a sports team fund raising effort, or you can contact CGC directly to register by sending an email to register@cgc.ca or filling out the online registration form at www.cgc.ca – whatever method works for you is fine.  Let us know how we can help!</p>
-		<p>Companies (merchants) also register with Community Game Changer, and agree to give a portion of their sales “back” to the people who buy from them…. it’s like getting a discount …the more you purchase at our merchants – the more money you get back.</p>
-		<p>Community Game Changer will keep track of your purchases made at participating merchants and will send your “rebate” to the organizations or teams that you selected during the registration process.   It’s like fundraising, without the pain of bottle drives, buying and selling tickets, and holding spaghetti dinners to raise the funds!  </p>
-		<p><strong>Your community benefits</strong> because the products you purchase support local business, and results in increased employment in your area and creates wealth that stays in the community.</p>
-		<p><strong>Your team (or association) benefits</strong> because they get a portion of all purchases that are made “rebated” to them, to help fund the costs of operating their teams and competing at local, regional, and national events.</p>
-		<p><strong>You benefit</strong> because you simply buy the products that you always buy, and you get a rebate for doing so!  The rebate goes directly to the teams or organizations that you dictate – and you never have to buy another ticket again to support your son, your daughter, your grandchildren, other family members or friends.  <strong>It’s easy and it works!</strong></p>
-		<p>Simply register with Community Game Changer and the “change” will begin!  Once registered, all you have to do is present your card (or membership number) at participating merchants, and the rest is taken care of on your behalf.</p>
-		<p>You can view your purchases and rebates online to see your purchases at work!</p>
-		<div class="text-center">
-		<a href="../business/register"><strong>Join the movement, register today!</strong></a>
-		</div>
-    </div>
-	<!-- /.container -->
-	<footer>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-5 col-sm-6 footerleft ">
-				<div class="logofooter cl-txt-secondary">Logo</div>
-				<p>Community Game Changer, CGC, has a mandate to improve local
-					communities through cooperation, collaboration, and communication.</p>
-				<p>
-					<i class="fa fa-map-pin cl-txt-secondary"></i>94 Watts ave,
-					Charlottetown PEI - Canada
-				</p>
-				<p>
-					<i class="fa fa-phone cl-txt-secondary"></i> Phone (Canada) : +1
-					902 123 1234
-				</p>
-				<p>
-					<i class="fa fa-envelope cl-txt-secondary"></i> E-mail :
-					info@cgc.com
-				</p>
-
+	<div class="container-fluid">
+	
+	<div class="row">
+		<div class="col-lg-3 mt-5">
+				<img src="https://blog.unfranchise.com/wp-content/uploads/2017/03/bigstock-Black-male-business-owner-stan-154797611-800x445-400x400.jpg" class="w-100">
 			</div>
-			<div class="col-md-3 col-sm-6 paddingtop-bottom">
-				<h6 class="heading7 cl-txt-secondary">GENERAL LINKS</h6>
-				<ul class="footer-ul">
-					<li><a href="../how-it-works"> How it works</a></li>
-					<li><a href="../benefits/family"> Benefits for Members</a></li>
-					<li><a href="../benefits/businesses"> Benefits for Merchants</a></li>
-					<li><a href="../contact"> Contact</a></li>
-					<li><a href="../communites/sport"> Sport Community</a></li>
-					<li><a href="../communites/charity"> Charity Community</a></li>
-					<li><a href="../communites/nonprof"> Non-Profit Community</a></li>
-				</ul>
-			</div>
-			<div class="col-md-4 col-sm-6 paddingtop-bottom">
-				<hr>
-				<div class="text-center center-block">
-					<p class="txt-railway">Social Media</p>
-					<br /> <a href="https://www.facebook.com/bootsnipp"><i
-						id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a> <a
-						href="https://twitter.com/bootsnipp"><i id="social-tw"
-						class="fa fa-twitter-square fa-3x social"></i></a> <a
-						href="https://plus.google.com/+Bootsnipp-page"><i
-						id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
-					<a href="mailto:bootsnipp@gmail.com"><i id="social-em"
-						class="fa fa-envelope-square fa-3x social"></i></a>
-				</div>
-				<hr>
+		<div class="col-lg-6">
+			<!-- Page Heading/Breadcrumbs -->
+	      <h1 class="mt-4 mb-3">Benefits to Merchants</h1>
+			<p>NEED TEXT FOR THIS PAGE</p>
+	      <p>Individuals register as a CGC “Participant” by receiving a membership card from Community Game Changer.  You can get the card through family members who are circulating them as part of a sports team fund raising effort, or you can contact CGC directly to register by sending an email to register@cgc.ca or filling out the online registration form at www.cgc.ca – whatever method works for you is fine.  Let us know how we can help!</p>
+			<p>Companies (merchants) also register with Community Game Changer, and agree to give a portion of their sales “back” to the people who buy from them…. it’s like getting a discount …the more you purchase at our merchants – the more money you get back.</p>
+			<p>Community Game Changer will keep track of your purchases made at participating merchants and will send your “rebate” to the organizations or teams that you selected during the registration process.   It’s like fundraising, without the pain of bottle drives, buying and selling tickets, and holding spaghetti dinners to raise the funds!  </p>
+			<p><strong>Your community benefits</strong> because the products you purchase support local business, and results in increased employment in your area and creates wealth that stays in the community.</p>
+			<p><strong>Your team (or association) benefits</strong> because they get a portion of all purchases that are made “rebated” to them, to help fund the costs of operating their teams and competing at local, regional, and national events.</p>
+			<p><strong>You benefit</strong> because you simply buy the products that you always buy, and you get a rebate for doing so!  The rebate goes directly to the teams or organizations that you dictate – and you never have to buy another ticket again to support your son, your daughter, your grandchildren, other family members or friends.  <strong>It’s easy and it works!</strong></p>
+			<p>Simply register with Community Game Changer and the “change” will begin!  Once registered, all you have to do is present your card (or membership number) at participating merchants, and the rest is taken care of on your behalf.</p>
+			<p>You can view your purchases and rebates online to see your purchases at work!</p>
+			<div class="text-center">
+			<a href="../business/register"><strong>Join the movement, register today!</strong></a>
 			</div>
 		</div>
+		<div class="col-lg-3 mt-5">
+		<h2 class="text-center">Benefits</h2>
+		<ul class="bullet">
+			<li class="text-lg-left mt-5"><h4>Test</h4></li>
+			<li class="text-lg-left mt-5"><h4>Test</h4></li>
+			<li class="text-lg-left mt-5"><h4>Test</h4></li>
+			<li class="text-lg-left mt-5"><h4>Test</h4></li>
+		</ul>
 	</div>
-	</footer>
+	</div>
+
+    </div>
 	<!--footer start from here-->
 	<div class="copyright">
 		<div class="container">

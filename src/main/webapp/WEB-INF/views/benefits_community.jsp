@@ -22,7 +22,7 @@
 	rel="stylesheet">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Benefits to Members</title>
+<title>Benefits to Community</title>
 </head>
 <body>
 <!-- Navigation -->
@@ -47,7 +47,7 @@
 						aria-labelledby="navbarDropdownPortfolio">
 						<a class="dropdown-item" href="../how-it-works">What we were thinking...</a> <a class="dropdown-item" href="../benefits/family">Benefits
 							for Members</a> <a class="dropdown-item" href="../benefits/businesses">Benefits
-							for Merchants</a>
+							for Merchants Partners</a>
 							<a class="dropdown-item" href="../benefits/community">Benefits
 							for Community Partners</a>
 					</div></li>
@@ -88,10 +88,10 @@
 	<div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-3 mt-5">
-				<img src="https://daisiesandbuttercups.com/wp-content/uploads/2017/06/AdobeStock_28477565-400x400.jpeg" class="w-100">
-			</div>
+			<img src="https://thumbs.dreamstime.com/z/charity-donations-fundraising-nonprofit-volunteer-concept-77965178.jpg" class="w-100">
+		</div>
 		<div class="col-lg-6">
-			<h1 class="mt-4 mb-3">Benefits to Members</h1>
+			<h1 class="mt-4 mb-3">Benefits to Community Partners</h1>
 		<p>NEED TEXT FOR THIS PAGE</p>
       <p>Individuals register as a CGC “Participant” by receiving a membership card from Community Game Changer.  You can get the card through family members who are circulating them as part of a sports team fund raising effort, or you can contact CGC directly to register by sending an email to register@cgc.ca or filling out the online registration form at www.cgc.ca – whatever method works for you is fine.  Let us know how we can help!</p>
 		<p>Companies (merchants) also register with Community Game Changer, and agree to give a portion of their sales “back” to the people who buy from them…. it’s like getting a discount …the more you purchase at our merchants – the more money you get back.</p>

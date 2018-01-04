@@ -30,7 +30,7 @@
 	<!-- Navigation -->
 	<nav
 		class="navbar fixed-top navbar-expand-lg navbar-light cl-bg-primary text-muted fixed-top">
-	<div class="container">
+	<div class="container-fluid">
 		<a class="navbar-brand nav-titel cl-txt-primary" href="../">COMMUNITY
 			GAME CHANGER</a>
 		<button class="navbar-toggler navbar-toggler-right" type="button"
@@ -40,17 +40,18 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav ml-auto">
+			<ul class="nav navbar-nav">
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownPortfolio" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> About </a>
 					<div class="dropdown-menu dropdown-menu-right"
 						aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item" href="../how-it-works">How it
-							works</a> <a class="dropdown-item" href="../benefits/family">Benefits
+						<a class="dropdown-item" href="../how-it-works">What we were thinking...</a> <a class="dropdown-item" href="../benefits/family">Benefits
 							for Members</a> <a class="dropdown-item" href="../benefits/businesses">Benefits
 							for Merchants</a>
+							<a class="dropdown-item" href="./benefits/community">Benefits
+							for Community Partners</a>
 					</div></li>
 					<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -66,15 +67,22 @@
 				<li class="nav-item"><a class="nav-link" href="../contact">Contact</a>
 				</li>
 				<!-- <li class="nav-item"><a href="#" class="btn btn-primary">Login</a></li> -->
-				<li class="nav-item">
-					<a class="btn btn-outline-primary" href="../login">Login</a>
-				</li>
-				<!-- <li class="nav-item"><a href="#" class="btn btn-success">Sign Up</a></li> -->
-				<li class="nav-item">
-					<a class="btn btn-outline-success" href="../register/select">Sign
-						Up</a>
-				</li>
+				
 			</ul>
+			<ul class="nav navbar-nav ml-auto btn-group">
+					<li class="nav-item btn-group">
+						<a class="btn btn-primary" href="../login">Login</a>
+					</li>
+					<!-- <li class="nav-item"><a href="#" class="btn btn-success">Sign Up</a></li> -->
+					<li class="nav-item btn-group">
+						<a class="btn btn-success" href="../register/select">Sign Up</a>
+					</li>
+			</ul>
+			<ul class="av navbar-nav">
+				<li class="nav-item"><a href="https://twitter.com/bootsnipp" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        		<li class="nav-item"><a href="https://www.facebook.com/bootsnipp" target="_blank"><i class="fa fa-facebook"></i></a></li>
+        		<li class="nav-item"><a href="https://plus.google.com/+Bootsnipp-page" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+        	</ul>
 		</div>
 	</div>
 	</nav>
@@ -84,57 +92,6 @@
       </h1>
       <p>A message has been sent to our team. We will review your organization and contact you to finish the registration process for your account. <strong>This could take up to 48 hours</strong></p>
 	</div>
-	<footer>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-5 col-sm-6 footerleft ">
-				<div class="logofooter cl-txt-secondary">Logo</div>
-				<p>Community Game Changer, CGC, has a mandate to improve local
-					communities through cooperation, collaboration, and communication.</p>
-				<p>
-					<i class="fa fa-map-pin cl-txt-secondary"></i>94 Watts ave,
-					Charlottetown PEI - Canada
-				</p>
-				<p>
-					<i class="fa fa-phone cl-txt-secondary"></i> Phone (Canada) : +1
-					902 123 1234
-				</p>
-				<p>
-					<i class="fa fa-envelope cl-txt-secondary"></i> E-mail :
-					info@cgc.com
-				</p>
-
-			</div>
-			<div class="col-md-3 col-sm-6 paddingtop-bottom">
-				<h6 class="heading7 cl-txt-secondary">GENERAL LINKS</h6>
-				<ul class="footer-ul">
-					<li><a href="../how-it-works"> How it works</a></li>
-					<li><a href="../benefits/family"> Benefits for Members</a></li>
-					<li><a href="../benefits/businesses"> Benefits for Merchants</a></li>
-					<li><a href="../contact"> Contact</a></li>
-					<li><a href="../communites/sport"> Sport Community</a></li>
-					<li><a href="../communites/charity"> Charity Community</a></li>
-					<li><a href="../communites/nonprof"> Non-Profit Community</a></li>
-				</ul>
-			</div>
-			<div class="col-md-4 col-sm-6 paddingtop-bottom">
-				<hr>
-				<div class="text-center center-block">
-					<p class="txt-railway">Social Media</p>
-					<br /> <a href="https://www.facebook.com/bootsnipp"><i
-						id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a> <a
-						href="https://twitter.com/bootsnipp"><i id="social-tw"
-						class="fa fa-twitter-square fa-3x social"></i></a> <a
-						href="https://plus.google.com/+Bootsnipp-page"><i
-						id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
-					<a href="mailto:bootsnipp@gmail.com"><i id="social-em"
-						class="fa fa-envelope-square fa-3x social"></i></a>
-				</div>
-				<hr>
-			</div>
-		</div>
-	</div>
-	</footer>
 	<!--footer start from here-->
 	<div class="copyright">
 		<div class="container">
