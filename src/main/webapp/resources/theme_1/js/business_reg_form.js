@@ -11,7 +11,7 @@ $(document).ready(function() {
 		errorPlacement: function errorPlacement(error, element) { element.before(error); },
 		debug: true,
 	    rules: {
-	    	fullName:{
+	    	name:{
 	    		requried: true
 	    	},
 	    	businessName:{

@@ -51,7 +51,7 @@
 							for Members</a> <a class="dropdown-item" href="../benefits/businesses">Benefits
 							for Merchants</a>
 							<a class="dropdown-item" href="../benefits/community">Benefits
-							for Community Partners</a>
+							for Community</a>
 					</div></li>
 					<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -92,20 +92,20 @@
           	</div>
           	<div class="row">
           		<div class="control-group form-group col-lg-12">
-              <label>Main Contact (Full Name):</label>
-                <input type="text" class="form-control" id="name" name="name" required="">
+              <label>Primary Contact (Full Name):</label>
+                <input type="text" class="form-control" id="name" name="name">
             </div>
             <div class="control-group form-group col-lg-12">
               <label>Organization Name:</label>
-                <input type="text" class="form-control" id="businessName" name="businessName" required="" >
+                <input type="text" class="form-control" id="businessName" name="businessName" >
             </div>
             <div class="control-group form-group col-lg-6">
               <label>Phone Number:</label>
-                <input type="tel" class="form-control" id="phone" name="phone" required="" >
+                <input type="tel" class="form-control" id="phone" name="phone" >
             </div>
             <div class="control-group form-group col-lg-6">
               	<label>Email Address:</label>
-                <input type="email" class="form-control" id="email" name="email" required="" >
+                <input type="email" class="form-control" id="email" name="email" >
             </div>
           	</div>
             <div id="success"></div>

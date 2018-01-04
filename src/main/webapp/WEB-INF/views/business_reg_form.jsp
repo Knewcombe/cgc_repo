@@ -1,5 +1,8 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -51,7 +54,7 @@
 							for Members</a> <a class="dropdown-item" href="../benefits/businesses">Benefits
 							for Merchants</a>
 							<a class="dropdown-item" href="../benefits/community">Benefits
-							for Community Partners</a>
+							for Community</a>
 					</div></li>
 					<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -92,7 +95,7 @@
           	</div>
           	<div class="row">
           		<div class="control-group form-group col-lg-12">
-              <label>Main Contact (Full Name):</label>
+              <label>Primary Contact (Full Name):</label>
                 <input type="text" class="form-control" id="name" name="name" required="">
             </div>
             <div class="control-group form-group col-lg-12">
@@ -125,6 +128,7 @@
 		</div>
 	</div>
 	</body>
+	
 	<script src="../resources/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript"
 	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -133,3 +137,4 @@
 	<script src="../resources/js/jquery.mask.js"></script>
 	<script src="../resources/js/jquery.validate.min.js"></script>
 	<script src="../resources/js/business_reg_form.js"></script>
+	</html>

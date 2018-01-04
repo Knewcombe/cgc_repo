@@ -53,7 +53,7 @@
 							for Members</a> <a class="dropdown-item" href="../benefits/businesses">Benefits
 							for Merchants</a>
 							<a class="dropdown-item" href="../benefits/community">Benefits
-							for Community Partners</a>
+							for Community</a>
 					</div></li>
 					<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
