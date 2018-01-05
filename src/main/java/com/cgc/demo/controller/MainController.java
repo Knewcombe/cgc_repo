@@ -46,6 +46,11 @@ public class MainController {
 		return "index";
 	}
 	
+	@RequestMapping("/test")
+	public String test(HttpServletRequest request, HttpSession session, HttpServletResponse response){
+		return "test";
+	}
+	
 	@RequestMapping({"/contact"})
 	public String contactPage(HttpServletRequest request, HttpSession session, HttpServletResponse response){
 		return "contact";

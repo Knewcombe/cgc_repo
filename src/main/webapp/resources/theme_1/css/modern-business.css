@@ -9,6 +9,13 @@ body {
     padding-top: 54px;
 }
 
+@media (min-width: 992px) {
+    body {
+        padding-top: 56px;
+        padding-bottom: 40px;
+    }
+}
+
 .nav-titel{
 	font-family: 'Graduate', cursive;
 	-webkit-text-stroke: 1px #21183A;
@@ -20,20 +27,21 @@ body {
        1px 1px 0 #000; */
 }
 
+
 #first-card{
-	background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.5)),url(https://media.istockphoto.com/photos/tell-me-more-about-this-picture-id541113838?k=6&m=541113838&s=612x612&w=0&h=i5zeSKbJjbX2GLDOVMuEljMujuXaoCDy4MBtT61XiK4=);
+	background: linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.8)),url(https://media.istockphoto.com/photos/tell-me-more-about-this-picture-id541113838?k=6&m=541113838&s=612x612&w=0&h=i5zeSKbJjbX2GLDOVMuEljMujuXaoCDy4MBtT61XiK4=);
 }
 
 #second-card{
-	background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.5)),url(https://daisiesandbuttercups.com/wp-content/uploads/2017/06/AdobeStock_28477565-400x400.jpeg);
+	background: linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.8)),url(https://daisiesandbuttercups.com/wp-content/uploads/2017/06/AdobeStock_28477565-400x400.jpeg);
 }
 
 #third-card{
-	background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.5)),url(https://blog.unfranchise.com/wp-content/uploads/2017/03/bigstock-Black-male-business-owner-stan-154797611-800x445-400x400.jpg);
+	background: linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.8)),url(https://blog.unfranchise.com/wp-content/uploads/2017/03/bigstock-Black-male-business-owner-stan-154797611-800x445-400x400.jpg);
 }
 
 #fourth-card{
-	background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.5)),url(https://thumbs.dreamstime.com/z/charity-donations-fundraising-nonprofit-volunteer-concept-77965178.jpg);
+	background: linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.8)),url(https://thumbs.dreamstime.com/z/charity-donations-fundraising-nonprofit-volunteer-concept-77965178.jpg);
 }
 
 /* .card-overlay{
@@ -173,12 +181,6 @@ box-shadow{
     border-color: #0275d8;
 }
 
-@media (min-width: 992px) {
-    body {
-        padding-top: 56px;
-    }
-}
-
 .carousel-item {
     height: 65vh;
     min-height: 300px;
@@ -233,7 +235,10 @@ box-shadow{
 
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
-footer { background-color:#FF9933; min-height:350px; font-family: 'Open Sans', sans-serif; }
+.footer { position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;}
 .footerleft { margin-top:50px; padding:0 36px; }
 .logofooter { margin-bottom:10px; font-size:25px; color:#fff; font-weight:700;}
 

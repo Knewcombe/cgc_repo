@@ -48,7 +48,7 @@
 						<a class="dropdown-item" href="./how-it-works">What we were thinking...</a> <a class="dropdown-item" href="./benefits/family">Benefits
 							for Members</a> <a class="dropdown-item" href="./benefits/businesses">Benefits
 							for Merchants</a>
-							<a class="dropdown-item" href="../benefits/community">Benefits
+							<a class="dropdown-item" href="./benefits/community">Benefits
 							for Community</a>
 					</div></li>
 					<li class="nav-item dropdown"><a
