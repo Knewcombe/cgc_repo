@@ -3,10 +3,28 @@ package com.cgc.demo.model;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
+/**
+ * FamilyMember.java
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
+
+/**
+ * FamilyMember 
+ * 
+ * Family Member information. Is connect to UserProfile object.
+ *
+ */
+
 public class FamilyMember {
 	
 	private int member_id;
 	private int user_profile_id;
+	
+	private String phone;
+	
+	private String gender;
 	
 	@NotEmpty(message = "Please enter a first name")
 	private String first_name;
@@ -17,7 +35,32 @@ public class FamilyMember {
 	@NotEmpty(message = "Please enter the date of birth")
 	@DateTimeFormat
 	private String date_of_birth;
+	
+	private String card_id;
+	
+	public String getGender(){
+		return gender;
+	}
+	
+	public void setGender(String gender){
+		this.gender = gender;
+	}
 
+	public String getCard_id() {
+		return card_id;
+	}
+
+	public void setCard_id(String card_id) {
+		this.card_id = card_id;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
 	public int getMember_id() {
 		return member_id;

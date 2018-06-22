@@ -1,5 +1,6 @@
 package com.cgc.demo.view;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
@@ -33,13 +34,20 @@ public class PlayerExcelView extends AbstractExcelView{
 		  sheet.autoSizeColumn(2);
 		  header.createCell(2).setCellValue("Player");
 		  sheet.autoSizeColumn(2);
-		  header.createCell(3).setCellValue("Total Funds");
+		  header.createCell(3).setCellValue("Funds Generated");
 		  sheet.autoSizeColumn(3);
-		  header.createCell(4).setCellValue("Funding Percent");
+		  header.createCell(4).setCellValue("Administration Fees (20%)");
 		  sheet.autoSizeColumn(4);
+		  header.createCell(5).setCellValue("Total to be disbursed");
+		  sheet.autoSizeColumn(5);
+		  header.createCell(6).setCellValue("Funding Percent");
+		  sheet.autoSizeColumn(6);
 		  
 		  int count = 1;
 		  for(UserAssociation user: userAssociation){
+			  BigDecimal total_funds = user.getUserAssociationInfo().getTotal_amount();
+			  BigDecimal fees = total_funds.multiply(new BigDecimal("0.20"));
+			  BigDecimal after_fees = total_funds.subtract(fees);
 			  HSSFRow row = sheet.createRow(count++);
 			  row.createCell(0).setCellValue(user.getUser_first_name() +" "+user.getUser_last_name());
 			  sheet.autoSizeColumn(0);
@@ -47,10 +55,14 @@ public class PlayerExcelView extends AbstractExcelView{
 			   sheet.autoSizeColumn(1);
 			   row.createCell(2).setCellValue(user.getPlayer_name());
 			   sheet.autoSizeColumn(2);
-			   row.createCell(3).setCellValue("$"+df2.format(user.getSum_total()));
-			   sheet.autoSizeColumn(3);
-			   row.createCell(4).setCellValue("%"+user.getDonation_amount()*100);
-			   sheet.autoSizeColumn(4);
+			   row.createCell(3).setCellValue("$" + df2.format(total_funds));
+				sheet.autoSizeColumn(3);
+				row.createCell(4).setCellValue("$-" + df2.format(fees));
+				sheet.autoSizeColumn(4);
+				row.createCell(5).setCellValue("$" + df2.format(after_fees));
+				sheet.autoSizeColumn(5);
+			   row.createCell(6).setCellValue("%"+user.getDonation_amount().multiply(new BigDecimal("100")));
+			   sheet.autoSizeColumn(6);
 		  }
 	}
 

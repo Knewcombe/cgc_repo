@@ -1,5 +1,6 @@
 package com.cgc.demo.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.cgc.demo.model.Transaction;
@@ -14,15 +15,19 @@ public interface TransactionDAO {
 	
 	public int setTransaction(Transaction transaction);
 	
-	public double getBusinessTotal(int business_profile_id);
+	public BigDecimal getBusinessTotal(int business_profile_id);
 	
-	public double getUserTotal(int user_profile_id);
+	public BigDecimal getUserTotal(int user_profile_id);
 	
-	public void updateTransaction(int transaction_id, double amount, double percent_amount);
+	public BigDecimal getUserTotalFees(int user_profile_id);
+	
+	public BigDecimal getUserTotalFunds(int user_profile_id);
+	
+	public void updateTransaction(int transaction_id, BigDecimal amount, BigDecimal percent_amount, BigDecimal totalFee, BigDecimal totalFunds);
 	
 	public int getTotalBusinessTransactions(int business_profile_id);
 	
-	public double getBusinessAmount(int business_profile_id);
+	public BigDecimal getBusinessAmount(int business_profile_id);
 	
 	
 

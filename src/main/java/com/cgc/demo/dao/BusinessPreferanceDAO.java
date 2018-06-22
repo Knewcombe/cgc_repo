@@ -9,5 +9,6 @@ public interface BusinessPreferanceDAO {
 	public void setBusinessPreferance(BusinessPreference businessPreference);
 	
 	public List<BusinessPreference> getAllBusinessPreference(int business_profile_id);
+	
 
 }

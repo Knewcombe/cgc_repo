@@ -1,0 +1,763 @@
+<!-- 
+Author Kyle Newcombe
+Date April 16 2018
+
+Member Register page
+
+This page is used to fill in all user information that will allow them to sign up for CGC.
+There are hidden inputs to allow thymleaf to see the values in the model but may not work with some input methods set for the site.
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="../resources/css/select2.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet">
+<link href="../resources/css/modern-business.css" rel="stylesheet">
+<link href="../resources/css/jquery.steps.css" rel="stylesheet">
+<link href="../resources/css/loading.css" rel="stylesheet">
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+<link rel="stylesheet" href="../resources/css/jquery-ui-slider-pips.css">
+<link rel="stylesheet" href="../resources/css/nouislider.min.css" />
+<link rel="stylesheet" href="http://formvalidation.io/vendor/jquery.steps/css/jquery.steps.css" />
+<link href="../resources/css/register.css" rel="stylesheet">
+
+<link href="../resources/css/fonts/fontawesome-all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Graduate" rel="stylesheet">
+
+<title>Registration</title>
+</head>
+<body>
+	<div id="loading-background">
+		<div id="loader"></div>
+	</div>
+	<!-- Navigation -->
+	<div th:include="thymeleaf/layout :: header"></div>
+	<div id="test" class="container-fluid">
+		<div class="row">
+			<div class="text-center col-sm-12 my-4">
+				<h3 class="login-title cl-txt-primary">Member Registration Form</h3>
+				<div th:if="${usernameMessage != null}" class="alert alert-danger" role="alert">${usernameMessage}</div>
+			</div>
+			<div class="col-lg-12">
+				<!-- Form -->
+				<form id="regForm" th:object="${userAccount}" role="login" action="#" th:action="@{./registerProcess}" method="post">
+					<title>Member Information</title>
+					<!-- First step -->
+					<div data-step="0">
+					<div class="row">
+						<div class="col-sm-12 my-1 text-center">
+								<h5 class="login-title">Member Information</h5>
+								<p><strong>Note:</strong> All items with '*' are required in this form</p>
+								<div th:if="${usernameMessage != null}" th:text="${usernameMessage}" class="alert alert-danger" role="alert"></div>
+							</div>
+					</div>
+					<fieldset>
+						<legend>Account Details</legend>
+						<div class="row">
+							<div class="col-sm-2 col-md-3 col-lg-1 form-group">
+								<label>Title*</label>
+								<select th:field="*{userProfile.gender}" class="form-control" id="gender" name="gender" required="true">
+									<option value="">Title</option>
+					                     <option value="Mr">Mr</option>
+					                     <option value="Mrs">Mrs</option>
+					                     <option value="Ms">Ms</option>
+					                     <option value="Miss">Miss</option>
+								</select>
+							</div>
+							<div class="col-sm-6 col-md-3 col-lg-3 form-group">
+								<label for="first_name">First name*</label>
+								<input th:field="*{userProfile.first_name}" name="firstName" id="first_name" class="form-control" placeholder="John" required="true" />
+							</div>
+							<div class="col-sm-6 col-md-3 col-lg-3 form-group">
+								<!-- <form:errors path="userProfile.last_name" cssClass="text-danger" /> -->
+								<label for="last_name">Last name*</label>
+								<input th:field="*{userProfile.last_name}" name="lastName" id="last_name" class="form-control" placeholder="Doe" required="true" />
+							</div>
+							<div class="col-sm-3 col-md-3 col-lg-2 form-group">
+								<label for="dobyear">Year Of Birth*</label>
+								<select th:field="*{userProfile.date_of_birth}" id="dobyear" name="year" class="form-control year" required></select>
+							</div>
+						</div>
+						</fieldset>
+						<div class="row">
+							<div class="col-sm-6 col-md-3 col-lg-3 form-group">
+								<p>Do you have a <strong>Community Game Changer</strong> (CGC) card already?</p>
+								  <label class="radio-inline mx-2">
+								  	<input type="radio" name="cardRadio" value="true">Yes
+								  </label>
+								  <label class="radio-inline mx-2">
+								  	<input type="radio" name="cardRadio" value="false" checked="">No
+								  </label>
+							</div>
+							<div id="card_id_input" class="col-sm-6 col-md-4 col-lg-4 form-group">
+								<label>Please enter the Card ID on the back of the <strong>Community Game Changer</strong> (CGC) card.</label>
+								<input name="cardNumber" id="card_number" th:field="*{userProfile.card_id}" class="form-control" aria-label="Text input with checkbox">
+							</div>
+						</div>
+						<fieldset>
+						<legend>Login Information</legend>
+						<div class="row">
+							<div class="col-sm-6 col-md-3 col-lg-3 form-group">
+								<!-- <form:errors path="username" cssClass="text-danger" /> -->
+								<label>Username*</label>
+								<input th:field="*{username}" autocorrect="off" autocapitalize="off" name="username" id="username" class="form-control" placeholder="Username" required="true" />
+							</div>
+							<div class="col-sm-6 col-md-3 col-lg-3 form-group">
+								<!-- <form:errors path="password" cssClass="text-danger" /> -->
+								<label>Password*</label>
+								<input type="password" th:field="*{password}" name="password" id="password" class="form-control" placeholder="Password" required="true" data-toggle="popover" title="Password Requirements"/>
+								<div id="popover-content" style="display: none">
+								  <ul class="list-group custom-popover">
+								  	<li class="list-group-item">Must be at lest 6 characters</li>
+								    <li class="list-group-item">At least one letter</li>
+								    <li class="list-group-item">At least one number</li>
+								  </ul>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3 col-lg-3 form-group">
+								<label>Confirm Password*</label> <input type="password" name="confirmPassword" id="confirmPass" class="form-control" placeholder="" required />
+							</div>
+						</div>
+						</fieldset>
+						<fieldset>
+						<legend>Contact Information</legend>
+						<div class="row">
+							<div class="col-sm-6 col-md-3 col-lg-3 form-group">
+								<!-- <form:errors path="userProfile.phone" cssClass="text-danger" /> -->
+								<label>Phone Number*</label>
+								<input th:field="*{userProfile.phone}" id="phone" name="phone" class="form-control phone" placeholder="(123) 123-1234" required="true" />
+							</div>
+							<div class="col-sm-6 col-md-3 col-lg-3 form-group">
+								<!-- <form:errors path="userProfile.email" cssClass="text-danger" /> -->
+								<label>Email*</label>
+								<input th:field="*{userProfile.email}" name="email" id="email" class="form-control" placeholder="example@email.com" type="email" required="true" />
+							</div>
+							<div class="col-sm-6 col-md-3 col-lg-3 form-group">
+								<label>Confirm Email*</label>
+								<input name="confirmEmail" id="confirmEmail" class="form-control" type="email" required="true" />
+							</div>
+						</div>
+						</fieldset>
+						<fieldset>
+						<legend>Address Details</legend>
+						<div class="row">
+							<div class="col-sm-4 col-md-3 col-lg-3 form-group">
+								<!-- <form:errors path="userProfile.province_code"
+									cssClass="text-danger" /> -->
+								<label>Province*</label>
+								<select th:field="*{userProfile.province_code}" name="province_code" id="province_code" class="form-control" required="true">
+										<option value="">Select</option>
+										<option value="ON">Ontario</option>
+										<option value="QC">Quebec</option>
+										<option value="NS">Nova Scotia</option>
+										<option value="NB">New Brunswick</option>
+										<option value="MB">Manitoba</option>
+										<option value="BC">British Columbia</option>
+										<option value="PE">Prince Edward Island</option>
+										<option value="SK">Saskatchewan</option>
+										<option value="AB">Alberta</option>
+										<option value="NL">Newfoundland & Labrador</option>
+										<optgroup label=""></optgroup>
+								</select>
+							</div>
+							<div class="col-sm-4 col-md-3 col-lg-3 form-group">
+								<!-- <form:errors path="userProfile.address" cssClass="text-danger" /> -->
+								<label>Address*</label>
+								<input th:field="*{userProfile.address}" name="address" id="address" class="form-control" placeholder="123 Street Ave" required="true" />
+							</div>
+							<div class="col-sm-4 col-md-3 col-lg-3 form-group">
+								<!-- <form:errors path="userProfile.city" cssClass="text-danger" /> -->
+								<label>City*</label>
+								<input th:field="*{userProfile.city}" name="city" id="city" class="form-control" placeholder="City" required="true" />
+							</div>
+							<div class="col-sm-4 col-md-3 col-lg-3 form-group">
+								<!-- <form:errors path="userProfile.postal_code"
+									cssClass="text-danger" /> -->
+								<label>Postal Code*</label>
+								<input type="text" th:field="*{userProfile.postal_code}" name="postal_code" id="postal_code" class="form-control" placeholder="A1A2B2" required="true" />
+							</div>
+						</div>
+						</fieldset>
+						<fieldset>
+						<legend>Security Questions</legend>
+						<div class="row">
+							<div class="col-lg-12">
+								<label>Please select and answer three security questions*</label>
+								<div class="row">
+									<div th:each="question,stat : ${userAccount.questions}" class="col-sm-4 col-md-4 col-lg-4 form-group">
+										<select th:field="*{questions[__${stat.index}__].question}" class="form-control" name="question" th:id="question__${stat.index}__">
+											<option value="">Select Question</option>
+											<option th:if="${stat.index == 0}" value="What is your favourite movie?">What is your favourite movie?</option>
+											<option th:if="${stat.index == 1}" value="What is your favourite candy?">What is your favourite candy?</option>
+											<option th:if="${stat.index == 2}" value="What make was your first car?">What make was your first car?</option>
+											<option th:if="${stat.index == 0}" value="What was your first pet name?">What was your first pet's name growing up?</option>
+											<option th:if="${stat.index == 1}" value="What Street did your grow up on?">What street did you grow up on as a child?</option>
+											<option th:if="${stat.index == 2}" value="What elementy school did you attend?">What elementary school did you attend?</option>
+											<option th:if="${stat.index == 1}" value="Who is your favourite musician?">Who is your favourite singer or band?</option>
+											<option th:if="${stat.index == 2}" value="Favourite food as a child?">What was your favourite food or type of food?</option>
+											<option th:if="${stat.index == 0}" value="Favourite book?">What is your favourite book?</option>
+											<optgroup label=""></optgroup>
+										</select>
+										<input th:field="*{questions[__${stat.index}__].answer}" class="form-control" name="answer" th:id="answer__${stat.index}__" placeholder="Enter Answer"/>
+									</div>
+								</div>
+							</div>
+						</div>
+						</fieldset>
+						<fieldset>
+						<div class="row">
+							<div class="col-lg-12">
+							 I have read and agree to the <a target="_blank" th:href="@{/terms-of-service}">Terms and Conditions</a> and <a target="_blank" th:href="@{/privacy}">Privacy Policy</a> <input type="checkbox" name="checkbox" value="check" id="agree" class="mx-4 form-check-input" required/>
+						</div>
+						</div>
+						</fieldset>
+					</div>
+					<!-- Second step -->
+					<title>Co-members</title>
+					<div data-step="1">
+						<div class="row">
+							<div class="col-sm-12 text-center">
+								<h3 class="login-title">Co-members</h3>
+							</div>
+							<div class="col-sm-12 text-center col-centered">
+							<div class="alert alert-info text-center"><strong>Info:</strong> If you wish, you can add family and friends to your account as co-members.  Any purchases they make at our Merchant Partners will be added to your account, and the rebates will be issued in accordance with your account settings.</div>
+								<p><strong>Please note: This step is optional.</strong> If you don't wish to add any family members or friends to your account as co-members, please click the <strong>Skip this step</strong> button at the bottom of the page to proceed to the Community Partners page.</p>
+							</div>
+						</div>
+						<div th:each="family,status : ${userAccount.userProfile.family}" class="card_member my-4" id="card_member_${status.index}">
+								<fieldset>
+								<legend>Co-members<span th:text="${status.index + 1}"></span></legend>
+								<div class="row">
+									<div class="col-sm-1">
+										<label>Title*</label>
+								<select th:field="*{userProfile.family[__${status.index}__].gender}" class="form-control coGender" th:name="'gender'+${status.index}" th:id="'coGender_'+${status.index}">
+									<option value="">Title</option>
+					                     <option value="Mr">Mr</option>
+					                     <option value="Mrs">Mrs</option>
+					                     <option value="Ms">Ms</option>
+					                     <option value="Miss">Miss</option>
+								</select>
+									</div>
+									<div class="col-sm-2">
+										<label>First name</label>
+										<input th:field="*{userProfile.family[__${status.index}__].first_name}" th:name="'first_name_'+${status.index}" class="form-control" placeholder="First Name" th:id="'coFirstName_'+${status.index}" required disabled/>
+									</div>
+									<div class="col-sm-2">
+										<label>Last name</label>
+										<input th:field="*{userProfile.family[__${status.index}__].last_name}" th:name="'last_name_'+${status.index}" class="form-control" placeholder="Last Name" th:id="'coLastName_'+${status.index}" required disabled/>
+									</div>
+									<div class="col-sm-2">
+										<label>Phone</label>
+										<!-- th:field="*{userProfile.family[__${status.index}__].date_of_birth}" -->
+										<input th:field="*{userProfile.family[__${status.index}__].phone}" th:name="'phone_'+${status.index}" class="form-control phone family_phone" placeholder="(123) 123 1234" be
+										data-toggle="popover" title="Note" th:id="'coPhone_'+${status.index}" disabled/>
+										<div id="phone-id" style="display: none">
+										  <ul class="list-group custom-popover">
+										  	<li class="list-group-item">If the Co-Member has the same phone number as the account holder, or if you don't know the phone number of the Co-Member, please leave this field blank.  </li>
+										  </ul>
+										</div>
+									</div>
+									<div class="col-sm-2">
+										<label>Year of Birth</label>
+										<select th:field="*{userProfile.family[__${status.index}__].date_of_birth}" th:name="'date_of_birth_'+${status.index}" class="form-control year" placeholder="MM/DD/YY" th:id="'coYear_'+${status.index}" required disabled></select>
+									</div>
+									<div class="col-sm-3">
+										<label>Card ID</label>
+										<input th:field="*{userProfile.family[__${status.index}__].card_id}" th:name="'card_id'+${status.index}" class="form-control family_card_id" th:id="'coCardId_'+${status.index}" placeholder="" data-toggle="popover" title="Note" disabled/>
+										<div id="card-id" style="display: none">
+										  <ul class="list-group custom-popover">
+										  	<li class="list-group-item">If you don't have a card for this Co-member, please visit one of our Merchant Partners to pick one up. (This can be added later.)</li>
+										  	<li class="list-group-item"><a class="btn btn-primary" th:href="@{/merchants}" th:target="_blank">Merchant Partners</a></li>
+										  </ul>
+										</div>
+									</div>
+								</div>
+								</fieldset>
+							</div>
+					</div>
+					<title>Community Partners</title>
+					<!-- Third step -->
+					<div data-step="2">
+						<div class="text-center col-sm-12 my-3">
+							<h5 class="login-title">Community Partners</h5>
+							<p>Please select the Community Partners that you would like to support: (Minimum of 1; Maximum of 10)</p>
+								<div class="row flex-row">
+										<div class="col-12 col-sm-4 col-md-4 col-lg-4 my-2">
+											<div id="sportSelect" class="card select-button text-center card-color text-white" style="height: 100%">
+												<div class="card-block" style="margin:auto">
+													<h4 class="card-title">Sport Community Partners</h4>
+													<span class="card-text">Sport Associations: Hockey, Soccer, Ringette, etc...</span>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-sm-4 col-md-4 col-lg-4 my-2">
+											<div id="charitySelect" class="card select-button text-center card-color text-white" style="height: 100%">
+												<div class="card-block" style="margin:auto">
+													<h4 class="card-title">Charity Community Partners</h4>
+													<p class="card-text">Charity Partners: Churches, Arts & Culture Charities, Health Charities, etc...</p>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-sm-4 col-md-4 col-lg-4 my-2">
+											<div id="profitSelect" class="card select-button text-center card-color text-white" style="height: 100%">
+												<div class="card-block" style="margin:auto">
+													<h4 class="card-title">Non-Profit Community Partners</h4>
+													<p class="card-text">Non-Profit Partners: Schools, Service Clubs, Professional and Trade Organizations, Social Advocacy Organizations, etc...</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row" id="personal_option">
+										<div class="col-12 col-sm-4 col-md-4 col-lg-4 my-2 col-centered">
+											<div id="personalOption" class="card select-button text-center card-color text-white" style="height: 100%">
+												<div class="card-block" style="margin:auto">
+													<h4 class="card-title">Person Selection</h4>
+													<p class="card-text">A percentage of the money will be returned to you.</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								<div id="slider-info" class="alert alert-info text-left" style="display: none"><strong>Info:</strong> Once two or more <strong>Community Partners</strong> have been selected, you will have the ability to change how much you wish to contribute to each out of 100%.
+								Each color in the bar below will be associated with one of the <strong>Community Partners</strong> you have selected. <strong>Moving the sliders</strong> will change how much each <strong>Community Partners</strong> will receive. 
+								(Percentage can be seen below the names of the selected <strong>Community Partners</strong>).
+								</div>
+							<div class="alert alert-danger" id="association_select_alert"
+								style="display: none;">Please select at least one Community Partners to contribute to</div>
+							<div class="alert alert-danger" id="percent_error" style="display: none;">All Donation amounts must equal 100%</div>
+						</div>
+						<div class="row" style="height: 10%">
+							<div class="col-sm-12">
+								<div class="slider" id="slider"></div>
+							</div>
+						</div>
+						<!-- style="height: 30%" -->
+						<div id="items-row" class="row flex-row">
+							<div id="myBtn" class="my-2 association_selected col-lg-2 col-md-4 col-sm-5 col-12">
+							</div>
+						</div>
+						<div id="sportModal" class="modal">
+							<!-- Modal content -->
+							<div class="modal-content">
+								<div class="modal-header">
+									<span class="close">&times;</span>
+									<!-- <h2>Sport</h2> -->
+								</div>
+								<div class="modal-body">
+									<div id="association_sport_row"
+										class="row association-test my-3">
+										<div class="col-sm-12 col-centered">
+											<h5 class="login-title">Sport Community Partners</h5>
+											<div class="alert alert-info">
+    											<strong>NOTE:</strong> Please select each <strong>required*</strong> option to help refine the search for your chosen Sport Association.
+  											</div>
+											<hr>
+										</div>
+										<div class="col-lg-12">
+										<div class="row col-centered col-centered">
+											<div class="col-sm-12">
+												<div id="sport-alert" class="alert alert-danger">
+												  You have already selected this Sport Association, please choose another.
+												</div>
+											</div>
+										</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="row my-3">
+											<div class="col-lg-8 col-centered">
+												<label class="text-center" for="sport_query">
+		  											Enter Community, Division, Sport, Team name or Player name to find the Sport Association you want.
+		  											<select id="sport_query" name="query_sport" class="js-data-example-ajax" style="width: 100%"></select>
+												</label>
+											</div>
+										</div>
+										</div>
+										<div class="col-lg-12 row col-centered">
+											<div class="col-lg-12 my-3">
+											<p class="text-center">Or</p>
+											<hr>
+											<p class="text-center">Use the refine search to find the Sport Community</p>
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="row col-centered my-3">
+												<div class="col-sm-4">
+													<h6>Province*</h6>
+													<select id="province_select"
+														class="form-control province input-sm"
+														name="province_select">
+														<option value>Select</option>
+													</select>
+												</div>
+												<div class="col-sm-5">
+													<h6>Community*</h6>
+													<select id="community_select"
+														class="form-control community" name="community_select">
+														<option value>Select</option>
+													</select>
+												</div>
+												<div class="col-sm-3">
+													<h6>Sport*</h6>
+													<select id="sport_items" class="form-control sport"
+														name="sport_select">
+														<option value>Select</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="row my-3">
+												<div class="col-sm-6 col-centered">
+													<h6>Association*</h6>
+													<select id="association_select"
+														class="form-control association_select"
+														name="association_select">
+														<option value>Select</option>
+													</select>
+												</div>
+											</div>
+											<div id="team_radio" class="alert alert-warning" role="alert">
+											  <strong>NOTE:</strong> Selected Association has teams. Do you want to select a team to support?
+											  <label class="radio-inline mx-2">
+											  	<input type="radio" name="teamRadio" value="true">Yes
+											  </label>
+											  <label class="radio-inline mx-2">
+											  	<input type="radio" name="teamRadio" value="false" checked="">No
+											  </label> 	
+											</div>
+										</div>
+										<div id="team_selection" class="col-sm-12">
+											<div class="row col-centered my-3">
+												<div class="col-sm-4">
+													<h6>Division</h6>
+													<select id="division_select" class="form-control division"
+														name="division_select">
+														<option value>Select</option>
+													</select>
+												</div>
+												<div class="col-sm-2">
+													<h6>Gender</h6>
+													<select id="gender_select" class="form-control gender"
+														name="gender_select">
+														<option value>Select</option>
+													</select>
+												</div>
+												<div class="col-sm-6">
+													<h6>Team</h6>
+													<select id="team_id" class="form-control team"
+														name="team_id">
+														<option value>Select</option>
+													</select>
+												</div>
+											</div>
+											<div id="player_radio" class="alert alert-warning" role="alert">
+											  <strong>NOTE:</strong> Selected Team has Players. Do you want to select a player to support?
+											  <label class="radio-inline mx-2">
+											  	<input type="radio" name="playerRadio" value="true">Yes
+											  </label>
+											  <label class="radio-inline mx-2">
+											  	<input type="radio" name="playerRadio" value="false" checked="">No
+											  </label> 	
+											</div>
+										</div>
+										<div id="player_selection" class="col-sm-12 col-centered my-3">
+											<div class="row">
+												<div class="col-sm-5 col-centered">
+													<h6>Player</h6>
+													<select id="player_id" class="form-control player"
+														name="player_id">
+														<option value>Select</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="row">
+												<div id="selectSportButton" class="col-sm-3 col-centered">
+													<button id="sportSelectButton"
+														class="btn btn-success select-button btn-lg sport_select_button">Select</button>
+												</div>
+												<div id="updateSportButton" class="col-sm-3 col-centered"
+													style="display: none;">
+													<button id="sportUpdateButton"
+														class="btn btn-success select-button btn-lg update_button">Updated</button>
+												</div>
+												<div class="col-sm-3 col-centered">
+													<button class="btn btn-danger select-button btn-lg cancel_button">Cancel</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="charitiyModal" class="modal">
+							<div class="modal-content">
+								<div class="modal-header">
+									<span class="close">&times;</span>
+									<!-- <h2>Charity</h2> -->
+								</div>
+								<div class="modal-body">
+									<div id="association_charity_row"
+										class="row association-test my-3">
+										<div class="col-sm-12 col-centered">
+											<h5 class="login-title">Charity Community Partners</h5>
+											<hr>
+											<div class="alert alert-info">
+    											<strong>NOTE:</strong> Please select each <strong>required*</strong> option to help refine the search for your chosen Charity.
+  											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="row col-centered my-3">
+											<div class="col-sm-12">
+												<div id="charity-alert" class="alert alert-danger">
+												  You have already chosen this Charity Association, please choose another.
+												</div>
+											</div>
+											<div class="col-lg-12">
+											<div class="row my-3">
+											<div class="col-lg-8 col-centered">
+												<label class="text-center" for="sport_query">
+		  											Enter Community or name to find the Charity Association you want.
+		  											<select id="charity_query" name="query_charity" class="js-data-example-ajax" style="width: 100%"></select>
+												</label>
+											</div>
+										</div>
+										</div>
+										<div class="col-lg-12 row col-centered">
+											<div class="col-lg-12 my-3">
+											<p class="text-center">Or</p>
+											<hr>
+											<p class="text-center">Use the refine search to find the Charity Community</p>
+											</div>
+										</div>
+												<div class="col-sm-12">
+													<h6>Province*</h6>
+													<select id="province_c_select"
+														class="form-control province_char" name="province_select">
+														<option value>Select</option>
+													</select>
+												</div>
+												<div class="col-sm-12">
+													<h6>Community*</h6>
+													<select id="community_c_select"
+														class="form-control community_char"
+														name="community_select">
+														<option value>Select</option>
+													</select>
+												</div>
+												<div class="col-sm-12">
+													<h6>Charity*</h6>
+													<select id="name_c_select" class="form-control name_select"
+														name="name_select">
+														<option value>Select</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<!-- <div class="col-lg-12 my-2">
+											<div class="card">
+											  <div class="card-body">
+											    <h4 class="card-title">Charity Receipt</h4>
+											    <p class="card-text">Would you like the selected Charity to send you a receipt of your donations?</p>
+											    	<div class="alert alert-warning">
+													  <strong>NOTE:</strong> Checking this option will require us to send your contact information to the selected Charity. If you do not want your contact information to be sent to the selected Charity, please leave this unchecked.
+													</div>
+											    	<div class="form-check">
+												    <label class="form-check-label">
+												      <input id="receipt_selection" name="receipt" type="checkbox" class="form-check-input">
+												      <strong>Yes</strong>, I would like to receive donation receipts from the selected Charity.
+												    </label>
+												  </div>
+											  </div>
+											</div>
+										</div> -->
+										<div class="col-sm-12">
+											<div class="row">
+												<div id="selectCharityButton" class="col-sm-3 col-centered">
+													<button id="charitySelectButton"
+														class="btn btn-success btn-lg charity_select_button">Select</button>
+												</div>
+												<div id="updateCharityButton" class="col-sm-3 col-centered"
+													style="display: none;">
+													<button id="chairtyUpdateButton"
+														class="btn btn-success select-button btn-lg update_button">Updated</button>
+												</div>
+												<div class="col-sm-3 col-centered">
+													<button class="btn btn-danger select-button btn-lg cancel_button">Cancel</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="nonProfModal" class="modal">
+							<div class="modal-content">
+								<div class="modal-header">
+									<span class="close">&times;</span>
+									<!-- <h2>Non-Profit</h2> -->
+								</div>
+								<div class="modal-body">
+									<div id="association_nonProf_row"
+										class="row association-test my-3">
+										<div class="col-sm-12 col-centered">
+											<h5 class="login-title">Non-Profit Community Partners</h5>
+											<hr>
+											<div class="alert alert-info">
+    											<strong>NOTE:</strong> Please select each <strong>required*</strong> option to help refine the search for your chosen Non-Profit.
+  											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="row col-centered my-3">
+											<div class="col-sm-12">
+												<div id="nonprof-alert" class="alert alert-danger">
+												  You have already chosen this Non-Profit Community, please choose another.
+												</div>
+											</div>
+											<div class="col-lg-12">
+											<div class="row my-3">
+											<div class="col-lg-8 col-centered">
+												<label class="text-center" for="sport_query">
+		  											Enter Community or name to find the Non-Profit Community you want.
+		  											<select id="nonProf_query" name="queriy_nonProf" class="js-data-example-ajax" style="width: 100%"></select>
+												</label>
+											</div>
+										</div>
+										</div>
+										<div class="col-lg-12 row col-centered">
+											<div class="col-lg-12 my-3">
+											<p class="text-center">Or</p>
+											<hr>
+											<p class="text-center">Use the refine search to find the Non-Profit Community</p>
+											</div>
+										</div>
+												<div class="col-sm-12">
+													<h6>Province*</h6>
+													<select id="province_nonp_select"
+														class="form-control province_nonProf"
+														name="province_nonp_select">
+														<option value>Select</option>
+													</select>
+												</div>
+												<div class="col-sm-12">
+													<h6>Community*</h6>
+													<select id="community_nonp_select"
+														class="form-control community_nonProf"
+														name="community_select">
+														<option value>Select</option>
+													</select>
+												</div>
+												<div class="col-sm-12">
+													<h6>Non Profit*</h6>
+													<select id="name_nonp_select"
+														class="form-control name_select_nonProf"
+														name="name_select">
+														<option value>Select</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="row">
+												<div id="selectNonProfButton" class="col-sm-3 col-centered">
+													<button id="nonProfSelectButton"
+														class="btn btn-success select-button btn-lg nonProf_select_button">Select</button>
+												</div>
+												<div id="updateNonProfButton" class="col-sm-3 col-centered"
+													style="display: none;">
+													<button id="nonProfUpdateButton"
+														class="btn btn-success select-button btn-lg update_button">Updated</button>
+												</div>
+												<div class="col-sm-3 col-centered">
+													<button class="btn btn-danger select-button btn-lg cancel_button">Cancel</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Hidden inputs to support page. -->
+						<div th:each="userAssociation,status : ${userAccount.userProfile.userAssociation}" id="association_list_${status.index}"
+								class="association_list">
+								<input
+									th:field="*{userProfile.userAssociation[__${status.index}__].donation_amount}"
+									th:id="'donation_dysplay_'+${status.index}"
+									class="form-control input-sm percent-input" type="hidden"
+									name="donation_select" />
+								<input
+									th:field="*{userProfile.userAssociation[__${status.index}__].association_id}"
+									name="association_id" th:id="'association_id_'+${status.index}"
+									class="form-control" data-type="association"
+									data-selection="id" type="hidden" />
+									
+									<input
+									th:field="*{userProfile.userAssociation[__${status.index}__].team_id}"
+									name="team_id" th:id="'team_id_'+${status.index}"
+									class="form-control" data-type="association"
+									data-selection="id" type="hidden" />
+
+								<input
+									th:field="*{userProfile.userAssociation[__${status.index}__].player_id}"
+									name="player_id" th:id="'player_id_'+${status.index}"
+									class="form-control" data-type="association"
+									data-selection="id" type="hidden" />
+
+								<input
+									th:field="*{userProfile.userAssociation[__${status.index}__].charity_id}"
+									name="charity_id" th:id="'charity_id_'+${status.index}"
+									class="form-control" data-type="association"
+									data-selection="id" type="hidden" />
+
+								<input
+									th:field="*{userProfile.userAssociation[__${status.index}__].nonprof_id}"
+									name="nonprof_id" th:id="'nonprof_id_'+${status.index}"
+									class="form-control" data-type="association"
+									data-selection="id" type="hidden" />
+									
+								<input
+									th:field="*{userProfile.userAssociation[__${status.index}__].personal}"
+									name="personal" th:id="'personal_'+${status.index}"
+									class="form-control" data-type="association"
+									data-selection="id" type="hidden"/>
+									
+								<input
+									th:field="*{userProfile.userAssociation[__${status.index}__].active}"
+									name="active" th:id="'active_'+${status.index}"
+									class="form-control" data-type="association"
+									data-selection="id" type="hidden" />
+							</div>
+					</div>
+			</form>
+		</div>
+	</div>
+	</div>
+</body>
+<script src="../resources/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
+<script src="../resources/vendor/popper/popper.min.js"></script>
+<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../resources/js/jquery.steps.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="../resources/js/jquery-ui-slider-pips.js"></script>
+<script src="../resources/js/wNumb.js"></script>
+<script src="../resources/js/nouislider.min.js"></script>
+<!-- <script src="../resources/js/jquery.linkedsliders.min.js"></script> -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+<script src="../resources/js/dobPicker.min.js"></script>
+<script src="../resources/js/select2.min.js"></script>
+<script src="../resources/js/jquery.mask.js"></script>
+<script src="../resources/js/jquery.validate.min.js"></script>
+<script src="../resources/js/jquery.cascadingdropdown.min.js"></script>
+<script src="../resources/js/user_register_form.js"></script>
+</html>

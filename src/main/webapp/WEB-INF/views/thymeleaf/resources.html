@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="stylesheet">
+<link th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet">
+
+<link
+	th:href="@{/resources/css/fonts/fontawesome-all.min.css}"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Graduate"
+	rel="stylesheet">
+	
+	<!-- Custom styles for this template -->
+<link th:href="@{/resources/css/modern-business.css}" rel="stylesheet">
+<link th:href="@{/resources/css/slick-theme.css}" rel="stylesheet">
+<link th:href="@{/resources/css/slick.css}" rel="stylesheet">
+</head>
+<body>
+<div th:fragment="javascript">
+	<script th:src="@{/resources/vendor/jquery/jquery.min.js}"></script>
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
+<script th:src="@{/resources/vendor/popper/popper.min.js}"></script>
+<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/resources/js/slick.js}"></script>
+<script th:src="@{/resources/js/modern-business.js}"></script>
+</div>
+</body>
+</html>

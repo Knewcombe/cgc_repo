@@ -2,7 +2,9 @@ package com.cgc.demo.dao;
 
 import java.util.List;
 
+import com.cgc.demo.model.Player;
 import com.cgc.demo.model.SportAssociation;
+import com.cgc.demo.model.Teams;
 
 public interface SportAssociationDAO {
 	
@@ -21,4 +23,7 @@ public interface SportAssociationDAO {
 	public SportAssociation getSportNames(int association_id);
 	
 	public SportAssociation getSportAssociation(int account_id);
+	
+	public List<SportAssociation> searchSport(String search);
+	
 }

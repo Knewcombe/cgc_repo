@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Bootstrap core CSS -->
+<meta name="viewport" content="width=500">
+<link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="../resources/css/modern-business.css" rel="stylesheet">
+
+<link href="../resources/css/fonts/fontawesome-all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Graduate"
+	rel="stylesheet">
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Benefits to Merchants</title>
+</head>
+<body>
+	<!-- Navigation -->
+	<div th:switch="${user_login}"> 
+		<div th:case="true"><div th:include="thymeleaf/user-layout :: header"></div></div>
+		<div th:case="false"><div th:include="thymeleaf/layout :: header"></div></div>
+	</div>
+	<!-- container -->
+	<div class="container-fluid">
+	
+	<div class="row">
+		<div class="col-lg-3 mt-5">
+				<img src="https://blog.unfranchise.com/wp-content/uploads/2017/03/bigstock-Black-male-business-owner-stan-154797611-800x445-400x400.jpg" class="w-100">
+			</div>
+		<div class="col-lg-6">
+			<!-- Page Heading/Breadcrumbs -->
+	      <h1 class="mt-4 mb-3">Benefits to Merchants</h1>
+			<p class="about-font"><strong>The merchants</strong> will have a built in buying group that has an emotional attachment to the athletes, charities and non-profit's that are going to benefit from the financial contributions made by the merchants. The merchants will also be able to see an immediate return on investment, because contributions are only passed on to the associations after actual purchases have been made at participating businesses. The results of the program are measurable, unlike so many other advertising activities or donations.  Participation in the <strong>Community Game Changer</strong> Program also gives the participating merchants competitive advantage over their competition, and enhances customer loyalty and retention.</p>
+		</div>
+		<div class="col-lg-3 mt-5">
+		<h2 class="text-center">Benefits</h2>
+		<ul class="bullet">
+			<li class="text-lg-left mt-5"><h4>Give back to the community groups</h4></li>
+			<li class="text-lg-left mt-5"><h4>Create a buying group with an emotional attachment</h4></li>
+			<li class="text-lg-left mt-5"><h4>Ongoing relationships with young demographic</h4></li>
+			<li class="text-lg-left mt-5"><h4>Loyalty Program</h4></li>
+			<li class="text-lg-left mt-5"><h4>Support only after purchases have been made</h4></li>
+			<li class="text-lg-left mt-5"><h4>Community goodwill</h4></li>
+			<li class="text-lg-left mt-5"><h4>Data regarding your clientele</h4></li>
+			<li class="text-lg-left mt-5"><h4>Your one and only donation program</h4></li>
+		</ul>
+	</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 text-center">
+			<a href="../business/register" class="btn btn-lg btn-primary"><strong>Join the movement, register today!</strong></a>
+		</div>
+	</div>
+
+    </div>
+	<!--footer start from here-->
+	<div th:include="thymeleaf/layout :: footer"></div>
+</body>
+<script src="../resources/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
+<script src="../resources/vendor/popper/popper.min.js"></script>
+<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+</html>

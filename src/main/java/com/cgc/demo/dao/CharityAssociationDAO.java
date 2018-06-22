@@ -17,5 +17,9 @@ public interface CharityAssociationDAO {
 	public CharityAssociation getCharity(int account_id);
 	
 	public List<CharityAssociation> getCharity();
+	
+	public List<CharityAssociation> searchCharity(String search);
+	
+	public CharityAssociation getCharityInfo(int charity_id);
 
 }

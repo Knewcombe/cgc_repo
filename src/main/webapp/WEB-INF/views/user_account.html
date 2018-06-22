@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=500">
+<link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="../resources/css/modern-business.css" rel="stylesheet">
+<link href="../resources/css/sb-admin.min.css" rel="stylesheet">
+
+<link href="../resources/css/slick-theme.css" rel="stylesheet">
+<link href="../resources/css/slick.css" rel="stylesheet">
+<link href="../resources/css/welcome_user.css" rel="stylesheet">
+
+<link href="../resources/css/fonts/fontawesome-all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Graduate"
+	rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Member Account</title>
+</head>
+<body>
+	<div th:include="thymeleaf/user-layout :: header"></div>
+	<div class="content-wrapper">
+		<div class="container-fluid">
+		<div class="row mt-5">
+			<div class="col-lg-6 col-centered">
+				<div class="card box">
+				<div class="card-header">
+					User Profile
+				</div>
+					<div class="card-body">
+						<table class="table table-user-information">
+                    <tbody>
+                     <tr>     
+                        <td>Greetings</td>
+                        <td th:text="${user.userProfile.gender}"></td>
+                      </tr>
+                      <tr>
+                        <td>Username:</td>
+                        <td th:text="${user.username}"></td>
+                      </tr>
+                      <tr>
+                        <td>First Name:</td>
+                        <td th:text="${user.userProfile.first_name}"></td>
+                      </tr>
+                      <tr>
+                        <td>Last Name:</td>
+                        <td th:text="${user.userProfile.last_name}"></td>
+                      </tr>
+                      <tr>
+                        <td>Date of Birth</td>
+                        <td th:text="${user.userProfile.date_of_birth}"></td>
+                      </tr>
+                        <tr>
+                        <td>Address:</td>
+                        <td><span th:text="${user.userProfile.address}"></span>, <span class="text-lowercase" th:text="${user.userProfile.city}"></span> <span th:text="${user.userProfile.province_code}"></span> <span th:text="${user.userProfile.postal_code}"></span></td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td th:text="${user.userProfile.email}"></td>
+                      </tr>
+                      <tr>
+                        <td>Phone Number</td>
+                        <td th:text="${user.userProfile.phone}"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+					</div>
+				</div>
+			</div>
+		</div>
+			<div class="row mt-5">
+				<div class="col-lg-12 col-centered">
+					<div class="card box">
+				<div class="card-header">
+					Selected Community Members
+					<a th:href="@{./changeCommunity}" class="btn btn-secondary float-right">Edit <i class="fas fa-edit"></i></a>
+				</div>
+					<div class="card-body">
+						<div class="row">
+							<div th:each="userAssociation,loop : ${user.userProfile.userAssociation}" class="col-sm-3 mb-3 userAssociation" th:attr="data-index=${loop.index}, data-association=${userAssociation.association_id}, data-team=${userAssociation.team_id}, data-player=${userAssociation.player_id}, data-charity=${userAssociation.charity_id}, data-nonProf=${userAssociation.nonprof_id}, data-personal=${userAssociation.personal}">
+							<div class="card box">
+								<div class="card-body">
+									<p class="card-text small"><span th:text="${userAssociation.donation_amount.multiply(100)}"></span>%</p>
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="../resources/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
+<script src="../resources/vendor/popper/popper.min.js"></script>
+<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../resources/js/sb-admin.js"></script>
+<script src="../resources/js/slick.js"></script>
+<script src="../resources/js/modern-business.js"></script>
+<script src="../resources/js/user-account.js"></script>
+</html>

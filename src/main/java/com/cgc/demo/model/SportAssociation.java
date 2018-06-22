@@ -3,6 +3,20 @@ package com.cgc.demo.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * SportAssociation.java
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
+
+/**
+ * SportAssociation
+ * 
+ * Object to store all information for sport associations.
+ *
+ */
+
 public class SportAssociation {
 
 	private int association_id;

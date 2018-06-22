@@ -2,6 +2,8 @@ package com.cgc.demo.service;
 
 import java.io.ByteArrayInputStream;
 
+import com.cgc.demo.model.Request;
+
 public interface Util {
 	
 	public String encodePassword(String password);
@@ -17,4 +19,8 @@ public interface Util {
 	public ByteArrayInputStream generatePlayerReport(int player_id);
 	
 	public ByteArrayInputStream generateUserReport(int user_profile_id);
+	
+	public boolean checkUserName(String userName);
+	
+	public void sendMail(Request request);
 }

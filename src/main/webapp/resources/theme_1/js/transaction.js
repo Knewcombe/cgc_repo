@@ -1,7 +1,15 @@
-
+/*
+ * Author Kyle Newcombe
+ * Date April 16 2018
+ * 
+ * Following code is for transactions validation.
+ * 
+ * This code also includes prototype bluetooth bare code scanner
+ * 
+ * */
 
 var selectValue = false;
-
+//
 Number.prototype.padLeft = function(base,chr){
 	   var  len = (String(base || 10).length - String(this).length)+1;
 	   return len > 0? new Array(len).join(chr || '0')+this : this;
@@ -28,10 +36,7 @@ Number.prototype.padLeft = function(base,chr){
 
 	
 	jQuery(document).ready(function($) {
-		
-		function getDateAndTime(){
-			
-		}
+		//Setting Select 2 for Finding user with search term
 		
 		$("#test").select2({
 			theme: "bootstrap",
@@ -120,6 +125,7 @@ Number.prototype.padLeft = function(base,chr){
 				$("#user_id_success").show();
 				$("#card_error").hide();
     	    	$("#user_id_error").hide();
+    	    	$("#no_user_error").hide();
     	    	$("#connection_error").hide();
 			})
 			
@@ -133,7 +139,7 @@ Number.prototype.padLeft = function(base,chr){
 					$("#searchModal").hide();
 				})
 			});
-			
+			//AJAX call to server to finds the user using searh term.
 		function ajaxCardId(card_id){
 			$.ajax({
         	    url: './getUserId',
@@ -192,7 +198,7 @@ Number.prototype.padLeft = function(base,chr){
         	      }
         	})
 		}
-		
+		//Barecode scanner.
 		$(document).scannerDetection({
 			timeBeforeScanTest: 200, // wait for the next character for upto 200ms
 			endChar: [13], // be sure the scan is complete if key 13 (enter) is detected
@@ -206,19 +212,31 @@ Number.prototype.padLeft = function(base,chr){
 			//onScanButtonLongPressed: showKeyPad, // callback for long pressing the scan button
 			onError: function(string){console.log('Error ' + string);}
 		});
-		
+		//Checking when card id is manually entered, looking for when enter key is pressed. .
 		$('#card_input').keypress(function(event) {
 			   //do stuff here
 			var keycode = (event.keyCode ? event.keyCode : event.which);
 			console.log(keycode)
 			if(keycode == '13'){
-				//alert('You pressed a "enter" key in somewhere');
 				event.preventDefault();
 				ajaxCardId($("#card_input").val());
 				console.log("Test");
 			}
 		});
+		//Checking when 
+		$('#card_input').focusout(function(event) {
+			   //do stuff here
+			//event.preventDefault();
+			ajaxCardId($("#card_input").val());
+//			var keycode = (event.keyCode ? event.keyCode : event.which);
+//			console.log(keycode)
+//			if(keycode == '13'){
+//				//alert('You pressed a "enter" key in somewhere');
+//				
+//			}
+		});
 		
+		//Old code for swipe card reader.
 		var reader = new CreditCardReader();
 		
 		console.log(reader)
@@ -341,8 +359,9 @@ Number.prototype.padLeft = function(base,chr){
 //					+ " input:radio:checked").val(undefined);
 //}
 //})
-
+	//Sending transaction to server.
 	$("#register").on("click",function(e) {
+		(this).hide();
 		var totalSum = 0;
 		$(".purchase_input").each(function(){
 			if($(this).val() != 0.0){
@@ -350,8 +369,11 @@ Number.prototype.padLeft = function(base,chr){
 				console.log($(this).attr("data-type"));
 				console.log();
 				if($('#transactionDetail_method_of_pyment_'+$(this).attr("data-type")).find('input:checked').val() != undefined){
+					$("#register").show();
 					$("#error_radio_"+$(this).attr("data-type")).hide();
 				}else{
+					console.log("Test");
+					$("#register").show();
 					$("#error_radio_"+$(this).attr("data-type")).show();
 					e.preventDefault();
 				}
@@ -359,17 +381,36 @@ Number.prototype.padLeft = function(base,chr){
 		})
 		
 		if(totalSum <= 0.0){
+			(this).show();
 			$("#purcahse_error").show();
 			e.preventDefault();
 		}else{
+			(this).show();
 			$("#purcahse_error").hide();
 		}
 		
 		if($("#user_profile_id").val() == 0){
+			(this).show();
 			$("#no_user_error").show();
 			e.preventDefault();
 		}else{
+			(this).show();
 			$("#no_user_error").hide();
 		}
 	})
+	//Setting total for each of the inputs.
+//	$(".dollar_amount").on("keyup", function(){
+//		console.log("Keey up");
+//		var total = 0.00;
+//		if($.isNumeric($(this).val())){
+//			console.log("Is number");
+//			$(".dollar_amount").each(function(){
+//				console.log($(this).val());
+//				total += parseFloat($(this).val());
+//				$("#total_amount").text(total.toFixed(2));
+//			})
+//		}
+//	})
+	//Will add to the funding at the end when Method of Payments have been made
+	
 })

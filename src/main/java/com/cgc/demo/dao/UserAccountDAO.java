@@ -13,4 +13,8 @@ public interface UserAccountDAO{
 	
 	public String getPassword(String username);
 	
+	public boolean checkUsername(String username);
+	
+	public void changePassword(UserAccount userAccount);
+	
 }

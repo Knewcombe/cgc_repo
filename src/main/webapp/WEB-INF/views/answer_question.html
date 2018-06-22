@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=500">
+<link href="resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="resources/css/modern-business.css" rel="stylesheet">
+<link href="resources/css/loading.css" rel="stylesheet">
+
+<link href="resources/css/fonts/fontawesome-all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Graduate"
+	rel="stylesheet">
+
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+<title>Answer Question</title>
+</head>
+<body style="background-color: #3298ff">
+	<!-- Navigation -->
+	<div id="loading-background">
+		<div id="loader"></div>
+	</div>
+	<div th:include="thymeleaf/layout :: header"></div>
+	<div id="content" class="container">
+		<div class="row" id="pwd-container">
+			<div class="col-md-6 col-sm-12 col-centered">
+				<section class="login-form">
+				<form class="form-signin form-horizontal" role="login" id="answerForm" th:object="${question}" th:action="@{./answer}" method="POST">
+					<div class="text-center">
+						<p class="navbar-brand login-title cl-txt-primary">Security Question</p>
+					</div>
+					<div th:if="${message != null}" class="alert alert-danger" role="alert" th:text="${message}"></div>
+					<div class="alert alert-info" role="alert">Answer the following question</div>
+					<input th:field="*{user_question_id}" name="id" id="id" class="form-control" type="hidden"/>
+					<input th:field="*{question}" name="question" id="question" class="form-control" type="hidden"/>
+					<label path="username" th:text="${question.question}"></label>
+					<input th:field="*{answer}" name="answer" id="answer" class="form-control" placeholder="Answer" required="true" autofocus="true" />
+					<button id="login" type="submit" name="go" class="btn btn-lg btn-primary btn-block">Submit</button>
+				</form>
+				<!-- <div class="form-links">
+          <a href="#">www.website.com</a>
+        </div> --> </section>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="resources/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
+<script src="resources/vendor/popper/popper.min.js"></script>
+<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="resources/js/login.js"></script>
+</html>

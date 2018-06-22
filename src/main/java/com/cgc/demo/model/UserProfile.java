@@ -10,6 +10,21 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
+/**
+ * UserProfile.java
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
+
+/**
+ * UserProfile
+ * 
+ * UserProfile object is used to store profile information for user account.
+ * This will allow business to find the user and for community associations to see donations amount.
+ *
+ */
+
 public class UserProfile {
 	
 	private int user_profile_id;
@@ -40,7 +55,7 @@ public class UserProfile {
 	private String address;
 	
 	@NotEmpty(message = "Please enter a postal code")
-	@Size(min = 6, max = 6, message="Postal code must be 6 characters")
+//	@Size(min = 6, max = 6, message="Postal code must be 6 characters")
 	private String postal_code;
 	
 	@NotEmpty(message = "Please enter a phone number")
@@ -52,7 +67,6 @@ public class UserProfile {
 	private String email;
 	
 	private List<FamilyMember> family = new ArrayList<FamilyMember>();
-	
 	
 	private List<UserAssociation> userAssociation = new ArrayList<UserAssociation>();
 

@@ -1,15 +1,26 @@
 package com.cgc.demo.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * UserAssociation.java
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
+
+/**
+ * UserAssociation
+ * 
+ * User association is used to connect the user profile object with associations.
+ * This will keep track of all Users selected for communities.
+ *
+ */
+
 public class UserAssociation {
-	
-//	`association_id` int(11) NOT NULL,
-//	  `user_association_id` int(11) NOT NULL,
-//	  `user_profile_id` int(11) NOT NULL,
-//	  `donation_amount` DECIMAL(3, 2) NOT NULL,
-	
+
 	private int team_id;
 	private int player_id;
 	private int charity_id;
@@ -17,16 +28,46 @@ public class UserAssociation {
 	private int association_id;
 	private int user_association_id;
 	private int user_profile_id;
-	private double donation_amount;
-	private Boolean chairty_recipts;
-	private double sum_total;
-	
+	private BigDecimal donation_amount = new BigDecimal("0.00");
+	private BigDecimal sum_total = new BigDecimal("0.00");
 	private String user_first_name;
 	private String user_last_name;
 	private String team_name;
 	private String player_name;
-	
 	private UserProfile userProfile;
+	private UserAssociationInfo userAssociationInfo;
+	private Boolean active;
+	private Boolean personal;
+	
+
+	public Boolean getActive() {
+		return active;
+	}
+
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+
+	public Boolean getPersonal() {
+		return personal;
+	}
+
+
+	public void setPersonal(Boolean personal) {
+		this.personal = personal;
+	}
+
+
+	public UserAssociationInfo getUserAssociationInfo() {
+		return userAssociationInfo;
+	}
+
+
+	public void setUserAssociationInfo(UserAssociationInfo userAssociationInfo) {
+		this.userAssociationInfo = userAssociationInfo;
+	}
 
 
 	public UserProfile getUserProfile() {
@@ -78,15 +119,6 @@ public class UserAssociation {
 		this.player_name = player_name;
 	}
 
-
-	public Boolean getChairty_recipts() {
-		return chairty_recipts;
-	}
-
-
-	public void setChairty_recipts(Boolean chairty_recipts) {
-		this.chairty_recipts = chairty_recipts;
-	}
 	private SportAssociation association;
 	
 	public int getTeam_id() {
@@ -149,10 +181,10 @@ public class UserAssociation {
 	public void setUser_profile_id(int user_profile_id) {
 		this.user_profile_id = user_profile_id;
 	}
-	public double getDonation_amount() {
+	public BigDecimal getDonation_amount() {
 		return donation_amount;
 	}
-	public void setDonation_amount(double donation_amount) {
+	public void setDonation_amount(BigDecimal donation_amount) {
 		this.donation_amount = donation_amount;
 	}
 	public SportAssociation getAssociation() {
@@ -162,11 +194,11 @@ public class UserAssociation {
 		this.association = association;
 	}
 
-	public double getSum_total() {
+	public BigDecimal getSum_total() {
 		return sum_total;
 	}
 
-	public void setSum_total(double sum_total) {
+	public void setSum_total(BigDecimal sum_total) {
 		this.sum_total = sum_total;
 	}
 	

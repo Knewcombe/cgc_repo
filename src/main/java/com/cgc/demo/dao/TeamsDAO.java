@@ -19,5 +19,7 @@ public interface TeamsDAO {
 	public List<Teams> getTeamName(int index, String division, String gender);
 	
 	public Teams getTeamName(int team_id);
+	
+	public List<Teams> searchTeams(String search);
 
 }

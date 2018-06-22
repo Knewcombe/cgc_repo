@@ -26,6 +26,7 @@
 	<bean id="transactionDao" class="com.cgc.demo.dao.TransactionDAOImpl" />
 	<bean id="userAccountDAO" class="com.cgc.demo.dao.UserAccountDAOImpl" />
 	<bean id="userAssociationDAO" class="com.cgc.demo.dao.UserAssociationDAOImpl" />
+	<bean id="userAssociationInfoDAO" class="com.cgc.demo.dao.UserAssociationInfoDAOImpl" />
 	<bean id="userProfileDAO" class="com.cgc.demo.dao.UserProfileDAOImpl" />
 	<bean id="transactionDetailDAO" class="com.cgc.demo.dao.TransactionDetailDAOImpl"/>
 	<bean id="businessPreferanceDAO" class="com.cgc.demo.dao.BusinessPreferanceDAOImpl"/>
@@ -34,19 +35,40 @@
 	<bean id="playerDAO" class="com.cgc.demo.dao.PlayerDAOImpl"/>
 	<bean id="nonProfDAO" class="com.cgc.demo.dao.NonProfDAOImpl"/>
 	<bean id="associationAccountDAO" class="com.cgc.demo.dao.AssociationAccountDAOImpl"/>
+	<bean id="userQuestionDAO" class="com.cgc.demo.dao.UserQuestionDAOImpl"/>
+	<bean id="associationProfileDAO" class="com.cgc.demo.dao.AssociationProfileDAOImpl"/>
+	<!-- <bean id="restAuthenticationEntryPoint" class="com.cgc.rest.security.RestAuthenticationEntryPoint"/> -->
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <!-- SMTP settings -->
+    <property name="host" value="SMTP_HOST" />
+    <property name="port" value="SMTP_PORT" />
+    <property name="username" value="USER_NAME" />
+    <property name="password" value="PASSWORD" />
+ 
+    <property name="javaMailProperties">
+        <!-- additional properties specific to JavaMail -->
+        <props>
+            <prop key="mail.transport.protocol">smtp</prop>
+            <prop key="mail.smtp.auth">true</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+        </props>
+    </property>
+	</bean>
 
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
 	<bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
-
+	<!-- LOCAL DATABASE -->
 	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> <property 
 		name="url" value="jdbc:mysql://planectme.csbmdzkhj61b.us-west-2.rds.amazonaws.com:3306/community_game_changer" 
 		/> <property name="username" value="planectme" /> <property name="password" 
-		value="94_Watts" /> </bean> -->
-
+		value="94_Watts" /> 
+	</bean> -->
+	<!-- LIVE DATABASE -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />

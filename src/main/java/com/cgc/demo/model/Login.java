@@ -2,6 +2,21 @@ package com.cgc.demo.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * Login.java
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
+
+/**
+ * Login
+ * 
+ * Login object to use for user login
+ * Only holds username and password.
+ *
+ */
+
 public class Login {
 	
 	@NotEmpty(message = "Please enter a username")

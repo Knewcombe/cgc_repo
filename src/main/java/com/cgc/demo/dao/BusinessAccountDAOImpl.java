@@ -18,13 +18,26 @@ import com.cgc.demo.model.BusinessAccount;
 import com.cgc.demo.model.Login;
 import com.mysql.jdbc.PreparedStatement;
 
+/**
+ * Business Account DAO will get all information needed for BusinessAccount model
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
 public class BusinessAccountDAOImpl implements BusinessAccountDAO {
 
 	@Autowired
 	DataSource datasource;
 	@Autowired
 	JdbcTemplate jdbcTemplate;
-
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param Login
+	 * @return BusinessAccount
+	 * Logging into Business account by checking username.
+	 */
 	@SuppressWarnings("unchecked")
 	public BusinessAccount login(Login login) {
 		// TODO Auto-generated method stub
@@ -39,6 +52,13 @@ public class BusinessAccountDAOImpl implements BusinessAccountDAO {
 		}
 	}
 
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String username
+	 * @return String
+	 * Getting the password with matching username.
+	 */
 	public String getPassword(String username) {
 		String password = "";
 		try {
@@ -49,7 +69,14 @@ public class BusinessAccountDAOImpl implements BusinessAccountDAO {
 			return "";
 		}
 	}
-
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param BusinessAccount businessAccount
+	 * @return int
+	 * Register business account and will return the unique identifier of the businessAccount
+	 */
 	public int registerUser(final BusinessAccount businessAccount) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -66,7 +93,14 @@ public class BusinessAccountDAOImpl implements BusinessAccountDAO {
 
 		return keyHolder.getKey().intValue();
 	}
-
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String username
+	 * @return boolean
+	 * Checking usernames for businesss account. If matching username will return false.
+	 */
 	public boolean isValid(String username) {
 
 		int count = jdbcTemplate.queryForObject("SELECT count(*) from business_account where username = ?",
@@ -77,7 +111,14 @@ public class BusinessAccountDAOImpl implements BusinessAccountDAO {
 			return true;
 		}
 	}
-
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return BusinessAccount
+	 * Mapper for business Account
+	 */
 	public class BusinessAccountMapper implements RowMapper {
 
 		public BusinessAccount mapRow(ResultSet rs, int arg1) throws SQLException {

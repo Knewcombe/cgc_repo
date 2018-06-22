@@ -1,16 +1,94 @@
-body {
+/* body {
 	margin-top: 50px;
+} */
+.wizard>.content{
+	display:block;
+	min-height: 70vh;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	position:relative
+}
+
+form[role=login] input.error {
+    background: rgb(251, 227, 228);
+    border: 1px solid #fbc2c4;
+    color: #8a1f11;
+}
+
+label.error {
+    color: #8a1f11;
+    display: inline-block;
 }
 
 .wizard>.steps .current a, .wizard>.steps .current a:hover, .wizard>.steps .current a:active
-	{
-	background: #FF9933;
+{
+	background: #3298ff;
 	color: #21183A;
 	cursor: default;
 }
 
 .wizard>.actions a, .wizard>.actions a:hover, .wizard>.actions a:active
 	{
-	background: #FF9933;
+	background: #3298ff;
 	color: #21183A;
 }
+
+.wizard > .steps .done a, .wizard > .steps .done a:hover, .wizard > .steps .done a:active {
+    background: #cfe0ff;
+    color: #fff;
+}
+
+
+.wizard> .content{
+	background: #cfe0ff !important;
+}
+
+.select-button{
+	cursor: pointer;
+}
+
+.popover-title {
+  text-align: center;
+}
+
+
+.custom-popover li {
+  border: none!important;
+  /* text-align: center; */
+}
+
+.noUi-value-sub{
+	color: #999!important;
+}
+
+legend {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 0px;
+  width: 100%;
+  font-size:100%;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.wizard > .content > .body input {
+	border: none !important
+}
+
+.ui-spinner .ui-icon{
+	left: 50% !important;
+}
+
+.wizard > .content > .body label.error {
+    margin-left: 0em !important;
+}
+
+.form-check-input {
+    position: inherit !important;
+}
+
+/* .custom-popover li:nth-child(2) {
+  border-top: 1px solid #ccc!important;
+}
+
+.custom-popover li:last-child {
+  border-top: 1px solid #ccc!important;
+} */

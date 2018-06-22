@@ -1,8 +1,25 @@
 package com.cgc.demo.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+/**
+ * UserAccount.java
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
+
+/**
+ * UserAccount
+ * 
+ * Object used to store information for user account.
+ *
+ */
 
 public class UserAccount {
 	
@@ -13,6 +30,8 @@ public class UserAccount {
 	private String password;
 	@Valid
 	private UserProfile userProfile;
+	
+	private List<Questions> questions = new ArrayList<Questions>();
 	
 	public int getUser_account_id() {
 		return user_account_id;
@@ -38,6 +57,21 @@ public class UserAccount {
 	public void setUserProfile(UserProfile userProfile) {
 		this.userProfile = userProfile;
 	}
-
+	
+	public Questions getQuestion(int index) {
+		return questions.get(index);
+	}
+	
+	public List<Questions> getQuestions() {
+		return questions;
+	}
+	
+	public void setQuestion(Questions questions) {
+		this.questions.add(questions);
+	}
+	
+	public void setQuestions(List<Questions> questions) {
+		this.questions = questions;
+	}
 	
 }

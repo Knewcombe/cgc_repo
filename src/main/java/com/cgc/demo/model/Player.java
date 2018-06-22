@@ -1,5 +1,19 @@
 package com.cgc.demo.model;
 
+/**
+ * Player.java
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
+
+/**
+ * Player
+ * 
+ * This will hold the information for player.
+ *
+ */
+
 public class Player {
 	
 	private int player_id;

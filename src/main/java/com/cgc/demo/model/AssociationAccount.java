@@ -1,10 +1,26 @@
 package com.cgc.demo.model;
+/**
+ * AssociationAccount.java
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
 
+/**
+ * AssociationAccount 
+ * 
+ * Used to hold information for the associator account after logging in.
+ * It will hold objects for each type, but will only used one that has been gathered
+ * from the database.
+ *
+ */
 public class AssociationAccount {
 	
 	int association_id;
 	
 	String username;
+	
+	AssociationProfile associationProfile = null;
 	
 	CharityAssociation charityAssociation = null;
 	
@@ -50,6 +66,14 @@ public class AssociationAccount {
 
 	public void setNonProfAssociation(NonProfAssociation nonProfAssociation) {
 		this.nonProfAssociation = nonProfAssociation;
+	}
+
+	public AssociationProfile getAssociationProfile() {
+		return associationProfile;
+	}
+
+	public void setAssociationProfile(AssociationProfile associationProfile) {
+		this.associationProfile = associationProfile;
 	}
 
 }

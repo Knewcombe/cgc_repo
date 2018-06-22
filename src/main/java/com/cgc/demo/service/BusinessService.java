@@ -1,9 +1,11 @@
 package com.cgc.demo.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.cgc.demo.model.BusinessAccount;
 import com.cgc.demo.model.BusinessPreference;
+import com.cgc.demo.model.BusinessProfile;
 import com.cgc.demo.model.Login;
 import com.cgc.demo.model.Search;
 import com.cgc.demo.model.Transaction;
@@ -22,9 +24,9 @@ public interface BusinessService {
 	
 	public List<TransactionDetail> getTransactionDetails(int transaction_id);
 	
-	public void setTransaction(Transaction transaction, List<BusinessPreference> businessPreference);
+	public int setTransaction(Transaction transaction, List<BusinessPreference> businessPreference);
 	
-	public double getTransactionTotal(int business_profile_id);
+	public BigDecimal getTransactionTotal(int business_profile_id);
 	
 	public boolean checkForUser(int user_profile_id);
 	
@@ -37,5 +39,11 @@ public interface BusinessService {
 	public List<UserProfile> searchForUser(String search);
 	
 	public UserProfile getCardId(int user_profile_id);
+	
+	public List<BusinessProfile> getAllBusiness();
+	
+	public boolean checkEmail(String email);
+	
+	public BusinessProfile getProfile(int business_profile_id);
 
 }

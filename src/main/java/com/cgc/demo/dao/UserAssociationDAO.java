@@ -1,5 +1,6 @@
 package com.cgc.demo.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.cgc.demo.model.UserAssociation;
@@ -14,10 +15,15 @@ public interface UserAssociationDAO {
 	
 	public List<UserAssociation> getNonProfAssociation(int nonProf_id);
 	
-	public void setUserAssociation(UserAssociation userAssociation);
+	public int setUserAssociation(UserAssociation userAssociation);
 	
 	public List<UserAssociation> getTeamAssociation(int team_id);
 	
 	public List<UserAssociation> getPlayerAssociation(int player_id);
-
+	
+	public UserAssociation getAssociation(int user_association_id);
+	
+	public void deativateAssociation(int user_association_id);
+	
+	public void updateDonationAmount(int user_association_id, BigDecimal amount);
 }

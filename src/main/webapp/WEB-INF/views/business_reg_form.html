@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=500">
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="../resources/css/modern-business.css" rel="stylesheet">
+<link href="../resources/css/jquery.steps.css" rel="stylesheet">
+<link href="../resources/css/loading.css" rel="stylesheet">
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+<link rel="stylesheet" href="../resources/css/jquery-ui-slider-pips.css">
+<link rel="stylesheet" href="../resources/css/nouislider.min.css" />
+<link rel="stylesheet"
+	href="http://formvalidation.io/vendor/jquery.steps/css/jquery.steps.css" />
+<link href="../resources/css/register.css" rel="stylesheet">
+
+<link href="../resources/css/fonts/fontawesome-all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Graduate"
+	rel="stylesheet">
+
+<title>Merchant Registration</title>
+</head>
+<body>
+<div id="loading-background">
+		<div id="loader"></div>
+	</div>
+	<!-- Navigation -->
+	<div th:include="thymeleaf/layout :: header"></div>
+	<div class="container-fluid">
+		<div class="row">
+        <div class="col-lg-8 mb-4 col-centered">
+          <form id="merchantForm" class="form-signin form-horizontal" th:object="${register}" role="login" action="#" th:action="@{./registerProcess}" method="post">
+          <!-- <h3>Fill in you information below</h3> -->
+          	<div class="text-center">
+          		<p class="navbar-brand login-title cl-txt-primary">Merchant Registration</p>
+          	</div>
+          	<div class="row">
+          		<div class="control-group form-group col-lg-12">
+              <label>Primary Contact (Full Name):</label>
+                <input th:field="*{full_name}" class="form-control" id="name" name="name" />
+            </div>
+            <div class="control-group form-group col-lg-12">
+              <label>Business Name:</label>
+                <input th:field="*{orginization_name}" class="form-control" id="businessName" name="businessName" />
+            </div>
+            <div class="control-group form-group col-lg-6">
+              <label>Phone Number:</label>
+                <input th:field="*{phone_number}" class="form-control" id="phone" name="phone" />
+            </div>
+            <div class="control-group form-group col-lg-6">
+              	<label>Email Address:</label>
+                <input th:field="*{email}" class="form-control" id="email" name="email" />
+            </div>
+          	</div>
+            <div id="success"></div>
+            <!-- For success/fail messages -->
+            <button type="submit" class="btn btn-primary" id="sendMessageButton">Send Message</button>
+          </form>
+        </div>
+
+      </div>
+	</div>
+	<!--footer start from here-->
+	<div th:include="thymeleaf/layout :: footer"></div>
+	</body>
+	
+	<script src="../resources/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="../resources/vendor/popper/popper.min.js"></script>
+<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../resources/js/jquery.mask.js"></script>
+	<script src="../resources/js/jquery.validate.min.js"></script>
+	<script src="../resources/js/business_reg_form.js"></script>
+	</html>

@@ -1,5 +1,24 @@
 package com.cgc.demo.model;
 
+/**
+ * BusinessPreferences.java
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
+
+/**
+ * BusinessPreferences 
+ * 
+ * Business preferences will allow the business to set the type of transaction they will send to the server.
+ * All information will come from the database and cannot be changed.
+ * 
+ * This object is held within the business profile to reference when needed.
+ * 
+ * This object will also allow for setting up Transaction object.
+ *
+ */
+
 public class BusinessPreference {
 	
 	private int business_profile_id;

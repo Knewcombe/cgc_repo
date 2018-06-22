@@ -17,6 +17,12 @@ import com.cgc.demo.dao.UserProfileDAOImpl.UserProfileMapper;
 import com.cgc.demo.model.SportAssociation;
 import com.cgc.demo.model.UserProfile;
 
+/**
+ * Sport Association DAO will get all information needed for Sport Association model
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
 public class SportAssociationDAOImpl implements SportAssociationDAO{
 	
 	@Autowired
@@ -24,6 +30,13 @@ public class SportAssociationDAOImpl implements SportAssociationDAO{
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param int account_id
+	 * @return SportAssociation
+	 * Getting sport association based on account id
+	 */
 	@SuppressWarnings("unchecked")
 	public SportAssociation getSportAssociation(int account_id){
 		List<SportAssociation> association = null;
@@ -33,7 +46,14 @@ public class SportAssociationDAOImpl implements SportAssociationDAO{
 
 		return association.size() > 0 ? association.get(0) : null;
 	}
-
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param int index
+	 * @return SportAssociation
+	 * Getting sport association based on association id
+	 */
 	@SuppressWarnings("unchecked")
 	public SportAssociation getAssoication(int index) {
 		List<SportAssociation> association = null;
@@ -44,6 +64,12 @@ public class SportAssociationDAOImpl implements SportAssociationDAO{
 		return association.size() > 0 ? association.get(0) : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @return List<SportAssociation>
+	 * Get all Sport association for viewing.
+	 */
 	@SuppressWarnings("unchecked")
 	public List<SportAssociation> getAssoication() {
 		List<SportAssociation> association = null;
@@ -53,6 +79,12 @@ public class SportAssociationDAOImpl implements SportAssociationDAO{
 		return association.size() > 0 ? association : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @return List<SportAssociation>
+	 * Get all province code for Sport Associations
+	 */
 	@SuppressWarnings("unchecked")
 	public List<SportAssociation> getProvinces(){
 		List<SportAssociation> association = null;
@@ -62,6 +94,13 @@ public class SportAssociationDAOImpl implements SportAssociationDAO{
 		return association.size() > 0 ? association : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String province_code
+	 * @return List<SportAssociation>
+	 * Get all communities based on province code
+	 */
 	@SuppressWarnings("unchecked")
 	public List<SportAssociation> getCommunities(String province_code){
 		List<SportAssociation> association = null;
@@ -72,6 +111,13 @@ public class SportAssociationDAOImpl implements SportAssociationDAO{
 		return association.size() > 0 ? association : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String province_code, String community
+	 * @return List<SportAssociation>
+	 * Get all Sport type based on province code and community
+	 */
 	@SuppressWarnings("unchecked")
 	public List<SportAssociation> getSports(String province_code, String community){
 		List<SportAssociation> association = null;
@@ -82,10 +128,16 @@ public class SportAssociationDAOImpl implements SportAssociationDAO{
 		return association.size() > 0 ? association : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String province_code, String community, String sport
+	 * @return List<SportAssociation>
+	 * Get the sport association names based on province code, community or optional sport type
+	 */
 	@SuppressWarnings("unchecked")
 	public List<SportAssociation> getAssociationName(String province_code, String community, String sport){
 		List<SportAssociation> association = null;
-		
 		if(sport != ""){
 			association = this.jdbcTemplate.query("SELECT association_id, name FROM sport_association WHERE province_code = ? AND community = ? AND sport = ?",
 					new Object[] { province_code, community, sport },new AssociationNameMapper());
@@ -93,11 +145,17 @@ public class SportAssociationDAOImpl implements SportAssociationDAO{
 			association = this.jdbcTemplate.query("SELECT association_id, name FROM sport_association WHERE province_code = ? AND community = ?",
 					new Object[] { province_code, community },new AssociationNameMapper());
 		}
-		
-		
+
 		return association.size() > 0 ? association : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param int association_id
+	 * @return SportAssociation
+	 * Getting sport names based on association id
+	 */
 	@SuppressWarnings("unchecked")
 	public SportAssociation getSportNames(int association_id){
 		List<SportAssociation> association = null;
@@ -106,6 +164,28 @@ public class SportAssociationDAOImpl implements SportAssociationDAO{
 		return association.size() > 0 ? association.get(0) : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String search
+	 * @return List<SportAssociation>
+	 * Getting sport association based on search string
+	 */
+	@SuppressWarnings("unchecked")
+	public List<SportAssociation> searchSport(String search){
+		List<SportAssociation> association = null;
+		association = this.jdbcTemplate.query("SELECT *, MATCH ( `community`, `sport`, `name`, `province_code` ) AGAINST ('+'?'*' IN NATURAL LANGUAGE MODE) as `rel` FROM `sport_association` WHERE MATCH (`community`, `sport`, `name`, `province_code`) AGAINST ('+'?'*' IN NATURAL LANGUAGE MODE) ORDER BY `rel` DESC",
+				new Object[] { search, search }, new AssociationMapper());
+		return association;
+	}
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return AssociationMapper
+	 * Mapper for Sport associations
+	 */
 	public class AssociationMapper implements RowMapper {
 
 		public SportAssociation mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -119,7 +199,13 @@ public class SportAssociationDAOImpl implements SportAssociationDAO{
 		}
 	}
 	
-	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return AssociationMapper
+	 * Mapper for province code
+	 */
 	public class ProvinceMapper implements RowMapper {
 
 		public SportAssociation mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -129,6 +215,13 @@ public class SportAssociationDAOImpl implements SportAssociationDAO{
 		}
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return AssociationMapper
+	 * Mapper for community
+	 */
 	public class CommunityMapper implements RowMapper {
 
 		public SportAssociation mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -138,6 +231,13 @@ public class SportAssociationDAOImpl implements SportAssociationDAO{
 		}
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return AssociationMapper
+	 * Mapper for sport type
+	 */
 	public class SportMapper implements RowMapper {
 
 		public SportAssociation mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -147,6 +247,13 @@ public class SportAssociationDAOImpl implements SportAssociationDAO{
 		}
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return AssociationMapper
+	 * Mapper for name
+	 */
 	public class AssociationNameMapper implements RowMapper{
 		public SportAssociation mapRow(ResultSet rs, int arg1) throws SQLException {
 			SportAssociation association = new SportAssociation();

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=500">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<link href="../resources/css/fonts/fontawesome-all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Graduate"
+	rel="stylesheet">
+	
+	<!-- Custom styles for this template -->
+<link href="../resources/css/modern-business.css" rel="stylesheet">
+<link href="../resources/css/slick-theme.css" rel="stylesheet">
+<link href="../resources/css/slick.css" rel="stylesheet">
+
+<title>Sport Community</title>
+</head>
+<body>
+	<!-- Navigation -->
+	<div th:include="thymeleaf/layout :: header"></div>
+	<div class="container-fluid">
+	<h1 class="my-4 text-center titel">Sport Community Partners</h1>
+	<div th:each="sport : ${sports}" class="container py-3">
+		    <div class="card">
+		      <div class="row">
+		      <div class="col-md-3">
+            	<img src="http://via.placeholder.com/400x400" class="w-100">
+          		</div>
+		          <div class="col-md-9 px-1 py-3">
+		            <div class="card-block px-3">
+		              <h4 class="card-title">Name: <span th:text="${sport.name}"></span></h4>
+		              <p class="card-text">Sport: <span th:text="${sport.sport}"></span></p>
+		              <p class="card-text">Community: <span th:text="${sport.community}"></span> <span th:text="${sport.province_code}"></span></p>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		   </div>
+	<!--footer start from here-->
+	<div th:include="thymeleaf/layout :: footer"></div>
+</body>
+<script src="../resources/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
+<script src="../resources/vendor/popper/popper.min.js"></script>
+<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../resources/js/slick.js"></script>
+<script src="../resources/js/modern-business.js"></script>
+</html>

@@ -1,8 +1,11 @@
-<beans xmlns="http://www.springframework.org/schema/beans"
+<beans:beans xmlns="http://www.springframework.org/schema/security" 
+	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security 
+    http://www.springframework.org/schema/security/spring-security-4.0.xsd
 http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/mvc
@@ -11,45 +14,56 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
  	
- 	<import resource="classpath:business-beans.xml" />
+ 	<beans:import resource="classpath:business-beans.xml" />
  	
 	<context:component-scan base-package="com.cgc.demo.controller" />
     <context:annotation-config />
- 
-	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	<property name="order" value="2"></property>
-		<property name="prefix">
-			<value>/WEB-INF/views/</value>
-		</property>
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
-	</bean>
+    
+    <context:component-scan base-package="com.jcg.spring.mvc.email" />
+    
+    <!-- Spring Email Sender Bean Configuration -->
+    <beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <beans:property name="host" value="server207.web-hosting.com" />
+        <beans:property name="port" value="465" />
+        <beans:property name="username" value="admin@communitygamechanger.com" />
+        <beans:property name="password" value="ts5UPmRtEs1w" />
+        <beans:property name="javaMailProperties">
+            <beans:props>
+                <beans:prop key="mail.smtp.auth">true</beans:prop>
+                <beans:prop key="mail.debug">true</beans:prop>
+                <beans:prop key="mail.transport.protocol">smtp</beans:prop>
+                <beans:prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</beans:prop>
+                <beans:prop key="mail.smtp.socketFactory.port">465</beans:prop>
+                <beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+            </beans:props>
+        </beans:property>
+    </beans:bean>
 	
-	<bean id="viewResolver"
+	<beans:bean id="viewResolver"
   class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
-  <property name="order" value="1"></property>
-  <property name="basename" value="views"></property>
- </bean> -->
+  <beans:property name="order" value="1"></beans:property>
+  <beans:property name="basename" value="views"></beans:property>
+  	 </beans:bean>
  
-	 <bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
-	  <property name="prefix" value="/WEB-INF/views/" />
-	  <property name="suffix" value=".html" />
-	  <property name="templateMode" value="HTML5" />
-	  <property name="cacheable" value="false" />
-	 </bean>
-	 <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
-	  <property name="templateResolver" ref="templateResolver" />
-	 </bean>
-	 <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
-	  <property name="templateEngine" ref="templateEngine" />
-	  <property name="order" value="1" />
+	 <beans:bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+	  <beans:property name="prefix" value="/WEB-INF/views/" />
+	  <beans:property name="suffix" value=".html" />
+	  <beans:property name="templateMode" value="HTML5" />
+	  <beans:property name="cacheable" value="false" />
+	  <beans:property name="characterEncoding" value="UTF-8"/>
+	 </beans:bean>
+	 <beans:bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+	  <beans:property name="templateResolver" ref="templateResolver" />
+	 </beans:bean>
+	 <beans:bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+	  <beans:property name="templateEngine" ref="templateEngine" />
+	  <beans:property name="characterEncoding" value="UTF-8"/>
+	  <beans:property name="order" value="2" />
 	  <!-- <property name="viewNames" value="thymeleaf/*" /> -->
-	 </bean>
+	 </beans:bean>
 	
-	<mvc:resources mapping="/resources/**" location="/resources/theme_1/"
-	cache-period="31556926"/>
+	<mvc:resources mapping="/resources/**" location="/resources/theme_1/"/>
 	
 	<mvc:annotation-driven />
 	
-</beans>
+</beans:beans>

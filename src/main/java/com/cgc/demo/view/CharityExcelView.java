@@ -1,5 +1,6 @@
 package com.cgc.demo.view;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
@@ -30,67 +31,61 @@ public class CharityExcelView extends AbstractExcelView {
 		List<UserAssociation> userAssociation = (List<UserAssociation>) model.get("userAssociation");
 
 		HSSFSheet sheet = workbook.createSheet("Association Members");
-		HSSFSheet sheet2 = workbook.createSheet("Member Recipts");
+		//HSSFSheet sheet2 = workbook.createSheet("Member Recipts");
 
 		HSSFRow header = sheet.createRow(0);
 		header.createCell(0).setCellValue("Member Name");
 		sheet.autoSizeColumn(0);
-		header.createCell(1).setCellValue("Total Funds");
+		header.createCell(1).setCellValue("Funds Generated");
 		sheet.autoSizeColumn(1);
-		header.createCell(2).setCellValue("Funding Percent");
+		header.createCell(2).setCellValue("Administration Fees (20%)");
 		sheet.autoSizeColumn(2);
+		header.createCell(3).setCellValue("Total to be disbursed");
+		sheet.autoSizeColumn(3);
+		header.createCell(4).setCellValue("Funding Percent");
+		sheet.autoSizeColumn(4);
 		
-		HSSFRow header2 = sheet2.createRow(0);
-		header2.createCell(0).setCellValue("Member Name");		
-		sheet2.autoSizeColumn(0);
-		header2.createCell(1).setCellValue("Total Funds");
-		sheet2.autoSizeColumn(1);
-		header2.createCell(2).setCellValue("Funding Percent");
-		sheet2.autoSizeColumn(2);
-		header2.createCell(3).setCellValue("Province");
-		sheet2.autoSizeColumn(3);
-		header2.createCell(4).setCellValue("City");
-		sheet2.autoSizeColumn(4);
-		header2.createCell(5).setCellValue("Address");
-		sheet2.autoSizeColumn(5);
-		header2.createCell(6).setCellValue("Postal Code");
-		sheet2.autoSizeColumn(6);
-		header2.createCell(7).setCellValue("Phone");
-		sheet2.autoSizeColumn(7);
-		header2.createCell(8).setCellValue("Email");
-		sheet2.autoSizeColumn(8);
+//		HSSFRow header2 = sheet2.createRow(0);
+//		header2.createCell(0).setCellValue("Member Name");		
+//		sheet2.autoSizeColumn(0);
+//		header2.createCell(1).setCellValue("Funds Generated");
+//		sheet2.autoSizeColumn(1);
+//		header2.createCell(2).setCellValue("Administration Fees (20%)");
+//		sheet2.autoSizeColumn(2);
+//		header2.createCell(3).setCellValue("Total to be disbursed");
+//		sheet2.autoSizeColumn(3);
+//		header2.createCell(4).setCellValue("Funding Percent");
+//		sheet2.autoSizeColumn(4);
+//		header2.createCell(5).setCellValue("Province");
+//		sheet2.autoSizeColumn(5);
+//		header2.createCell(6).setCellValue("City");
+//		sheet2.autoSizeColumn(6);
+//		header2.createCell(7).setCellValue("Address");
+//		sheet2.autoSizeColumn(7);
+//		header2.createCell(8).setCellValue("Postal Code");
+//		sheet2.autoSizeColumn(8);
+//		header2.createCell(9).setCellValue("Phone");
+//		sheet2.autoSizeColumn(9);
+//		header2.createCell(10).setCellValue("Email");
+//		sheet2.autoSizeColumn(10);
 
 		int count = 1;
 		int count2 = 1;
 		for (UserAssociation user : userAssociation) {
+			BigDecimal total_funds = user.getSum_total();
+			BigDecimal fees = total_funds.multiply(new BigDecimal("0.20"));
+			BigDecimal after_fees = total_funds.subtract(fees);
 			HSSFRow row = sheet.createRow(count++);
 			row.createCell(0).setCellValue(user.getUser_first_name() + " " + user.getUser_last_name());
 			sheet.autoSizeColumn(0);
-			row.createCell(1).setCellValue("$" + df2.format(user.getSum_total()));
+			row.createCell(1).setCellValue("$" + df2.format(total_funds));
 			sheet.autoSizeColumn(1);
-			row.createCell(2).setCellValue("%" + user.getDonation_amount() * 100);
-			sheet.autoSizeColumn(1);
-			if(user.getChairty_recipts()){
-				HSSFRow row2 = sheet2.createRow(count2++);
-				row2.createCell(0).setCellValue(user.getUser_first_name() + " " + user.getUser_last_name());
-				sheet2.autoSizeColumn(0);
-				row2.createCell(1).setCellValue("$" + df2.format(user.getSum_total()));
-				sheet2.autoSizeColumn(1);
-				row2.createCell(2).setCellValue("%" + user.getDonation_amount() * 100);
-				sheet2.autoSizeColumn(2);
-				row2.createCell(3).setCellValue(user.getUserProfile().getProvince_code());
-				sheet2.autoSizeColumn(3);
-				row2.createCell(4).setCellValue(user.getUserProfile().getCity());
-				sheet2.autoSizeColumn(4);
-				row2.createCell(5).setCellValue(user.getUserProfile().getAddress());
-				sheet2.autoSizeColumn(5);
-				row2.createCell(6).setCellValue(user.getUserProfile().getPostal_code());
-				sheet2.autoSizeColumn(6);
-				row2.createCell(7).setCellValue(user.getUserProfile().getPhone());
-				sheet2.autoSizeColumn(7);
-				row2.createCell(8).setCellValue(user.getUserProfile().getEmail());
-				sheet2.autoSizeColumn(8);
-			}
+			row.createCell(2).setCellValue("$-" + df2.format(fees));
+			sheet.autoSizeColumn(2);
+			row.createCell(3).setCellValue("$" + df2.format(after_fees));
+			sheet.autoSizeColumn(3);
+			row.createCell(4).setCellValue("%" + user.getDonation_amount().multiply(new BigDecimal("100")));
+			sheet.autoSizeColumn(4);
 		}
 	}
 }

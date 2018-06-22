@@ -11,5 +11,7 @@ public interface PlayersDAO {
 	public Player getPlayer(int player_id);
 	
 	public Player getPlayerName(int player_id);
+	
+	public List<Player> searchPlayer(String search);
 
 }

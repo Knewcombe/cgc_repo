@@ -1,5 +1,22 @@
 package com.cgc.demo.model;
 
+import java.math.BigDecimal;
+
+/**
+ * TransactionDetail.java
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
+
+/**
+ * TransactionDetail
+ * 
+ * TransactionDetail object used to store transaction information.
+ * Stored within the Transaction object.
+ *
+ */
+
 public class TransactionDetail {
 	
 	private int transaction_details_id;
@@ -8,15 +25,19 @@ public class TransactionDetail {
 	
 	private String name;
 	
-	private double amount;
-	
 	private int transaction_type;
 	
-	private String method_of_pyment;
+	private String method_of_payment;
 	
-	private double precent_amount;
+	private BigDecimal precent_amount = new BigDecimal("0.00");;
 	
-	private double transaction_rate;
+	private BigDecimal transaction_rate = new BigDecimal("0.00");;
+	
+	private BigDecimal amount = new BigDecimal("0.00");;
+	
+	private BigDecimal fee = new BigDecimal("0.00");;
+	
+	private BigDecimal funds = new BigDecimal("0.00");;
 
 	public int getTransaction_details_id() {
 		return transaction_details_id;
@@ -42,19 +63,19 @@ public class TransactionDetail {
 		this.name = name;
 	}
 
-	public double getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
 
-	public void setAmount(double amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 
-	public double getPrecent_amount() {
+	public BigDecimal getPrecent_amount() {
 		return precent_amount;
 	}
 
-	public void setPrecent_amount(double precent_amount) {
+	public void setPrecent_amount(BigDecimal precent_amount) {
 		this.precent_amount = precent_amount;
 	}
 
@@ -66,20 +87,36 @@ public class TransactionDetail {
 		this.transaction_type = transaction_type;
 	}
 
-	public String getMethod_of_pyment() {
-		return method_of_pyment;
+	public String getMethod_of_payment() {
+		return method_of_payment;
 	}
 
-	public void setMethod_of_pyment(String method_of_pyment) {
-		this.method_of_pyment = method_of_pyment;
+	public void setMethod_of_payment(String method_of_pyment) {
+		this.method_of_payment = method_of_pyment;
 	}
 
-	public double getTransaction_rate() {
+	public BigDecimal getTransaction_rate() {
 		return transaction_rate;
 	}
 
-	public void setTransaction_rate(double transaction_rate) {
+	public void setTransaction_rate(BigDecimal transaction_rate) {
 		this.transaction_rate = transaction_rate;
 	}
 
+	public BigDecimal getFee() {
+		return fee;
+	}
+
+	public void setFee(BigDecimal fee) {
+		this.fee = fee;
+	}
+
+	public BigDecimal getFunds() {
+		return funds;
+	}
+
+	public void setFunds(BigDecimal funds) {
+		this.funds = funds;
+	}
+	
 }

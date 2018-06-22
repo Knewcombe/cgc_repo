@@ -18,16 +18,28 @@ import com.cgc.demo.model.UserAccount;
 import com.cgc.demo.model.UserAssociation;
 import com.mysql.jdbc.PreparedStatement;
 
+/**
+ * User Account DAO will get all information needed for User Account model
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
 public class UserAccountDAOImpl implements UserAccountDAO {
 
 	@Autowired
 	DataSource datasource;
 	@Autowired
 	JdbcTemplate jdbcTemplate;
-
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param Login login
+	 * @return UserAccount
+	 * Getting the user account where username matches.
+	 */
 	@SuppressWarnings("unchecked")
 	public UserAccount login(Login login) {
-		// TODO Auto-generated method stub
 
 		List<UserAccount> userAccount = null;
 		try {
@@ -39,7 +51,27 @@ public class UserAccountDAOImpl implements UserAccountDAO {
 			return null;
 		}
 	}
-
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param UserAccount userAccount
+	 * @return void
+	 * Change the password of user account
+	 */
+	public void changePassword(UserAccount userAccount){
+		this.jdbcTemplate.update(
+                "UPDATE user_account SET password = ? WHERE user_account_id = ?", 
+                userAccount.getPassword(), userAccount.getUser_account_id());
+	}
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String username
+	 * @return String
+	 * Getting the password where username matches
+	 */
 	public String getPassword(String username) {
 		String password = "";
 		try {
@@ -51,7 +83,14 @@ public class UserAccountDAOImpl implements UserAccountDAO {
 		}
 
 	}
-
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param UserAccount userAccount
+	 * @return int
+	 * Setting the user in database
+	 */
 	public int registerUser(final UserAccount userAccount) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -68,7 +107,14 @@ public class UserAccountDAOImpl implements UserAccountDAO {
 
 		return keyHolder.getKey().intValue();
 	}
-
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String username
+	 * @return boolean
+	 * Checking username to make sure its unique.
+	 */
 	public boolean isValid(String username) {
 		int count = jdbcTemplate.queryForObject("SELECT count(*) from user_account where username = ?",
 				new Object[] { username }, Integer.class);
@@ -79,7 +125,30 @@ public class UserAccountDAOImpl implements UserAccountDAO {
 		}
 	}
 	
-
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String username
+	 * @return boolean
+	 * Checking username to make sure its unique.
+	 */
+	public boolean checkUsername(String username){
+		int count = jdbcTemplate.queryForObject("SELECT count(*) from user_account where username = ?",
+				new Object[] { username }, Integer.class);
+		if (count > 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return UserAccount
+	 * Mapper for user account
+	 */
 	public class UserAccountMapper implements RowMapper {
 
 		public UserAccount mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -89,5 +158,6 @@ public class UserAccountDAOImpl implements UserAccountDAO {
 			return userAccount;
 		}
 	}
+	
 
 }

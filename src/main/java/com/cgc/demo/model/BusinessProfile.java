@@ -10,6 +10,22 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+
+/**
+ * BusinessProfile.java
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
+
+/**
+ * BusinessProfile 
+ * 
+ * Business Profile will hold all contact information for business account.
+ * This will be viewable to other users.
+ *
+ */
+
 public class BusinessProfile {
 	
 	private int business_profile_id;
@@ -33,6 +49,8 @@ public class BusinessProfile {
 	private String business_name;
 	@NotEmpty(message = "Please enter a main contact")
 	private String main_contact;
+	private String web_link;
+	private String image;
 	
 	private List<BusinessPreference> businessPreferance = new ArrayList<BusinessPreference>();
 	
@@ -108,9 +126,19 @@ public class BusinessProfile {
 	public void setBusinessPreferance(List<BusinessPreference> businessPreferance) {
 		this.businessPreferance = businessPreferance;
 	}
-	
 	public void setBusinessPreferance(BusinessPreference businessPreferance) {
 		this.businessPreferance.add(businessPreferance);
 	}
-	
+	public String getWeb_link() {
+		return web_link;
+	}
+	public void setWeb_link(String web_link) {
+		this.web_link = web_link;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 }

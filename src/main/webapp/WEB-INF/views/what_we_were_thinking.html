@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Bootstrap core CSS -->
+<meta name="viewport" content="width=500">
+<link href="resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="resources/css/modern-business.css" rel="stylesheet">
+
+<link href="resources/css/fonts/fontawesome-all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Graduate"
+	rel="stylesheet">
+
+<title>What we were thinking</title>
+</head>
+<body>
+<!-- Navigation -->
+	<div th:switch="${user_login}"> 
+		<div th:case="true"><div th:include="thymeleaf/user-layout :: header"></div></div>
+		<div th:case="false"><div th:include="thymeleaf/layout :: header"></div></div>
+	</div>
+	<!-- container -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-3 mt-5">
+				<img src="https://media.istockphoto.com/photos/tell-me-more-about-this-picture-id541113838?k=6&m=541113838&s=612x612&w=0&h=i5zeSKbJjbX2GLDOVMuEljMujuXaoCDy4MBtT61XiK4=" class="w-100">
+			</div>
+			<div class="col-lg-6">
+				<h1 class="mt-4 mb-3">What we were thinking...</h1>
+		      	<!-- <h5>Community Game Changer, CGC, has a mandate to improve local communities through cooperation, collaboration and communication.</h5>
+<p>The idea or concept of Community Game Changer came from being in a situation of always having to go to businesses to ask for support for my children's sports teams. I wanted to come up with something  that would have ongoing support and also benefit the companies being asked to be a sponsor. With that in mind the concept was born. 
+As mentioned the original idea came from a need for ongoing sports sponsorship. My business partner Jamie Taylor and I soon realized there is needs throughout our communities non-profits and charities for similar sponsorship. Hence Community Game Changer was born!</p>
+
+<p><strong>Your community benefits</strong> because the products you purchase support local business, and results in increased employment in your area and creates wealth that stays in the community.</p>
+
+<p><strong>Your team (or association) benefits</strong> because they get a portion of all purchases that are made "rebated" to them, to help fund the costs of operating their teams and competing at local, regional, and national events.</p>
+
+<p><strong>The Non-profits and Charities</strong> will receive funding to support the charitable work they do within our communities. These organizations such as churches, fire departments, Junior Achievement, MADD, to name just a few do tremendous work in our province. CGC will help them increase their financial position and enable them to continue to provide vital services back to the residents of PEI.</p>
+
+<p><strong>You benefit</strong> because you simply buy the products that you always buy, and you get a rebate for doing so!  The rebate goes directly to the teams or organizations that you dictate - and you may never have to buy another ticket again to support your son, your daughter, your grandchildren, other family members or friends. <strong>It's easy and it works!</strong></p>
+
+<p>Simply <a href="./register/select">register</a> with Community Game Changer and the "change" will begin!  Once registered, all you have to do is present your card (or membership number) at participating merchants, and the rest is taken care of on your behalf.</p>
+
+<p>You can view your purchases and rebates online to see your purchases at work!</p>
+
+<p>Yours Truly,</p>
+<blockquote class="blockquote">
+	<p class="mb-0">Doug McMonagle</p>
+	<footer class="blockquote-footer">Founder, CEO</footer>
+</blockquote> -->
+	<p><strong>Welcome to Community Game Changer! We have a mandate to improve local communities through cooperation, collaboration and communication. Let me tell you all about it...</strong></p>
+	<p>The concept of <strong>Community Game Changer</strong> came from being a parent of children involved in amateur sport. My kids were always involved in teams that were raising funds to cover the costs of training, development, and out-of-province travel to attend regional and national events. As a result, I was constantly selling tickets, participating in fundraising activities, approaching businesses for donations, and working with the other parents to try and support our kids. I wanted to come up with a solution that would provide ongoing stable support for sports teams that would also benefit the local merchants that were constantly being asked to provide donations or be a team sponsor.</p>
+	<p>Most merchants are very supportive of local teams but can never effectively measure the real impact of their donations. <strong>Community Game Changer</strong> will give these merchants an opportunity to continue to give back to the teams and to our community - but in a way that is totally measurable. Our Merchant Partners will provide a rebate to <strong>Community Game Changer</strong> - 80% of which will be sent back to the kids, parents, and supporters of amateur sport that purchased products or services at their businesses.  The rebate program will be coordinated by <strong>Community Game Changer</strong> and funds will go directly to those in need. Merchant and Community Partners will receive monthly reports indicating the amount of purchases made through our Program, and the amount of rebate issued.  The merchants will build their business through increased sales to those who wish to support the fundraising efforts of their children and friends.</p>
+	<p>Our concept is also available to other community organizations that need to fundraise to support their operations. Local non-profit associations and charities can also enroll in <strong>Community Game Changer</strong> and use our program to help cover the costs of delivering the vital services that they already provide in our communities. The Program provides a stable supply of funding to our Community Partners that reduces the need for them to be constantly developing new fundraising initiatives. Churches, fire departments, Junior Achievement, MADD, sports teams and numerous other Community Partners will benefit from the <strong>Community Game Changer</strong> Program - with no additional overhead or operational costs involved. </p>		      	
+	<p>The Family Members involved in <strong>Community Game Changer</strong> are encouraged to invite other family and friends to join the Program. Another option will allow the rebate to be collected by the individual members, in other words your rebate will be returned to you directly. This will be done in the form of a e-Transfer that you will receive on a quarterly basis. The local merchants will benefit from increased business, the Community Partners will benefit from the rebates received, and the families will benefit simply through continuing to buy the pizza, gas, and other goods and services that they already buy.  There are no fees to Family Members or Community Partners to participate in the program - it's totally <strong>FREE!</strong> The rebates are provided by our generous participating Merchant Partners. No changes in lifestyle are required - and no fundraising is required! We will take care of the details!</p>
+	<p>In order to make all this possible, <strong>Community Game Changer</strong>, will charge a 20% administrative fee on the rebates received from our Merchant Partners. This will cover the costs of developing the concept, accounting and banking fees, recruitment of program merchants, website creation and maintenance, loyalty card production, disbursement of rebates, point of sale equipment, labour, IT equipment and overhead costs.  All fees charged for our services will be clearly indicated on reports provided to the Family Members, Merchant and Community Partners.</p>			
+	<p>My business partner, Jamie Taylor, and I invite you to join the <strong>Community Game Changer</strong> Program. Together, with you, our Merchant and Community Partners, we can create new jobs, support our local merchants, and help reduce the cost burden of delivering essential services to our community.  Our children will reap the rewards of our efforts!  Join the movement!  To find out more about how it works, have a look through our website - or give us a call.  We would be happy to chat with you about how <strong>Community Game Changer</strong> can work for you!</p>
+	<p>Yours truly,</p>
+	<img class="img-fluid" src="resources/images/signature.png"/>
+	<blockquote class="blockquote">
+	<p class="mb-0">Doug McMonagle</p>
+		<footer class="blockquote-footer">Founder, CEO</footer>
+	</blockquote>
+				<div class="text-center">
+					<a href="./register/select" class="btn btn-lg btn-primary"><strong>Join the movement, register today!</strong></a>
+				</div>
+			</div>
+		<!-- <div class="col-lg-3 mt-5">
+			<h2 class="text-center">Benefits</h2>
+			<ul class="bullet">
+				<li class="text-lg-left mt-5"><h4>Test</h4></li>
+				<li class="text-lg-left mt-5"><h4>Test</h4></li>
+				<li class="text-lg-left mt-5"><h4>Test</h4></li>
+				<li class="text-lg-left mt-5"><h4>Test</h4></li>
+			</ul>
+		</div> -->
+	      <!-- Page Heading/Breadcrumbs -->
+	    </div>
+    </div>
+	<!-- /.container -->
+	<!--footer start from here-->
+	<div th:include="thymeleaf/layout :: footer"></div>
+</body>
+<script src="resources/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
+<script src="resources/vendor/popper/popper.min.js"></script>
+<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+</html>

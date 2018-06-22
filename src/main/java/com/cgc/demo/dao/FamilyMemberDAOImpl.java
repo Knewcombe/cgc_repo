@@ -16,6 +16,12 @@ import org.springframework.jdbc.support.KeyHolder;
 import com.cgc.demo.dao.BusinessProfileDAOImpl.BusinessProfileMapper;
 import com.cgc.demo.model.FamilyMember;
 
+/**
+ * Family Member DAO will get all information needed for Family Member model
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
 public class FamilyMemberDAOImpl implements FamilyMemberDAO {
 
 	@Autowired
@@ -23,9 +29,15 @@ public class FamilyMemberDAOImpl implements FamilyMemberDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param int user_profile_id
+	 * @return List<FamilyMember>
+	 * Getting all Family members for user profile
+	 */
 	@SuppressWarnings("unchecked")
 	public List<FamilyMember> getFamilyMember(int user_profile_id) {
-		// TODO Auto-generated method stub
 		List<FamilyMember> familyMember = null;
 
 		familyMember = this.jdbcTemplate.query("SELECT * FROM family_member WHERE user_profile_id = ?",
@@ -33,16 +45,29 @@ public class FamilyMemberDAOImpl implements FamilyMemberDAO {
 
 		return familyMember.size() > 0 ? familyMember : null;
 	}
-
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param FamilyMember familyMember
+	 * @return void
+	 * Setting family members.
+	 */
 	public void setFamilyMember(FamilyMember familyMember) {
-		// TODO Auto-generated method stub
 		this.jdbcTemplate.update(
-				"INSERT INTO family_member (user_profile_id, first_name, last_name, date_of_birth) VALUES (?,?,?,?)",
-				new Object[] { familyMember.getUser_profile_id(), familyMember.getFirst_name(),
-						familyMember.getLast_name(), familyMember.getDate_of_birth()});
+				"INSERT INTO family_member (user_profile_id, gender, first_name, last_name, date_of_birth, phone, card_id) VALUES (?,?,?,?,?,?,?)",
+				new Object[] { familyMember.getUser_profile_id(), familyMember.getGender(), familyMember.getFirst_name(),
+						familyMember.getLast_name(), familyMember.getDate_of_birth(), familyMember.getPhone(), familyMember.getCard_id()});
 
 	}
-
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return FamilyMember
+	 * Mapper for family member.
+	 */
 	public class FamilyMemberMapper implements RowMapper {
 
 		public FamilyMember mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -52,6 +77,9 @@ public class FamilyMemberDAOImpl implements FamilyMemberDAO {
 			familyMember.setFirst_name(rs.getString("first_name"));
 			familyMember.setLast_name(rs.getString("last_name"));
 			familyMember.setDate_of_birth(rs.getString("date_of_birth"));
+			familyMember.setPhone(rs.getString("phone"));
+			familyMember.setCard_id(rs.getString("card_id"));
+			familyMember.setGender(rs.getString("gender"));
 			return familyMember;
 		}
 	}

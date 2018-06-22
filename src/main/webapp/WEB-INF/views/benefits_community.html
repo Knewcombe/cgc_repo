@@ -2,28 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <!-- Bootstrap core CSS -->
+<meta name="viewport" content="width=500">
 <link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="../resources/css/modern-business.css" rel="stylesheet">
 
-<link
-	href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css"
-	rel="stylesheet">
+<link href="../resources/css/fonts/fontawesome-all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Graduate"
 	rel="stylesheet">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Benefits to Community</title>
+<title>Benefits to Organizations</title>
 </head>
 <body>
-	<div th:include="thymeleaf/layout :: header"></div>
+	<div th:switch="${user_login}"> 
+		<div th:case="true"><div th:include="thymeleaf/user-layout :: header"></div></div>
+		<div th:case="false"><div th:include="thymeleaf/layout :: header"></div></div>
+	</div>
 	<!-- container -->
 	<div class="container-fluid">
 	<div class="row">
@@ -31,29 +31,26 @@
 			<img src="https://thumbs.dreamstime.com/z/charity-donations-fundraising-nonprofit-volunteer-concept-77965178.jpg" class="w-100">
 		</div>
 		<div class="col-lg-6">
-			<!-- <h1 class="mt-4 mb-3">Benefits to Community Partners</h1>
-		<p>NEED TEXT FOR THIS PAGE</p>
-      <p>Individuals register as a CGC “Participant” by receiving a membership card from Community Game Changer.  You can get the card through family members who are circulating them as part of a sports team fund raising effort, or you can contact CGC directly to register by sending an email to register@cgc.ca or filling out the online registration form at www.cgc.ca – whatever method works for you is fine.  Let us know how we can help!</p>
-		<p>Companies (merchants) also register with Community Game Changer, and agree to give a portion of their sales “back” to the people who buy from them…. it’s like getting a discount …the more you purchase at our merchants – the more money you get back.</p>
-		<p>Community Game Changer will keep track of your purchases made at participating merchants and will send your “rebate” to the organizations or teams that you selected during the registration process.   It’s like fundraising, without the pain of bottle drives, buying and selling tickets, and holding spaghetti dinners to raise the funds!  </p>
-		<p><strong>Your community benefits</strong> because the products you purchase support local business, and results in increased employment in your area and creates wealth that stays in the community.</p>
-		<p><strong>Your team (or association) benefits</strong> because they get a portion of all purchases that are made “rebated” to them, to help fund the costs of operating their teams and competing at local, regional, and national events.</p>
-		<p><strong>You benefit</strong> because you simply buy the products that you always buy, and you get a rebate for doing so!  The rebate goes directly to the teams or organizations that you dictate – and you never have to buy another ticket again to support your son, your daughter, your grandchildren, other family members or friends.  <strong>It’s easy and it works!</strong></p>
-		<p>Simply register with Community Game Changer and the “change” will begin!  Once registered, all you have to do is present your card (or membership number) at participating merchants, and the rest is taken care of on your behalf.</p>
-		<p>You can view your purchases and rebates online to see your purchases at work!</p>
-		<div class="text-center">
-		<a href="../user/register"><strong>Join the movement, register today!</strong></a>
-		</div> -->
+			<h1 class="mt-4 mb-3">Benefits to Community Partners</h1>
+      	<p class="about-font"><strong>The amateur sport associations</strong> will receive funding to support their activities, teams, and individual athletes within their associations. In essence, they will have a group of corporate sponsors that they can depend upon for funding on an ongoing basis - without the hassle of knocking on doors for sponsorship.</p>
+      	<p class="about-font"><strong>The non-profit and charity organizations</strong> will receive funding to support the charitable work they do within our communities. Organizations such as the Lions Clubs, MADD, Boys and Girls Clubs, local fire departments, schools, churches and many others do tremendous work in our province. <strong>Communiy Game Changer</strong> will help them increase their financial position and be able to continue to provide vital services back to the residents of Prince Edward Island.</p>
 	</div>
 	<div class="col-lg-3 mt-5">
 		<h2 class="text-center">Benefits</h2>
 		<ul class="bullet">
-			<li class="text-lg-left mt-5"><h4>Test</h4></li>
-			<li class="text-lg-left mt-5"><h4>Test</h4></li>
-			<li class="text-lg-left mt-5"><h4>Test</h4></li>
-			<li class="text-lg-left mt-5"><h4>Test</h4></li>
+			<li class="text-lg-left mt-5"><h4>Ongoing funding</h4></li>
+			<li class="text-lg-left mt-5"><h4>Better financial position</h4></li>
+			<li class="text-lg-left mt-5"><h4>Less stress on volunteers</h4></li>
+			<li class="text-lg-left mt-5"><h4>Promote within membership</h4></li>
+			<li class="text-lg-left mt-5"><h4>Less fundraising</h4></li>
+			<li class="text-lg-left mt-5"><h4>Enable family with financial limitations to participate</h4></li>
 		</ul>
 	</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 text-center">
+		<a href="../community/register" class="btn btn-lg btn-primary"><strong>Join the movement, register today!</strong></a>
+		</div>
 	</div>
       <!-- Page Heading/Breadcrumbs -->
     </div>

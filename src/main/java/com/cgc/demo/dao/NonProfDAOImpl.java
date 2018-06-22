@@ -10,11 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.cgc.demo.dao.CharityAssociationDAOImpl.CommunityMapper;
-import com.cgc.demo.dao.CharityAssociationDAOImpl.NameMapper;
-import com.cgc.demo.dao.CharityAssociationDAOImpl.ProvinceMapper;
 import com.cgc.demo.model.NonProfAssociation;
 
+/**
+ * Non Prof DAO will get all information needed for Non Prof model
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
 public class NonProfDAOImpl implements NonProfDAO {
 	
 	@Autowired
@@ -22,6 +25,13 @@ public class NonProfDAOImpl implements NonProfDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param int account_id
+	 * @return NonProfAssociation
+	 * Get the non prof base on account_id
+	 */
 	@SuppressWarnings("unchecked")
 	public NonProfAssociation getNonProf(int account_id){
 		List<NonProfAssociation> association = null;
@@ -32,6 +42,12 @@ public class NonProfDAOImpl implements NonProfDAO {
 		return association.size() > 0 ? association.get(0) : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @return List<NonProfAssociation>
+	 * get all the provinces for nonProf associations
+	 */
 	@SuppressWarnings("unchecked")
 	public List<NonProfAssociation> getProvince(){
 		
@@ -43,6 +59,13 @@ public class NonProfDAOImpl implements NonProfDAO {
 		
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String province_code
+	 * @return List<NonProfAssociation>
+	 * get all communities based on the province_code
+	 */
 	@SuppressWarnings("unchecked")
 	public List<NonProfAssociation> getCommunity(String province_code){
 		
@@ -55,6 +78,13 @@ public class NonProfDAOImpl implements NonProfDAO {
 		
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String province_code, String community
+	 * @return List<NonProfAssociation>
+	 * Getting all the name from non prof association based on the province code and community
+	 */
 	@SuppressWarnings("unchecked")
 	public List<NonProfAssociation> getName(String province_code, String community){
 		
@@ -67,6 +97,12 @@ public class NonProfDAOImpl implements NonProfDAO {
 		
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @return List<NonProfAssociation>
+	 * Get all non prof for viewing
+	 */
 	@SuppressWarnings("unchecked")
 	public List<NonProfAssociation> getNonProf(){
 		List<NonProfAssociation> association = null;
@@ -76,6 +112,47 @@ public class NonProfDAOImpl implements NonProfDAO {
 		return association.size() > 0 ? association : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param int nonprof_id
+	 * @return NonProfAssociation
+	 * Get non prof info for association account.
+	 */
+	@SuppressWarnings("unchecked")
+	public NonProfAssociation getNonProfInfo(int nonprof_id){
+		List<NonProfAssociation> association = null;
+		
+		association = this.jdbcTemplate.query("SELECT * FROM nonprof_association WHERE association_id = ?",
+				new Object[] { nonprof_id },new NonProfMapper());
+		
+		return association.size() > 0 ? association.get(0) : null;
+	}
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String search
+	 * @return List<NonProfAssociation>
+	 * Get nonprof based on search string. Will return all nonprofs that match.
+	 */
+	@SuppressWarnings("unchecked")
+	public List<NonProfAssociation> searchNonProf(String search){
+		List<NonProfAssociation> association = null;
+		
+		association = this.jdbcTemplate.query("SELECT *, MATCH ( `name`, `community`) AGAINST ('+'?'*' IN NATURAL LANGUAGE MODE) as `rel` FROM `nonprof_association` WHERE MATCH ( `name`, `community`) AGAINST ('+'?'*' IN NATURAL LANGUAGE MODE) ORDER BY `rel` DESC",
+				new Object[] { search, search }, new NonProfMapper());
+		
+		return association.size() > 0 ? association : null;
+	}
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param int nonProf_id
+	 * @return NonProfAssociation
+	 * Get the name of none prof based on id
+	 */
 	@SuppressWarnings("unchecked")
 	public NonProfAssociation getName(int nonProf_id){
 		List<NonProfAssociation> association = null;
@@ -86,6 +163,13 @@ public class NonProfDAOImpl implements NonProfDAO {
 		return association.size() > 0 ? association.get(0) : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return NonProfAssociation
+	 * Mapper for full nonprof model
+	 */
 	public class NonProfMapper implements RowMapper {
 
 		public NonProfAssociation mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -97,7 +181,14 @@ public class NonProfDAOImpl implements NonProfDAO {
 			return association;
 		}
 	}
-	
+
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return NonProfAssociation
+	 * Mapper for province code
+	 */
 	public class ProvinceMapper implements RowMapper {
 
 		public NonProfAssociation mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -107,6 +198,13 @@ public class NonProfDAOImpl implements NonProfDAO {
 		}
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return NonProfAssociation
+	 * Mapper for community
+	 */
 	public class CommunityMapper implements RowMapper {
 
 		public NonProfAssociation mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -116,6 +214,13 @@ public class NonProfDAOImpl implements NonProfDAO {
 		}
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return NonProfAssociation
+	 * Mapper for name
+	 */
 	public class NameMapper implements RowMapper {
 
 		public NonProfAssociation mapRow(ResultSet rs, int arg1) throws SQLException {

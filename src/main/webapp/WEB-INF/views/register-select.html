@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=500">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="../resources/css/modern-business.css" rel="stylesheet">
+<link href="../resources/css/jquery.steps.css" rel="stylesheet">
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+<link rel="stylesheet" href="../resources/css/jquery-ui-slider-pips.css">
+<link rel="stylesheet" href="../resources/css/nouislider.min.css" />
+<link rel="stylesheet"
+	href="http://formvalidation.io/vendor/jquery.steps/css/jquery.steps.css" />
+<link href="../resources/css/register.css" rel="stylesheet">
+
+<link href="../resources/css/fonts/fontawesome-all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Graduate"
+	rel="stylesheet">
+
+<title>Registration</title>
+</head>
+<body>
+	<!-- Navigation -->
+	<div th:include="thymeleaf/layout :: header"></div>
+	<div class="container-fluid">
+	<h1 class="my-4 text-center titel">Select what you would like to register as...</h1>
+		<div class="container py-3">
+		    <div class="card">
+		      <div class="row">
+		      <div class="col-md-4">
+            <img src="https://daisiesandbuttercups.com/wp-content/uploads/2017/06/AdobeStock_28477565-400x400.jpeg" class="w-100">
+          		</div>
+		          <div class="col-md-8 px-3 py-3">
+		            <div class="card-block px-3">
+		              <h4 class="card-title">Family Member</h4>
+		              <p class="card-text">Registering as a Family member for <strong>FREE</strong> will allow you to select the any Community Organization you would like to support within your community.</p>
+		              <p class="card-text">Shopping at any of our Merchant partner will allow you to contribute to the Community Organization you have selected.</p>
+		              <a href="../user/register" class="btn btn-primary">Register As Family Member!</a>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		    <div class="container py-3">
+		    <div class="card">
+		      <div class="row">
+		      <div class="col-md-4">
+            <img src="https://blog.unfranchise.com/wp-content/uploads/2017/03/bigstock-Black-male-business-owner-stan-154797611-800x445-400x400.jpg" class="w-100">
+          </div>
+		          <div class="col-md-8 px-3 py-3">
+		            <div class="card-block px-3">
+		              <h4 class="card-title">Merchant Member</h4>
+		              <p class="card-text">Registering as a Merchant partner will allow you to take part in helping the community your business is located.</p>
+		              <p class="card-text">Any Family member will be able to shop at you Business and contribute to their selected Community Organization.</p>
+		              <a href="../business/register" class="btn btn-primary">Register as Merchant Member!</a>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		    <div class="container py-3">
+		    <div class="card">
+		      <div class="row">
+		      <div class="col-md-4">
+            <img src="https://thumbs.dreamstime.com/z/charity-donations-fundraising-nonprofit-volunteer-concept-77965178.jpg" class="w-100">
+          </div>
+		          <div class="col-md-8 px-3 py-3">
+		            <div class="card-block px-3">
+		              <h4 class="card-title">Community Partners</h4>
+		              <p class="card-text">Registering as a Community Partners will allow Family members to selected your Organization for contribution</p>
+		              <p class="card-text">As long as you are a Non-Profit, Charity or Sport association you can register.</p>
+		              <a href="../community/register" class="btn btn-primary">Register Community Partner!</a>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+	<!--footer start from here-->
+	<div th:include="thymeleaf/layout :: footer"></div>
+</body>
+<script src="../resources/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="../resources/vendor/popper/popper.min.js"></script>
+	<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+</html>

@@ -2,11 +2,14 @@ package com.cgc.demo.service;
 
 import java.util.List;
 
+import javax.naming.directory.SearchResult;
+
 import com.cgc.demo.model.AssociationAccount;
 import com.cgc.demo.model.CharityAssociation;
 import com.cgc.demo.model.Login;
 import com.cgc.demo.model.NonProfAssociation;
 import com.cgc.demo.model.Player;
+import com.cgc.demo.model.SearchResults;
 import com.cgc.demo.model.SportAssociation;
 import com.cgc.demo.model.Teams;
 import com.cgc.demo.model.UserAssociation;
@@ -18,6 +21,10 @@ public interface AssociationService {
 	public List<SportAssociation> getAssociation();
 	
 	public SportAssociation getAssociation(int association_id);
+	
+	public SportAssociation getSportAssociation(int association_id, int team_id, int player_id);
+	
+	public CharityAssociation getCharityAssociation(int charity_id);
 	
 	public List<SportAssociation> getProvinces();
 	
@@ -57,6 +64,8 @@ public interface AssociationService {
 	
 	public NonProfAssociation getNonProfName(int nonProf_id);
 	
+	public NonProfAssociation getNonProfInfo(int nonProf_id);
+	
 	public SportAssociation getSportNames(int association_id, int team_id, int player_id);
 	
 	public List<UserAssociation> getUserAsscoiation(AssociationAccount associationAccount);
@@ -68,4 +77,14 @@ public interface AssociationService {
 	public List<CharityAssociation> getAllCharities();
 	
 	public List<NonProfAssociation> getAllNonProf();
+	
+	public List<SportAssociation> searchSport(String search);
+	
+	public List<CharityAssociation> searchChairty(String search);
+	
+	public List<NonProfAssociation> searchNonProf(String search);
+	
+	public boolean checkUsername(String username);
+	
+	public boolean checkEmail(String email);
 }

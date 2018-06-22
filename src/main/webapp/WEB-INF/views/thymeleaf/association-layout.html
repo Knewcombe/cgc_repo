@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head></head>
+	<body>
+		<div th:fragment="header">
+			<nav
+		class="navbar navbar-expand-lg navbar-dark cl-bg-primary fixed-top"
+		id="mainNav"> <a class="navbar-brand nav-titel text-white"
+		th:href="@{/association/home}">COMMUNITY GAME CHANGER</a>
+	<button class="navbar-toggler navbar-toggler-right" type="button"
+		data-toggle="collapse" data-target="#navbarResponsive"
+		aria-controls="navbarResponsive" aria-expanded="false"
+		aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarResponsive">
+		<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+			<li class="nav-item" data-toggle="tooltip" data-placement="right"
+				title="" data-original-title="Home"><a class="nav-link"
+				th:href="@{/association/home}"> <i class="fa fa-fw fa-home"></i> <span
+					class="nav-link-text">Home</span>
+			</a></li>
+			<li class="nav-item" data-toggle="tooltip" data-placement="right"
+				title="" data-original-title="Reports"><a class="nav-link"
+				th:href="@{/association/reports}"> 
+				<i class="fa fas fa-chart-bar"></i> <span class="nav-link-text">Reports</span>
+			</a></li>
+		</ul>
+		<ul class="navbar-nav sidenav-toggler">
+			<li class="nav-item"><a class="nav-link text-center"
+				id="sidenavToggler"> <i class="fa fa-fw fa-angle-left"></i>
+			</a></li>
+		</ul>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item"><a class="nav-link" th:href="@{/association/logout}"> <i
+					class="fa fas fa-sign-out-alt"></i>Logout
+			</a></li>
+		</ul>
+	</div>
+	</nav>
+		</div>
+		
+		<div th:fragment="sport-header">
+			<nav
+		class="navbar navbar-expand-lg navbar-dark cl-bg-primary fixed-top"
+		id="mainNav"> <a class="navbar-brand nav-titel text-white"
+		th:href="@{/association/home}">COMMUNITY GAME CHANGER</a>
+	<button class="navbar-toggler navbar-toggler-right" type="button"
+		data-toggle="collapse" data-target="#navbarResponsive"
+		aria-controls="navbarResponsive" aria-expanded="false"
+		aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarResponsive">
+		<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+			<li class="nav-item" data-toggle="tooltip" data-placement="right"
+				title="" data-original-title="Home"><a class="nav-link"
+				th:href="@{/association/home}"> <i class="fa fa-fw fa-home"></i> <span
+					class="nav-link-text">Home</span>
+			</a></li>
+			<li class="nav-item" data-toggle="tooltip" data-placement="right"
+				title="" data-original-title="All Reports"><a class="nav-link"
+				th:href="@{/association/reports}"> <i class="fa fas fa-chart-bar"></i> <span
+					class="nav-link-text">Reports</span>
+			</a></li>
+			<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-info-circle"></i>
+            <span class="nav-link-text"> To Generate Reports...</span>
+          </a>
+          	<ul class="sidenav-second-level collapse" id="collapseComponents" style="">
+	            <li>
+              <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2" aria-expanded="false"><i class="fa fa-fw fa-users"></i><span class="nav-link-text"> By Team</span></a>
+              <ul class="sidenav-third-level collapse" id="collapseMulti2" style="">
+                <li>
+                  <div class="card">
+				  <div class="card-block">
+				    <h4 class="card-title">To view reports for a Team</h4>
+    					<p class="card-text"><strong>Option One:</strong> Use the 'Refine Report' options to find the Team.</p>
+    					<p class="card-text"><strong>Option Two:</strong> Select the Team name in the 'Users funding' section.</p>
+				  </div>
+				</div>
+                </li>
+              </ul>
+            </li>
+	            <li>
+              <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti3" aria-expanded="false"><i class="fa fa-fw fa-user"></i><span class="nav-link-text"> By Player</span></a>
+              <ul class="sidenav-third-level collapse" id="collapseMulti3" style="">
+                <li>
+                  <div class="card">
+				  <div class="card-block">
+				    <h4 class="card-title">To view reports for a Player</h4>
+    					<p class="card-text"><strong>Option One:</strong> Use the 'Refine Report' options to find the Player.</p>
+    					<p class="card-text"><strong>Option Two:</strong> Select the Player name in the 'Users funding' section.</p>
+				  </div>
+				</div>
+                </li>
+              </ul>
+            </li>
+          	</ul>
+        	</li>
+		</ul>
+		<ul class="navbar-nav sidenav-toggler">
+			<li class="nav-item"><a class="nav-link text-center"
+				id="sidenavToggler"> <i class="fa fa-fw fa-angle-left"></i>
+			</a></li>
+		</ul>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item"><a class="nav-link" th:href="@{/association/logout}"> <i
+					class="fa fas fa-sign-out-alt"></i>Logout
+			</a></li>
+		</ul>
+	</div>
+	</nav>
+		</div>
+		<div th:fragment="home">
+			<div class="container-fluid">
+			<div class="autoplay box-shadow">
+				<div class="jumbotron my-4 text-center card-img-bg" style="background: linear-gradient(rgba(255,255,255,.8), rgba(0,0,0,.5)), url('http://healthycommunities.ucr.edu/images/familyplayingsoccer.jpg');">
+					<h3 class="display-3 titel text-white text-shadow">WELCOME BACK</h3>
+					<p class="display-4 titel text-white text-shadow">
+						<span th:text="${account?.charityAssociation?.name}"></span>
+						<span th:text="${account?.sportAssociation?.name}"></span>
+						<span th:text="${account?.nonProfAssociation?.name}"></span>
+					</p>
+					<p class="display-4 titel text-white text-shadow">TO COMMUNITY GAME CHANGER!</p>
+				</div>
+			</div>
+		<div class="row">
+			<div class="col-lg-3 mb-3">
+				<div class="card h-100 box-shadow">
+					<h4 class="card-header">What we were thinking...</h4>
+					<div id="first-card" class="card-body card-img-bg">
+						<p class="card-text"><strong>Community Game Changer</strong>, CGC, has a mandate to improve local communities through cooperation, collaboration and communication....</p>
+						</div>
+					<div class="card-footer">
+						<a th:href="@{/what_we_were_thinking}" class="btn btn-primary">Learn More</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 mb-3">
+				<div class="card h-100 box-shadow">
+					<h4 class="card-header">Benefits to Families</h4>
+					<div id="second-card" class="card-body card-img-bg">
+						<p class="card-text">Individuals, families, sport teams, local associations and others can sign up for <strong>Community Game Changer</strong> It's easy and it's profitable - for you and your community...</p>
+					</div>
+					<div class="card-footer">
+						<a th:href="@{/benefits/family}" class="btn btn-primary">Learn More</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 mb-3">
+				<div class="card h-100 box-shadow">
+					<h4 class="card-header">Benefits to Merchants</h4>
+					<div id="third-card" class="card-body card-img-bg">
+						<p class="card-text"><strong>The merchants</strong> will have a built in buying group that has an emotional attachment to the athletes, charities and non-profit's that are going to benefit from the financial contributions made by the merchants...</p>
+					</div>
+					<div class="card-footer">
+						<a th:href="@{/benefits/businesses}" class="btn btn-primary">Learn More</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 mb-3">
+				<div class="card h-100 box-shadow">
+					<h4 class="card-header">Benefits to Community</h4>
+					<div id="fourth-card" class="card-body card-img-bg">
+						<p class="card-text"><strong>Community Game Changer</strong> is designed to help business organizations, local sports associations, communities, and individuals improve their collective bottom line by purchasing goods and services from each other - to their mutual benefit...</p>
+					</div>
+					<div class="card-footer">
+						<a th:href="@{/benefits/community}" class="btn btn-primary">Learn More</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<h1 class="my-4 text-center titel">Our Merchant Partners</h1>
+		<div class="row col-centered">
+			<div class="col-3 col-sm-4 col-md-4 col-lg-2 mb-4">
+				<img class="img-fluid"
+					src="http://peipma.ca/wp-content/uploads/2017/01/4175_1_kenmac_energy.gif"
+					alt="" width="100" height="500">
+			</div>
+			<div class="col-3 col-sm-4 col-md-4 col-lg-2 mb-4">
+				<img class="img-fluid"
+					src="http://logos-vector.com/images/logo/lar/4/7/1/47126/Petro_Canada_6a7c4_250x250.png"
+					alt="" width="100" height="500">
+			</div>
+			<div class="col-3 col-sm-4 col-md-4 col-lg-2 mb-4">
+				<img class="img-fluid"
+					src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Dominos_pizza_logo.svg/220px-Dominos_pizza_logo.svg.png"
+					alt="" width="100" height="500">
+			</div>
+			<div class="col-3 col-sm-4 col-md-3 col-lg-2 mb-4">
+				<img class="img-fluid"
+					src="http://www.naylornetwork.com/lbm-NWL/assets/home_hardware.horiz.jpg"
+					alt="" width="100" height="500">
+			</div>
+			<div class="col-3 col-sm-4 col-md-4 col-lg-2 mb-4">
+				<img class="img-fluid"
+					src="http://peterboroughhumanesociety.ca/wp-content/uploads/2015/06/Leons-660x381.jpg"
+					alt="" width="100" height="500">
+			</div>
+			<div class="col-3 col-sm-4 col-md-4 col-lg-2 mb-4">
+				<img class="img-fluid"
+					src="http://www.easternbaseballacademy.com/assets/chuckies.jpg"
+					alt="" width="100" height="500">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<a th:href="@{/merchants}" class="btn btn-primary btn-lg col-centered">See More about our Merchant Partners!</a>
+			</div>
+		</div>
+	</div>
+		</div>
+	</body>
+</html>

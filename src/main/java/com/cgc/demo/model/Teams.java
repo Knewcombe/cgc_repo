@@ -3,6 +3,20 @@ package com.cgc.demo.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Teams.java
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
+
+/**
+ * Teams
+ * 
+ * Object used to store information for team. Will be attached to Sport association object.
+ *
+ */
+
 public class Teams {
 	
 	private int association_id;

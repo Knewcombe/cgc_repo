@@ -1,5 +1,6 @@
 package com.cgc.demo.view;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +68,7 @@ public class BusinessExcelView extends AbstractExcelView {
 		   sheet1.autoSizeColumn(2);
 		   row.createCell(3).setCellValue("$"+df2.format(transaction.getPrecent_total()));
 		   sheet1.autoSizeColumn(3);
-		   row.createCell(4).setCellValue(transaction.getDate_of_purhase());
+		   row.createCell(4).setCellValue(transaction.getDate_of_purchase());
 		   sheet1.autoSizeColumn(4);
 		   for(TransactionDetail details: transaction.getTransactionDetail()){
 			   HSSFRow row2 = sheet2.createRow(tdCounter++);
@@ -75,13 +76,20 @@ public class BusinessExcelView extends AbstractExcelView {
 			   sheet2.autoSizeColumn(0);
 			   row2.createCell(1).setCellValue(details.getName());
 			   sheet2.autoSizeColumn(1);
-			   row2.createCell(2).setCellValue("$"+df2.format(details.getAmount()));
-			   sheet2.autoSizeColumn(2);
-			   row2.createCell(3).setCellValue("%"+(details.getTransaction_rate() * 100));
-			   sheet2.autoSizeColumn(3);
+			   if(details.getName().equals("Gasoline & Fuel")){
+				   row2.createCell(2).setCellValue("L"+df2.format(details.getAmount()));
+				   sheet2.autoSizeColumn(2);
+				   row2.createCell(3).setCellValue("%"+(details.getTransaction_rate()));
+				   sheet2.autoSizeColumn(3);
+			   }else{
+				   row2.createCell(2).setCellValue("$"+df2.format(details.getAmount()));
+				   sheet2.autoSizeColumn(2);
+				   row2.createCell(3).setCellValue("%"+(details.getTransaction_rate().multiply(new BigDecimal(100))));
+				   sheet2.autoSizeColumn(3);
+			   }
 			   row2.createCell(4).setCellValue("$"+df2.format(details.getPrecent_amount()));
 			   sheet2.autoSizeColumn(4);
-			   row2.createCell(5).setCellValue(details.getMethod_of_pyment());
+			   row2.createCell(5).setCellValue(details.getMethod_of_payment());
 			   sheet2.autoSizeColumn(5);
 		   }
 		  }

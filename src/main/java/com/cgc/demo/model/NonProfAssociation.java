@@ -1,5 +1,19 @@
 package com.cgc.demo.model;
 
+/**
+ * NonProfAssociation.java
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
+
+/**
+ * NonProfAssociation
+ * 
+ * Object to hold information for Nonprof associations.
+ *
+ */
+
 public class NonProfAssociation {
 	
 	private int association_id;

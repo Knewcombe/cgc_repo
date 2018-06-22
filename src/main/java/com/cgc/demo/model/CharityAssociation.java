@@ -1,5 +1,19 @@
 package com.cgc.demo.model;
 
+/**
+ * CharityAssociation.java
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
+
+/**
+ * CharityAssociation 
+ * 
+ * Charity Association will hold information for Chairty Assoications
+ *
+ */
+
 public class CharityAssociation {
 	
 	private int association_id;

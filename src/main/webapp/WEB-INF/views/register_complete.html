@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=500">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="../resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<link href="../resources/css/fonts/fontawesome-all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Graduate"
+	rel="stylesheet">
+	
+	<!-- Custom styles for this template -->
+<link href="../resources/css/modern-business.css" rel="stylesheet">
+<link href="../resources/css/slick-theme.css" rel="stylesheet">
+<link href="../resources/css/slick.css" rel="stylesheet">
+	<title>Congratulation</title>
+</head>
+<body>
+<!-- Navigation -->
+	<div th:include="thymeleaf/layout :: header"></div>
+<div class="container">
+	<h1 class="mt-4 mb-3 text-center">Thank you for registering!
+        <small>Now you can...</small>
+      </h1>
+	<div class="mb-4" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="card">
+          <div class="card-header" role="tab" id="headingOne">
+            <h5 class="mb-0">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Visit one of our participating merchants.
+              </a>
+            </h5>
+          </div>
+          <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+            <div class="card-body">
+              <p>Visit any of our <a class="btn btn-primary btn-sm" th:href="@{/merchants}">Merchant Partners</a> with your membership card and make any purchase to contribute to all of the community partners you have selected.</p>
+              <p>If you don't have a Community Game Changer (CGC) cards, please visit one of our <a class="btn btn-primary btn-sm" th:href="@{/merchants}">Merchant Partners</a> to pick one up and attach it to your account.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" role="tab" id="headingTwo">
+            <h5 class="mb-0">
+              <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Tell a friend.</a>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="card-body">
+              Everything is greater in numbers! <a class="btn btn-primary btn-sm" href="mailto:?Subject=Community%20Game%20Changer&amp;body=Here%20is%20a%20great%20site%20to%20help%20our%20Community:%20www.communitygamechanger.ca/overview" target="_top">Tell your friends and family</a> to sign up and start Changing the Game for you community.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" role="tab" id="headingThree">
+            <h5 class="mb-0">
+              <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Login to manage your selected Community Partners.</a>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="card-body">
+              Login to view reports on where your contribution is going, and change those values.</br>
+              <a class="btn btn-primary" th:href="@{../login}">Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+<!-- /.container -->
+	<div th:include="thymeleaf/layout :: footer"></div>
+</body>
+<script src="../resources/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
+<script src="../resources/vendor/popper/popper.min.js"></script>
+<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../resources/js/slick.js"></script>
+<script src="../resources/js/modern-business.js"></script>
+</html>

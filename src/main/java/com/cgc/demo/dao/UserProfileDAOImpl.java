@@ -17,6 +17,12 @@ import com.cgc.demo.model.Search;
 import com.cgc.demo.model.UserProfile;
 import com.mysql.jdbc.PreparedStatement;
 
+/**
+ * User Profile DAO will get all information needed for User Profile model
+ *
+ * @author Kyle Newcombe
+ * @since 0.1
+ */
 public class UserProfileDAOImpl implements UserProfileDAO{
 	
 	@Autowired
@@ -24,9 +30,15 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param int index
+	 * @return UserProfile
+	 * Get user profile for user account
+	 */
 	@SuppressWarnings("unchecked")
 	public UserProfile getUserProfile(int index) {
-		// TODO Auto-generated method stub
 		List<UserProfile> userProfile = null;
 
 		userProfile = this.jdbcTemplate.query("SELECT * FROM user_profile WHERE user_account_id = ?",
@@ -35,15 +47,28 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 		return userProfile.size() > 0 ? userProfile.get(0) : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param int user_profile_id
+	 * @return boolean
+	 * Check to see if there is a user profile for user account.
+	 */
 	public boolean checkForUser(int user_profile_id){
-		//boolean isUser = false;
-		
+
 		Integer isUser = this.jdbcTemplate.queryForObject("SELECT count(*) FROM user_profile WHERE user_profile_id = ?",
 				new Object[] { user_profile_id }, Integer.class);
 		
 		return isUser != null && isUser > 0;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String cardId
+	 * @return UserProfile
+	 * Get the user id based on matching card id.
+	 */
 	@SuppressWarnings("unchecked")
 	public UserProfile getUserId(String cardId){
 		
@@ -54,6 +79,13 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 		return userProfile.size() > 0 ? userProfile.get(0) : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param int user_profile_id
+	 * @return UserProfile
+	 * Get the username based on user profile id
+	 */
 	@SuppressWarnings("unchecked")
 	public UserProfile getUserName(int user_profile_id){
 		
@@ -63,6 +95,13 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 		return userProfile.size() > 0 ? userProfile.get(0) : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param int user_profile_id
+	 * @return UserProfile
+	 * Get contact info for UserProfile
+	 */
 	@SuppressWarnings("unchecked")
 	public UserProfile getContactInfo(int user_profile_id){
 		List<UserProfile> userProfile = null;
@@ -71,9 +110,15 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 		
 		return userProfile.size() > 0 ? userProfile.get(0) : null;
 	}
-
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param UserProfile userProfile
+	 * @return int
+	 * Setting the user profile for user account and return the unique identifier
+	 */
 	public int registerUser(final UserProfile userProfile) {
-		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(
 			new PreparedStatementCreator() {
@@ -81,7 +126,7 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 						throws SQLException {
 					PreparedStatement ps = (PreparedStatement) connection.prepareStatement("INSERT INTO user_profile (user_account_id, card_id, first_name, last_name, date_of_birth, gender, province_code, city, address, postal_code, phone, email) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", new String[] {"id"});
 			            ps.setInt(1, userProfile.getUser_account_id());
-			            ps.setString(2, userProfile.getCard_id());
+			            ps.setString(2, (!userProfile.getCard_id().isEmpty() && userProfile.getCard_id() != null) ? userProfile.getCard_id() : null);
 			            ps.setString(3, userProfile.getFirst_name());
 			            ps.setString(4, userProfile.getLast_name());
 			            ps.setString(5, userProfile.getDate_of_birth());
@@ -99,6 +144,13 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 		return keyHolder.getKey().intValue();
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param Search search
+	 * @return List<UserProfile>
+	 * Search for user profile based on search object.
+	 */
 	@SuppressWarnings("unchecked")
 	public List<UserProfile> searchForUser(Search search){
 		List<UserProfile> userProfile = null;
@@ -109,6 +161,13 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 		return userProfile.size() > 0 ? userProfile : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String search
+	 * @return List<UserProfile>
+	 * Find user based on search string.
+	 */
 	@SuppressWarnings("unchecked")
 	public List<UserProfile> findUser(String search){
 		
@@ -121,6 +180,13 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 		return userProfile.size() > 0 ? userProfile : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param int user_profile_id
+	 * @return UserProfile
+	 * Get the card id for user profile
+	 */
 	@SuppressWarnings("unchecked")
 	public UserProfile getCardId(int user_profile_id){
 		List<UserProfile> userProfile = null;
@@ -131,6 +197,13 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 		return userProfile.size() > 0 ? userProfile.get(0) : null;
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return UserProfile
+	 * Maper for user profile name
+	 */
 	public class UserNameMapper implements RowMapper {
 
 		public UserProfile mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -141,6 +214,49 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 		}
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String email
+	 * @return int
+	 * Checking to make sure email us unique
+	 */
+	public int checkEmail(String email){
+		int userAccountId = 0;
+		try{
+			userAccountId = this.jdbcTemplate.queryForObject("SELECT user_account_id FROM user_profile WHERE email = ?",
+					new Object[] { email }, Integer.class);
+		}catch(Exception e){
+			return 0;
+		}
+		
+		return userAccountId > 0 ? userAccountId : null;
+	}
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param String email
+	 * @return boolean
+	 * Checking to make sure email is valid
+	 */
+	public boolean emailValid(String email){
+		int count = jdbcTemplate.queryForObject("SELECT count(*) from user_profile where email = ?",
+				new Object[] { email }, Integer.class);
+		if (count > 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return UserProfile
+	 * Mapper for user profile.
+	 */
 	public class UserProfileMapper implements RowMapper {
 
 		public UserProfile mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -162,6 +278,13 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 		}
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return UserProfile
+	 * Mapper for user profile contact information.
+	 */
 	public class UserContactMapper implements RowMapper {
 
 		public UserProfile mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -176,6 +299,13 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 		}
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return UserProfile
+	 * Mapper for user profile id
+	 */
 	public class UserIdMapper implements RowMapper {
 
 		public UserProfile mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -185,6 +315,13 @@ public class UserProfileDAOImpl implements UserProfileDAO{
 		}
 	}
 	
+	/**
+	 * @since April 16 2018
+	 * @author Kyle Newcombe
+	 * @param ResultSet rs, int arg1
+	 * @return UserProfile
+	 * Mapper for user profile card id
+	 */
 	public class CardIdMapper implements RowMapper {
 
 		public UserProfile mapRow(ResultSet rs, int arg1) throws SQLException {

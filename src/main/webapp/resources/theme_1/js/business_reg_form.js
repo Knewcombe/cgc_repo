@@ -11,13 +11,13 @@ $(document).ready(function() {
 		errorPlacement: function errorPlacement(error, element) { element.before(error); },
 		debug: true,
 	    rules: {
-	    	name:{
-	    		requried: true
-	    	},
-	    	businessName:{
+	    	full_name:{
 	    		required: true
 	    	},
-	    	phone: {
+	    	orginization_name:{
+	    		required: true
+	    	},
+	    	phone_number: {
 	    		required: true,
 	    		phoneUS: true
 	    	},
@@ -27,13 +27,13 @@ $(document).ready(function() {
 	        }
 	    },
 	    messages: {
-	    	fullName:{
-	    		requried: "Please enter your full name"
+	    	full_name:{
+	    		required: "Please enter your full name"
 	    	},
-	    	businessName:{
-	    		required: "Please enter your business name"
+	    	orginization_name:{
+	    		required: "Please enter your orginization name"
 	    	},
-	    	phone: {
+	    	phone_number: {
 	    		required: "Please enter your phone number",
 	    		phoneUS: "Please enter a valid phone number"
 	    	},
@@ -44,15 +44,9 @@ $(document).ready(function() {
 	    },
 	    submitHandler: function(form) {
 	        // do other things for a valid form
-	        //form.submit();
-	    	window.location.replace("./complete");
+	    	document.getElementById("loading-background").style.display = "block";
+	        form.submit();
+	    	//window.location.replace("./complete");
 	    }
-	})
-	
-//		$("#sendMessageButton").submit(function(){
-//			console.log("Clikced");
-//			if($("#merchantForm").){
-//				
-//			}
-//		})
 	});
+})

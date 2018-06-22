@@ -24,4 +24,8 @@ public interface UserProfileDAO{
 	public UserProfile getUserName(int user_profile_id);
 	
 	public UserProfile getContactInfo(int user_profile_id);
+	
+	public int checkEmail(String email);
+	
+	public boolean emailValid(String email);
 }
